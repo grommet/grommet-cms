@@ -5,6 +5,7 @@ import Header from "grommet/components/Header";
 import Heading from "grommet/components/Heading";
 import Menu from "grommet/components/Menu";
 import Image from "grommet/components/Image";
+import userthumb from 'root/img/dashboard/user-thumb.jpg';
 
 const CLASS_ROOT = "grommet-cms-header";
 
@@ -106,7 +107,7 @@ export default function Nav({
           dropAlign={{ right: "right" }}
           icon={
             <Image
-              src="/dashboard-assets/img/dashboard/user-thumb.jpg"
+              src={userthumb}
               style={{
                 borderRadius: 25,
                 width: "25px",

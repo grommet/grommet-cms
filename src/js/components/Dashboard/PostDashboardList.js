@@ -13,6 +13,7 @@ import DownIcon from 'grommet/components/icons/base/Down';
 import Anchor from 'grommet/components/Anchor';
 import Label from 'grommet/components/Label';
 import unescape from 'unescape';
+import missingImage from 'root/img/dashboard/missingImage.png';
 
 export default function PostDashboardList({
   list, 
@@ -41,7 +42,7 @@ export default function PostDashboardList({
                 <Box direction="row" responsive={false} align="center">
                   <Box pad="small">
                     <Image size="thumb" src={
-                      item.image ? item.image.path : '/dashboard-assets/img/dashboard/missingImage.png'
+                      item.image ? item.image.path : missingImage
                     } />
                   </Box>
                   <Box direction="column" justify="center" responsive={false}>
@@ -61,7 +62,7 @@ export default function PostDashboardList({
                     responsive={true}
                     inline={false}
                     onClick={(e) => e.stopPropagation()}
-                    dropAlign={{ right: 'right'}}
+                    dropAlign={{ right: 'right' }}
                   >
                     <Anchor
                       icon={<ArticleIcon size="small" />}

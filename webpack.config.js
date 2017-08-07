@@ -87,7 +87,11 @@ const webpackConfig = Object.assign({
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.scss', '.css', '.json', '.md']
+    extensions: ['.js', '.scss', '.css', '.json', '.md'],
+    alias: {
+      'grommet-cms': path.resolve(__dirname, './src/js/'),
+      root: path.resolve(__dirname, './src/')
+    }
   },
   plugins,
   node: {
@@ -121,10 +125,19 @@ const webpackConfig = Object.assign({
         exclude: /node_modules/,
         use: [
           {
-            loader: "html-loader"
+            loader: 'html-loader'
           },
           {
-            loader: "markdown-loader"
+            loader: 'markdown-loader'
+          }
+        ]
+      },
+      {
+        test: /\.(jpg|png)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'file-loader'
           }
         ]
       }
