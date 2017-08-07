@@ -85,7 +85,7 @@ export default Object.assign({
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.scss', '.css', '.json']
+    extensions: ['.js', '.scss', '.css', '.json', '.md']
   },
   plugins,
   node: {
@@ -111,6 +111,18 @@ export default Object.assign({
                 './node_modules'
               ]
             }
+          }
+        ]
+      },
+      {
+        test: /\.md$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "html-loader"
+          },
+          {
+            loader: "markdown-loader"
           }
         ]
       }
