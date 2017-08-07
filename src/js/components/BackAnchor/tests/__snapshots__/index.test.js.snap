@@ -1,0 +1,20 @@
+exports[`<BackAnchor /> should render with default props 1`] = `
+<Box
+  announce={false}
+  direction="column"
+  focusable={true}
+  pad="none"
+  responsive={true}
+  tag="div">
+  <Anchor
+    animateIcon={true}
+    icon={
+      <LinkPrevious
+        responsive={true} />
+    }
+    label="Posts"
+    method="push"
+    onClick={[Function]}
+    tag="a" />
+</Box>
+`;

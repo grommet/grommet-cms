@@ -1,0 +1,53 @@
+.richeditor__root {
+  background: #fff;
+  font-family: 'Metric', 'Arial', sans-serif;
+  font-size: 14px;
+  padding: 12px 24px;
+}
+
+.richeditor__editor {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: text;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.richeditor__editor .public-DraftEditorPlaceholder-root { // sass-lint:disable-line class-name-format
+  position: absolute;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.richeditor__editor .public-DraftEditorPlaceholder-root, // sass-lint:disable-line class-name-format
+.richeditor__editor .public-DraftEditor-content { // sass-lint:disable-line class-name-format
+  margin: 0 -15px -15px;
+  padding: 15px;
+}
+
+.richeditor__editor .public-DraftEditor-content { // sass-lint:disable-line class-name-format
+  min-height: 100px;
+}
+
+.richeditor--hideplaceholder .public-DraftEditorPlaceholder-root { // sass-lint:disable-line class-name-format
+  display: none;
+}
+
+.richeditor__controls {
+  font-family: 'Metric', 'Arial', sans-serif;
+  font-size: 14px;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
+.richeditor__style-button {
+  color: nth($brand-grey-colors, 3);
+  cursor: pointer;
+  margin-right: 16px;
+  padding: 2px 0;
+  display: inline-block;
+
+  &--active {
+    color: $brand-color;
+    text-decoration: underline;
+  }
+}

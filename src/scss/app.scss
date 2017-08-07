@@ -1,0 +1,219 @@
+// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
+// HPE CaaS header width.
+$caas-header-width: 1124px;
+
+@import 'objects.dashboard';
+@import 'objects.post';
+@import 'objects.errors';
+@import 'objects.markdown';
+@import 'objects.markdown-guide';
+@import 'objects.quote';
+@import 'objects.video-callout';
+@import 'objects.youtube-layer';
+@import 'objects.video-layer';
+@import 'objects.home';
+@import 'objects.animation';
+@import 'objects.carousel';
+@import 'objects.card';
+@import 'objects.dashboard-html-editor';
+
+body {
+  // Fixes mobile Layer scroll bug.
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+img {
+  // Fixes IE11 image scaling within a flexbox bug.
+  min-height: 1px;
+}
+
+.hpe-logo {
+  height: 100%;
+  width: auto;
+  z-index: 10;
+}
+
+@include media-query(palm) {
+  .mobile-hide {
+    display: none;
+  }
+}
+
+.grommetux-tabs {
+  @media screen and (max-height: 414px) {
+    @media screen and (max-width: 736px) {
+      display: block !important; // sass-lint:disable-line no-important
+      white-space: nowrap;
+      overflow: auto;
+
+      li {
+        display: inline !important; // sass-lint:disable-line no-important
+      }
+    }
+  }
+  @media screen and (max-width: 520px) {
+    display: block !important; // sass-lint:disable-line no-important
+    white-space: nowrap;
+    overflow: auto;
+
+    li {
+      display: inline !important; // sass-lint:disable-line no-important
+    }
+  }
+}
+
+.grommetux-button:not(.grommetux-button--plain) .grommetux-button__icon + .grommetux-button__label {
+  @media screen and (max-width: 1200px) {
+    display: none !important; // sass-lint:disable-line no-important
+  }
+}
+
+.responsive-menu {
+  @media screen and (max-width: 720px) {
+    flex-direction: column;
+  }
+
+  > button {
+    margin: 0px 8px;
+    @media screen and (max-width: 720px) {
+      margin: 5px 0px;
+    }
+  }
+}
+
+.grommetux-image.grommetux-image--thumb {
+  object-fit: cover;
+  font-family: 'object-fit: cover;';
+}
+
+.grommetux-control-icon-down {
+  > polyline {
+    stroke: inherit;
+  }
+}
+
+.grommetux-tabs--scroll-horizontal {
+  display: block !important; // sass-lint:disable-line no-important
+  white-space: nowrap;
+  overflow: auto;
+
+  li {
+    display: inline !important; // sass-lint:disable-line no-important
+  }
+}
+
+.mobile-show {
+  display: none;
+
+  @include media-query(palm) {
+    display: inherit;
+  }
+}
+
+.grommetux-button--critical:not(.grommetux-button--focus) {
+  border-color: #FF324D;
+}
+
+.grommetux-button:not(.grommetux-button--disabled):not(.grommetux-button--plain):not(.grommetux-button--fill).grommetux-button--critical:hover {
+  box-shadow: 0px 0px 0px 2px #FF324D;
+}
+
+.grommetux-box {
+  max-width: 100%;
+
+  .grommetux-box--full {
+    // height: 100% is causing errors in Firefox and Safari.
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .grommetux-box--size-xlarge {
+    width: 720px;
+  }
+
+  .grommetux-box--size-xxlarge {
+    width: 960px;
+  }
+}
+
+.grommetux-paragraph--medium {
+  font-size: 18px;
+  max-width: unset;
+}
+
+.grommet dd,
+.grommet li:not([class^="grommetux-"]) {
+  font-size: 18px;
+}
+
+ul {
+  margin: 0;
+  margin-left: 1.2rem;
+}
+
+.slide-up-enter {
+  opacity: 0.01;
+}
+
+.slide-up-enter.slide-up-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+  animation: slide-up 500ms ease-out 1;
+}
+
+.slide-up-leave {
+  opacity: 1;
+}
+
+.grommetux-split__column--flex {
+  flex: 0 1 auto;
+}
+
+.grommetux-box--basis-2-3 {
+  @media all and (-ms-high-contrast: none) {
+    flex-basis: 66.66%;
+    flex: 0 1 66.66%;
+    max-width: 66.66%;
+  }
+}
+
+.grommetux-box--basis-1-3 {
+  @media all and (-ms-high-contrast: none) {
+    flex-basis: 33.3%;
+    flex: 0 1 33.3%;
+    max-width: 33.3%;
+  }
+}
+
+.slide-up-leave.slide-up-leave-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+  animation: slide-down 500ms ease-in 1;
+}
+
+@keyframes slide-down {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.grommetux-paragraph--large a {
+    color: #000;
+    font-weight: 100;
+}

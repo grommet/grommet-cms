@@ -1,0 +1,19 @@
+.quote {
+  &__open {
+    padding-right: 2px;
+    margin-left: -16px;
+
+    @include media-query(lap-and-up) {
+      padding-right: 6px;
+      margin-left: -21px;
+    }
+  }
+
+  &__close {
+    padding-left: 2px;
+
+    @include media-query(lap-and-up) {
+      padding-left: 6px;
+    }
+  }
+}

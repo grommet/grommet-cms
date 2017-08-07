@@ -1,0 +1,18 @@
+.video-callout {
+  position: relative;
+  // Fix IE11 layout bug.
+  max-height: 377px;
+
+  .video-callout__container {
+    position: relative;
+    cursor: pointer;
+    // Fix IE11 layout bug.
+    max-height: 377px;
+  }
+
+  .video-callout__icon-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+}

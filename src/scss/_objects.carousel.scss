@@ -1,0 +1,54 @@
+.grommet-cms-content-blocks--carousel-slide__small {
+  width: 100%;
+  height: 192px;
+}
+
+.grommet-cms-content-blocks--carousel-slide__medium {
+  width: 100%;
+  height: 384px;
+}
+
+.grommet-cms-content-blocks--carousel-slide__large {
+  width: 100%;
+  height: 576px;
+}
+
+.grommet-cms-content-blocks--carousel-slide__xlarge {
+  width: 100%;
+  height: 720px;
+}
+
+.grommet-cms-content-blocks--carousel-slide__xxlarge {
+  width: 100%;
+  height: 960px;
+}
+
+.grommet-cms-content-blocks--carousel-slide__full {
+  object-fit: cover;
+  width: 100vw !important; // sass-lint:disable-line no-important
+  height: 100vh !important; // sass-lint:disable-line no-important
+}
+
+.grommet-cms-content-blocks--carousel-slide__content-box {
+  position: relative;
+}
+
+.grommet-cms-content-blocks--carousel-slide__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.grommet-cms-content-blocks--carousel-slide__inner-box {
+  @media screen and (max-width: 400px) {
+    width: auto;
+    height: 85%;
+    margin: 12px;
+
+    p.grommetux-paragraph--large {
+      font-size: 20px !important; // sass-lint:disable-line no-important
+    }
+  }
+}

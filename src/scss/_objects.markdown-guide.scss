@@ -1,0 +1,38 @@
+.markdown-guide {
+  p {
+    margin: 16px 0;
+  }
+
+  hr {
+    margin-bottom: 0;
+  }
+
+  img {
+    max-width: 150px;
+    height: auto;
+  }
+
+  .markdown {
+    h1,
+    h2,
+    h3,
+    p {
+      padding: 0;
+      margin: 0;
+    }
+  }
+
+  .markdown blockquote {
+    border: 14px solid transparent;
+    border-image: linear-gradient(to bottom right, #ff8d6d 40%, rgba(253, 154, 105, 0.3) 100%);
+    border-image-slice: 1;
+
+    p {
+      padding: 14px;
+    }
+  }
+
+  .markdown-guide__title--pad {
+    padding-top: 16px;
+  }
+}

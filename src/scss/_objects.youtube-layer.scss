@@ -1,0 +1,44 @@
+.youtube-layer {
+  .grommetux-layer__container {
+    background-color: #000;
+  }
+
+   // Remove phantom scroll bars in IE11.
+  &.grommetux-layer--flush {
+    .grommetux-layer__container {
+      @include media-query(lap-and-up) {
+        width: calc(100vw - 48px);
+        max-width: calc(100vw - 48px);
+        height: calc(100vh - 48px);
+        min-height: calc(100vh - 48px);
+        max-height: calc(100vh - 48px);
+        transform: translateX(-50%) translateY(-50%);
+      }
+    }
+  }
+
+  &__video-container {
+    position: relative;
+    padding-bottom: 56.25%; // 16:9
+    padding-top: 25px;
+    height: 0;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .grommetux-layer__closer .grommetux-button__icon > svg {
+    fill: nth($brand-light-colors, 2);
+    stroke: nth($brand-light-colors, 2);
+
+    &:hover {
+      fill: nth($brand-grey-colors, 3);
+      stroke: nth($brand-grey-colors, 3);
+    }
+  }
+}

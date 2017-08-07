@@ -1,0 +1,9 @@
+.block--block-card__card-label {
+  font-weight: 700;
+}
+
+.block--block-card_card-thumbnail { // sass-lint:disable-line class-name-format
+  background-size: cover !important; // sass-lint:disable-line no-important
+  height: 195px;
+  width: 100%;
+}

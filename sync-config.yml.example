@@ -1,0 +1,35 @@
+# Mongo-Sync Configurations
+
+local:
+  db: 'local_db_name'
+  host:
+    port: 27017
+  assets: './uploads'
+  access:
+    username: 'local_mongo_user'
+    password: 'local_mongo_pass'
+
+remote:
+  db: 'remote_db_name'
+  host:
+    url: 'some.remoteurl.com'
+    port: 27017
+  assets: '/remote-app/uploads'
+  access:
+    username: 'remote_mongo_user'
+    password: 'remote_mongo_pass'
+
+tunnel:
+  on: false
+  access:
+    username: 'remote_ssh_user'
+    port: 22
+
+# For now :local just
+# assumes DB is at localhost:port
+
+# All of the parameters above are required,
+# without them, the script will fail
+
+# Comment out the access blocks if the DB is
+# not password protected

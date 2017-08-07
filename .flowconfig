@@ -1,0 +1,32 @@
+[include]
+./src/
+./src/js/
+
+[ignore]
+.*/node_modules/.*
+.*/node_modules/flow-remove-types/.*
+.*/dist/.*
+.*/lib/.*
+
+[libs]
+flow-typed/npm
+
+[options]
+suppress_comment=.*\\$FlowFixMe
+suppress_comment=.*\\$FlowInvalidInputTest
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=src/js
+module.name_mapper='\(react-redux\)' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='\(grommet-cms-content-blocks\)' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='\(react\)' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='\(redux\)' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='\(styled-components\)' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='\(react-helmet\)' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='\(unescape\)' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='\(recursive-unescape\)' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='\(react-addons-css-transition-group\)' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='^grommet-cms\/\(.*\)$' -> '<PROJECT_ROOT>/src/js/\1'
+module.name_mapper='.*\.md$' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+module.name_mapper='.*\.png$' -> '<PROJECT_ROOT>/config/flow/GeneralStub.js'
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable

@@ -1,0 +1,120 @@
+.markdown {
+  width: 100%;
+  max-width: 1000px;
+  align-self: center;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    padding: 24px;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    max-width: 100%;
+
+    @include media-query(lap-and-up) {
+      font-size: 2rem;
+    }
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    max-width: 100%;
+
+    @include media-query(lap-and-up) {
+      font-size: 1.75rem;
+    }
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    max-width: 100%;
+
+    @include media-query(lap-and-up) {
+      font-size: 1.5rem;
+    }
+  }
+
+  p {
+    font-size: 1.25rem;
+    max-width: 100%;
+    width: 100%;
+
+    @include media-query(lap-and-up) {
+      font-size: 1.5rem;
+    }
+  }
+
+  em {
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  blockquote {
+    margin: 24px;
+    border: 16px solid transparent;
+    // These are causing webpack errors.    
+    //border-image: linear-gradient(to bottom right, nth($brand-accent-colors, 3) 40%, rgba(253, 154, 105, 0.3) 100%);
+    border-image-slice: 1;
+
+    p {
+      font-size: 1.75rem;
+      line-height: 1.8rem;
+    }
+
+    @include media-query(lap-and-up) {
+      margin: 24px 0;
+      border: 24px solid transparent;
+    // These are causing webpack errors.
+      //border-image: linear-gradient(to bottom right, nth($brand-accent-colors, 3) 40%, rgba(253, 154, 105, 0.3) 100%);
+      border-image-slice: 1;
+
+      p {
+        font-size: 2rem;
+        line-height: 2.2rem;
+      }
+    }
+  }
+
+  h1,
+  strong {
+    color: nth($brand-grey-colors, 1);
+  }
+
+  hr {
+    display: block;
+    height: 1px;
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 32px 24px;
+    padding: 0;
+  }
+
+  a {
+    color: #333;
+    font-weight: 600;
+    transition: opacity 0.35s ease-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+// ignore grommet's blanket color inherit.
+.grommet .markdown a:not(.grommetux-anchor):not(.grommetux-button) {
+  color: #333;
+}

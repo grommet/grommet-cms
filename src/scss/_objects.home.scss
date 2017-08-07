@@ -1,0 +1,12 @@
+// sass-lint:disable no-important
+.home-desktop {
+  @media screen and (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.home-mobile {
+  @media screen and (min-width: 768px) {
+    display: none !important;
+  }
+}
