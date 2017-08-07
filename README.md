@@ -48,14 +48,6 @@ To run this application, execute the following commands:
   $ npm run dist
   ```
 
-## Docker
-We've included a setup to get you started with Docker and Docker Compose if you wish.  It is not required, but can potentially save you some time configuring the CMS.  Please refer to the [Docker documentation site](https://docs.docker.com/engine/installation/) if you need to install Docker and Docker Compose.
-
-First things first, you will want to download the Yarn executable file into the root directory of the project by running:
-```
-wget https://yarnpkg.com/latest.tar.gz
-```
-
 Once this is installed, you can run `docker-compose build`.  After the build has completed, run `docker run -it brand-central-cms` to get the server running.  You can now navigate to https://0.0.0.0:8000 to see the running app.
 
 ## Generators
