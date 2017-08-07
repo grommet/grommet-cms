@@ -70,8 +70,10 @@ if (env === 'production') {
     },
     historyApiFallback: true,
     proxy: {
-      '/api/*': 'http://localhost:8102'
-    }
+      '/dashboard/api/*': 'http://localhost:8000',
+      '/uploads/*': 'http://localhost:8000'
+    },
+    port: 8003
   };
 }
 
