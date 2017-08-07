@@ -1,9 +1,9 @@
 # __Page Management__
 
 ## Intro
-Sometimes terminology can be the most confusing part of a system, so let's take a moment to clear things up. The Brand Central site is made up of pages full of content, which are accessible through the [main tile page](https://h10014.www1.hpe.com/brand-central/main).  The pages are grouped together by "page type", which allows us to group together similar content on the site. Each page is made up of a number of sections, which are comprised of content blocks. At the top level of the content management system, you have the ability to manage the pages of your site.
+Sometimes terminology can be the most confusing part of a system, so let's take a moment to clear things up. A Grommet CMS site is made up of pages full of content, which are accessible through the [main tile page](https://h10014.www1.hpe.com/brand-central/main).  The pages are grouped together by "page type", which allows us to group together similar content on the site. Each page is made up of a number of sections, which are comprised of content blocks. At the top level of the content management system, you have the ability to manage the pages of your site.
 
-Let's take a look at how to manage pages through the Brand Central CMS.
+Let's take a look at how to manage pages through the Grommet CMS.
 
 ## Viewing pages
 
@@ -11,7 +11,7 @@ The first page that you will see after logging in is a list of the [recently upd
 
 ![Recently Updated Pages](_media/recently-updated.png)
 
-Using the navigation bar, you can navigate to view lists of the various page types on Brand Central.
+Using the navigation bar, you can navigate to view lists of the various page types on your application.
 
 ![Page Types Dropdown](_media/page-types-dropdown.png)
 

@@ -1,3 +1,3 @@
 # __Welcome__
 
-Welcome to the docs for the Brand Central CMS!
+Welcome to the docs for the Grommet CMS!

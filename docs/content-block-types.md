@@ -42,7 +42,7 @@ To select the asset to use for this content block, tap the __![Select Image](_me
 ![Image creation](_media/image-creation-example.gif)
 
 ## Image Gallery
-The Image Gallery content block was custom made for the Brand Central CMS to allow you to post a collection of images that the user can click through.  Much like the Hero and Carousel content blocks, the Image Gallery allows you to select multiple assets as slides. Any content block that allows for multiple assets will also allow you to reorganize and edit the slides.  See below for an example of how to add, reorder and delete slides.
+The Image Gallery content block was custom made for the Grommet CMS to allow you to post a collection of images that the user can click through.  Much like the Hero and Carousel content blocks, the Image Gallery allows you to select multiple assets as slides. Any content block that allows for multiple assets will also allow you to reorganize and edit the slides.  See below for an example of how to add, reorder and delete slides.
 
 ![Image gallery demo](_media/image-gallery-demo.gif)
 
