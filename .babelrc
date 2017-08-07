@@ -1,5 +1,12 @@
 {
   "presets": [["es2015", { "loose": true }], "react", "stage-0"],
+  "env": {
+    "development": {
+      "presets": [
+        "react-hmre"
+      ]
+    }
+  },
   "plugins": [
     "flow-react-proptypes",
     "add-module-exports",

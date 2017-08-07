@@ -17,24 +17,27 @@
     "url": "https://github.com/grommet/grommet-cms"
   },
   "jest": {
-    "transform": {
-      ".*": "<rootDir>/config/testing/preprocessor.js"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "jsx",
-      "json"
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov"
     ],
-    "moduleDirectories": [
-      "node_modules",
-      "bower_components",
-      "shared"
+    "collectCoverageFrom": [
+      "src/**/*.{js}"
+    ],
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist/",
+      "<rootDir>/templates/"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>[/\\\\](dist|templates|node_modules)[/\\\\]"
     ]
   },
+  "pre-commit": [
+    "test"
+  ],
   "dependencies": {
     "argv": "0.0.2",
     "babel-eslint": "^7.1.1",
-    "babel-jest": "^18.0.0",
     "babel-plugin-flow-react-proptypes": "^0.20.0",
     "babel-plugin-module-alias": "^1.6.0",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
@@ -49,7 +52,6 @@
     "compression": "^1.4.4",
     "connect-mongo": "^1.3.2",
     "cookie-parser": "^1.4.3",
-    "cross-env": "^3.1.4",
     "docsify": "^4.1.14",
     "docsify-cli": "^4.1.8",
     "ejs": "^2.4.2",
@@ -66,7 +68,6 @@
     "html-loader": "^0.4.4",
     "isomorphic-fetch": "^2.2.1",
     "jest": "^18.1.0",
-    "jest-cli": "^18.1.0",
     "markdown-loader": "^2.0.0",
     "mkdirp": "^0.5.1",
     "mongoose": "4.5.5",
@@ -106,11 +107,8 @@
     "unescape": "^0.2.0"
   },
   "devDependencies": {
-    "babel-loader": "^6.2.0",
     "babel-plugin-add-module-exports": "^0.2.0",
     "babel-plugin-transform-flow-strip-types": "^6.21.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
     "eslint-plugin-flowtype": "^2.29.2",
     "flow-bin": "^0.38.0",
     "grommet-toolbox": "^0.2.2",
@@ -128,9 +126,35 @@
     "remove-flow-types-loader": "^1.0.0",
     "url-loader": "^0.5.7",
     "uuid": "^3.0.1",
-    "webpack": "^1.9.11",
     "webpack-hot-middleware": "^2.12.2",
-    "webpack-stream": "^3.2.0"
+    "webpack-stream": "^3.2.0",
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.5.2",
+    "babel-eslint": "^7.1.1",
+    "babel-jest": "^20.0.3",
+    "babel-loader": "^7.1.1",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babel-preset-react-hmre": "^1.1.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.1",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-parallel": "^0.3.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.1.0",
+    "file-loader": "^0.11.2",
+    "grommet-cli": "^5.0.0",
+    "jest-cli": "^20.0.4",
+    "json-loader": "^0.5.4",
+    "node-sass": "^4.1.1",
+    "pre-commit": "^1.2.2",
+    "react-dev-utils": "^0.4.2",
+    "react-test-renderer": "^15.4.1",
+    "sass-lint": "^1.10.2",
+    "sass-loader": "^6.0.3",
+    "webpack": "^3.4.1"
   },
   "scripts": {
     "api-dev": "NODE_ENV=test ./node_modules/.bin/nodemon server ./server/server",
@@ -138,7 +162,7 @@
     "test:update": "npm run test -- -u",
     "test:watch": "npm run test -w",
     "build": "gulp dist",
-    "dev": "cross-env NODE_ENV=development gulp dev",
+    "dev": "cross-env NODE_ENV=development grommet pack",
     "dev:alias": "gulp dev --useAlias",
     "start": "node server ./server/server",
     "prod-start": "forever start -c 'node --max-old-space-size=6144' server ./server/server",
