@@ -38,7 +38,7 @@ if (env === 'production') {
         dead_code: true,
         evaluate: true,
         if_return: true,
-        join_vars: true,
+        join_vars: true
       },
       mangle: {
         screw_ie8: true
@@ -77,7 +77,7 @@ if (env === 'production') {
 
 plugins.push(new webpack.LoaderOptionsPlugin(loaderOptionsConfig));
 
-export default Object.assign({
+const webpackConfig = Object.assign({
   entry: './src/index.js',
   output: {
     path: path.resolve('./dist'),
@@ -129,3 +129,5 @@ export default Object.assign({
     ]
   }
 }, devConfig);
+
+export default webpackConfig;
