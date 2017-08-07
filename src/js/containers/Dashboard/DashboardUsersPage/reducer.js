@@ -6,7 +6,7 @@ const initialState = {
 };
 
 function users(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.USERS_REQUEST:
       return Object.assign({}, state, {
         request: true,

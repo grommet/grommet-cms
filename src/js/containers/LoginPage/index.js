@@ -31,7 +31,7 @@ export class LoginPage extends Component {
   _onChange(event) {
     const key = event.target.id;
     const val = event.target.value;
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
     this.setState(obj);
   }
@@ -48,14 +48,14 @@ export class LoginPage extends Component {
   }
 
   render() {
-    let loginError = (this.props.loginError !== '')
+    const loginError = (this.props.loginError !== '')
       ? <span>{this.props.loginError}</span>
       : null;
 
-    let onSubmitClick = (this.state.username && this.state.password)
+    const onSubmitClick = (this.state.username && this.state.password)
       ? this._onSubmit
       : null;
-    
+
     const { logo } = this.props;
 
     return (
@@ -84,11 +84,11 @@ export class LoginPage extends Component {
           })()}
           hasLogo
         />
-          {loginError}
+        {loginError}
       </Box>
     );
   }
-};
+}
 
 LoginPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -103,6 +103,6 @@ function mapStateToProps(state, props) {
     loginError,
     loggedIn
   };
-};
+}
 
 export default connect(mapStateToProps)(LoginPage);

@@ -11,30 +11,34 @@ import SpinningIcon from 'grommet/components/icons/Spinning';
 
 export default function FileInsertLayer(props) {
   const content = (!props.request)
-  ? (
-    <Form onSubmit={props.onSubmit}>
-      <Header>
+    ? (
+      <Form onSubmit={props.onSubmit}>
+        <Header>
         Add File
-      </Header>
-      <FormFields>
-        <fieldset>
-          <FormField label="File - 15MB max" htmlFor={"img"}>
-            <input id={"img"} name="img" type="file"
-              onChange={props.onChange} />
-          </FormField>
-        </fieldset>
-        <p>{props.error}</p>
-        <Button onClick={props.onSubmit} primary={true} label="submit" />
-      </FormFields>
-    </Form>
-  ) : (
-    <span>
-      <SpinningIcon /> loading
-    </span>
-  );
+        </Header>
+        <FormFields>
+          <fieldset>
+            <FormField label="File - 15MB max" htmlFor={'img'}>
+              <input
+                id={'img'}
+                name="img"
+                type="file"
+                onChange={props.onChange}
+              />
+            </FormField>
+          </fieldset>
+          <p>{props.error}</p>
+          <Button onClick={props.onSubmit} primary label="submit" />
+        </FormFields>
+      </Form>
+    ) : (
+      <span>
+        <SpinningIcon /> loading
+      </span>
+    );
 
   return (
-    <Layer onClose={props.onLayerClose} closer={true}>
+    <Layer onClose={props.onLayerClose} closer>
       <Box pad="medium">
         {content}
       </Box>

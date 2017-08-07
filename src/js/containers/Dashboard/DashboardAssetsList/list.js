@@ -130,19 +130,17 @@ export class AssetsList extends Component {
   _onClickMenu(action, asset) {
     if (action === 'DELETE') {
       this._onDeleteClick(asset);
+    } else if (this.props.onAssetSelect) {
+      this.props.onAssetSelect(asset);
     } else {
-      if (this.props.onAssetSelect) {
-        this.props.onAssetSelect(asset);
-      } else {
-        this.context.router.push(`dashboard/asset/${asset._id}`);
-      }
+      this.context.router.push(`dashboard/asset/${asset._id}`);
     }
   }
 
   _handleMore() {
     const { currentPage, totalCount, perPage, assets } = this.props;
     if (totalCount > currentPage * perPage) {
-      if (assets && assets.length&& !this.state.hasCalledForMore) {
+      if (assets && assets.length && !this.state.hasCalledForMore) {
         this.props.dispatch(assetsIncrementPage());
         this.setState({
           hasCalledForMore: true
@@ -161,7 +159,7 @@ export class AssetsList extends Component {
         <Heading tag="h2">
           {searchTerm !== ''
             ? `No assets found for search term ${searchTerm}`
-            : "No assets found."
+            : 'No assets found.'
           }
         </Heading>
         <Box>
@@ -179,7 +177,7 @@ export class AssetsList extends Component {
   _onAssetToolbarClick() {
     const { assets } = this.props;
     const { checkedIndices } = this.props.table.checkBoxes;
-    let selectedAssets = assets.filter((_, i) => checkedIndices.includes(i));
+    const selectedAssets = assets.filter((_, i) => checkedIndices.includes(i));
     if (this.props.onAssetsSelect) {
       this.props.onAssetsSelect(selectedAssets);
     }
@@ -228,7 +226,7 @@ export class AssetsList extends Component {
         <Box full="horizontal">
           <AnimatingToolbar
             isVisible={(allowMultiSelect && table.checkBoxes.checkedIndices.length > 0)}
-            onClick={isInLayer ?  this._onAssetToolbarClick : this._onDeleteClick.bind(this, null)}
+            onClick={isInLayer ? this._onAssetToolbarClick : this._onDeleteClick.bind(this, null)}
             buttonType={isInLayer ? 'SUBMIT' : 'DELETE'}
           />
           {layer.visible &&
@@ -254,12 +252,12 @@ export class AssetsList extends Component {
               noAssetsFound={this._renderNoAssetsFound()}
               searchTerm={searchTerm}
             />
-          :
+            :
             <List onMore={hasMore ? () => this._handleMore() : null}>
               <Box
                 align="center"
                 direction="row"
-                wrap={true}
+                wrap
                 justify="center"
               >
                 {assetBlocks}
@@ -271,7 +269,7 @@ export class AssetsList extends Component {
       </WithLoading>
     );
   }
-};
+}
 
 AssetsList.propTypes = {
   request: PropTypes.bool.isRequired,

@@ -23,7 +23,7 @@ function postSectionsReducer(state = [], action) {
         {
           ...state[action.index],
           contentBlocks: state[action.index].contentBlocks
-            .map((item) => ({
+            .map(item => ({
               ...item,
               edit: false
             }))
@@ -97,7 +97,7 @@ function postSectionsReducer(state = [], action) {
 }
 
 function posts(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.POST_DUPLICATE_SECTION:
       return {
         ...state,

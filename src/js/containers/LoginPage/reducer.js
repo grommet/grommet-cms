@@ -3,9 +3,7 @@ import * as ActionTypes from './constants';
 const initialState = {
   loginRequest: false,
   loginError: '',
-  loggedIn: (process.env.NODE_ENV === 'development')
-    ? true
-    : false,
+  loggedIn: (process.env.NODE_ENV === 'development'),
   user: (process.env.NODE_ENV === 'development')
     ? {
       username: 'admin',
@@ -15,7 +13,7 @@ const initialState = {
 };
 
 function login(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.USER_LOGIN_REQUEST:
       return Object.assign({}, state, {
         loginRequest: true,

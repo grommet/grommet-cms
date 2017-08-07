@@ -47,15 +47,15 @@ export default class AssetTable extends Component {
     return (
       <ListWrapper pad={{ horizontal: 'small' }}>
         <Box style={{ width: '100vw', flex: '0 1 auto' }}>
-          {!assets.length && noAssetsFound !== null ? noAssetsFound : 
+          {!assets.length && noAssetsFound !== null ? noAssetsFound :
             <Table scrollable={false} onMore={onMore}>
-              <TableHeader
+            <TableHeader
                 sortIndex={sortIndex}
                 sortAscending={sortAscending}
                 onSort={onSort}
                 labels={allowMultiSelect ? tableHeaders : tableHeaders.slice(0, tableHeaders.length - 1)}
               />
-              <AssetTableRows
+            <AssetTableRows
                 checkedIndices={checkedIndices}
                 assets={assets}
                 searchTerm={searchTerm}
@@ -66,10 +66,10 @@ export default class AssetTable extends Component {
               >
                 {noAssetsFound}
               </AssetTableRows>
-            </Table>
+          </Table>
           }
         </Box>
       </ListWrapper>
     );
   }
-};
+}

@@ -90,4 +90,4 @@ export default class AssetUpload extends React.Component {
       </Section>
     );
   }
-};
+}

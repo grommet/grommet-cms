@@ -28,12 +28,12 @@ export class DashboardFileUpload extends Component {
   }
 
   _onChange(event) {
-    this.setState({file: event.target.files[0]});
+    this.setState({ file: event.target.files[0] });
   }
 
   _onSubmit(event) {
     if (this.state.file !== '') {
-      const formData = {file: this.state.file};
+      const formData = { file: this.state.file };
       this.props.dispatch(fileUpload(formData));
       if (typeof this.props.onImgPost === 'function') {
         this.props.onImgPost();
@@ -44,14 +44,14 @@ export class DashboardFileUpload extends Component {
   }
 
   render() {
-    let layer = (this.props.insertRequest)
+    const layer = (this.props.insertRequest)
       ? <FileInsertLayer
-          onLayerClose={this._onLayerClose}
-          onSubmit={this._onSubmit}
-          error={this.props.error}
-          onChange={this._onChange}
-          request={this.props.uploadRequest}
-        />
+        onLayerClose={this._onLayerClose}
+        onSubmit={this._onSubmit}
+        error={this.props.error}
+        onChange={this._onChange}
+        request={this.props.uploadRequest}
+      />
       : null;
 
     return (
@@ -61,7 +61,7 @@ export class DashboardFileUpload extends Component {
       </div>
     );
   }
-};
+}
 
 DashboardFileUpload.propTypes = {
   dispatch: PropTypes.func.isRequired,

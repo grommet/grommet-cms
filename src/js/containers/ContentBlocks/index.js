@@ -3,16 +3,14 @@ import { ContentLayoutEngine, BlockTypeMap } from 'grommet-cms-content-blocks';
 
 export default class ContentBlocks extends Component {
   _renderBlocks(blocks) {
-    return blocks.map((block, index) => {
-      return (!block.edit) 
-        ? React.cloneElement(
-          BlockTypeMap[block.blockType].element,
-          {
-            ...block,
-            key: `block-${index}`
-          }) 
-        : undefined;
-    });
+    return blocks.map((block, index) => (!block.edit)
+      ? React.cloneElement(
+        BlockTypeMap[block.blockType].element,
+        {
+          ...block,
+          key: `block-${index}`
+        })
+      : undefined);
   }
 
   render() {
@@ -29,7 +27,7 @@ export default class ContentBlocks extends Component {
       </ContentLayoutEngine>
     );
   }
-};
+}
 
 ContentBlocks.propTypes = {
   blocks: React.PropTypes.array,

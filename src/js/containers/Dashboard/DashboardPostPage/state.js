@@ -11,19 +11,19 @@ const initialState: DashboardPostPageState = {
     showAdvancedLayoutOptions: true,
     showHelp: false,
     isVisible: false,
-    title: "Section Layout",
-    subtitle: "Set the layout of the section / flex container",
+    title: 'Section Layout',
+    subtitle: 'Set the layout of the section / flex container',
     selectedSection: null,
     name: {
       value: ''
     },
     fields: [
       {
-        label: "Flex Direction",
-        help: "How should the content flow?  Row: left to right, Column: top to bottom.",
-        name: "direction",
-        type: "Select",
-        options: ["row", "column"],
+        label: 'Flex Direction',
+        help: 'How should the content flow?  Row: left to right, Column: top to bottom.',
+        name: 'direction',
+        type: 'Select',
+        options: ['row', 'column'],
         value: 'row'
       }
     ]
@@ -32,13 +32,13 @@ const initialState: DashboardPostPageState = {
     selectedContentBlockId: null,
     isVisible: false,
     showHelp: false,
-    title: "Box Layout",
+    title: 'Box Layout',
     fields: [
       {
-        label: "New Line",
-        help: "Should this content block start on a new line?",
-        name: "newLine",
-        type: "CheckBox",
+        label: 'New Line',
+        help: 'Should this content block start on a new line?',
+        name: 'newLine',
+        type: 'CheckBox',
         options: null,
         value: 'false'
       },

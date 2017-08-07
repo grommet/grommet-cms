@@ -74,7 +74,7 @@ export default function AssetTableRow({
             onChange={({ target }) => onClickCheckbox(target.checked)}
           />
         </Td>
-      :
+        :
         null
       }
     </TableRow>

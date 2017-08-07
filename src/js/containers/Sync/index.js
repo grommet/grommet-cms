@@ -84,7 +84,7 @@ export class Sync extends Component {
 
   _renderPageList(routes: Array<Object>, pageType: string, searchValue: string) {
     const regexp = new RegExp(searchValue, 'i');
-    let pageList = routes.filter(
+    const pageList = routes.filter(
       page => page._type === pageType && regexp.test(page.title)
     );
 
@@ -144,16 +144,15 @@ export class Sync extends Component {
     if (action.value && pageType.value === 'all') {
       return true;
     }
-    
+
     if (resourceType.value === 'notifications' || resourceType.value === 'assets') {
       return true;
     }
 
     if (action.value && pageType.value && page.value) {
       return true;
-    } else {
-      return false;
     }
+    return false;
   }
 
   _renderConfirmLayer({ action, pageType, page, resourceType }: SyncState) {
@@ -168,7 +167,7 @@ export class Sync extends Component {
     }
 
     return (
-      <ConfirmLayer 
+      <ConfirmLayer
         action="sync"
         name="this data"
         note={<Paragraph margin="none">{confirmNote}</Paragraph>}
@@ -178,13 +177,13 @@ export class Sync extends Component {
     );
   }
 
-  _syncData({action, pageType, page, resourceType}: SyncState) {
+  _syncData({ action, pageType, page, resourceType }: SyncState) {
     this.setState({
       layer: false,
       syncLayer: true
     });
 
-    this.props.syncActions.sync({action, pageType, page, resourceType});
+    this.props.syncActions.sync({ action, pageType, page, resourceType });
   }
 
   render() {
@@ -198,28 +197,28 @@ export class Sync extends Component {
       : undefined;
     const syncLayerNode = (syncLayer)
       ? (<SyncLayer
-          request={syncRequest}
-          error={syncError}
-          success={syncSuccess}
-          onClose={this._onLayerClose}
-        />)
+        request={syncRequest}
+        error={syncError}
+        success={syncSuccess}
+        onClose={this._onLayerClose}
+      />)
       : undefined;
 
-    const pageSelect = (this.state.pageType.value 
-      && routes 
+    const pageSelect = (this.state.pageType.value
+      && routes
       && routes.length > 0
       && pageType.value !== 'all')
       ? (<FormField label="Page">
-          <Select
-            id="page"
-            placeholder="Select a page type..."
-            options={this._renderPageList(routes, pageType.value, searchValue)}
-            onChange={this._onChange}
-            onSearch={this._onSearch}
-            /* Strange flow bug where we have to define the object keys explicitily */
-            value={{ label: this.state.page.label, value: this.state.page.value }}
-          />
-        </FormField>)
+        <Select
+          id="page"
+          placeholder="Select a page type..."
+          options={this._renderPageList(routes, pageType.value, searchValue)}
+          onChange={this._onChange}
+          onSearch={this._onSearch}
+          /* Strange flow bug where we have to define the object keys explicitily */
+          value={{ label: this.state.page.label, value: this.state.page.value }}
+        />
+      </FormField>)
       : undefined;
 
     return (
@@ -237,7 +236,7 @@ export class Sync extends Component {
                     {
                       label: 'Push',
                       value: 'push'
-                    },{
+                    }, {
                       label: 'Pull',
                       value: 'pull'
                     }
@@ -273,7 +272,7 @@ export class Sync extends Component {
                   <Select
                     id="pageType"
                     placeholder="Select a page type..."
-                    options={[ ...pageTypes, { label: 'All', value: 'all' } ]}
+                    options={[...pageTypes, { label: 'All', value: 'all' }]}
                     onChange={this._onChange}
                     value={{ label: pageType.label, value: pageType.value }}
                   />
@@ -292,7 +291,7 @@ export class Sync extends Component {
       </Box>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   isRoutesLoading: state.email.isLoading,

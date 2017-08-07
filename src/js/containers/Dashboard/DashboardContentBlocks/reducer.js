@@ -12,11 +12,11 @@ export function contentBlocks(state = initialState, action) {
   const newBlocks = state.slice(0);
   const blockIndex = (action.id)
     ? newBlocks.findIndex(
-        (block) => block.id === action.id
-      )
+      block => block.id === action.id
+    )
     : undefined;
 
-  switch(action.type) {
+  switch (action.type) {
     case BLOCK_DUPLICATE: {
       const newBlock = state[blockIndex];
       return [
@@ -79,9 +79,9 @@ export function contentBlocks(state = initialState, action) {
         newBlocks.splice(blockIndex, 1);
         newBlocks.splice(blockIndex - 1, 0, blockToMove);
         return newBlocks;
-      } else {
-        return state;
       }
+      return state;
+
       break;
 
     case BLOCK_MOVE_DOWN:
@@ -90,9 +90,9 @@ export function contentBlocks(state = initialState, action) {
         newBlocks.splice(blockIndex, 1);
         newBlocks.splice(blockIndex + 1, 0, blockToMove);
         return newBlocks;
-      } else {
-        return state;
       }
+      return state;
+
       break;
 
     default:

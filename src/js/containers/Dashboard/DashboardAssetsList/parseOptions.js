@@ -2,7 +2,7 @@
 import type { GrommetCustomTypes$SelectValueType } from 'grommet';
 import type { Post } from './flowTypes';
 
-export default function(postTypes: Post[]): GrommetCustomTypes$SelectValueType[] {
+export default function (postTypes: Post[]): GrommetCustomTypes$SelectValueType[] {
   return [
     {
       value: '',
@@ -16,9 +16,8 @@ export default function(postTypes: Post[]): GrommetCustomTypes$SelectValueType[]
           return -1;
         } else if (aValue > bValue) {
           return 1;
-        } else {
-          return 0;
         }
+        return 0;
       })
       .map(i => ({ value: i.id, label: i.title }))
   ];

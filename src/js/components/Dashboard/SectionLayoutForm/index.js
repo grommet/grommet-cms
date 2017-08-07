@@ -105,7 +105,7 @@ export default function SectionLayoutForm(props: {
             <Button
               label="submit"
               onClick={canSubmit ? () => onSubmit(!isEditing) : null}
-              primary={true}
+              primary
               disabled={!canSubmit}
               type="submit"
             />
@@ -114,7 +114,7 @@ export default function SectionLayoutForm(props: {
                 label="submit and close"
                 disabled={!canSubmit}
                 onClick={canSubmit ? () => onSubmit(true) : null}
-                primary={true}
+                primary
                 type="submit"
               />
             }

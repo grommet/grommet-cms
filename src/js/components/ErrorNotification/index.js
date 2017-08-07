@@ -8,7 +8,7 @@ import Box from 'grommet/components/Box';
 
 export default function ErrorNotification(props: {
   onClose?: Function,
-  errors: Array<{ message: string }> 
+  errors: Array<{ message: string }>
 }) {
   return (
     <Section pad="medium">

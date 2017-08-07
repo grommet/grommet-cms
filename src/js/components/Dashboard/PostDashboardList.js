@@ -16,10 +16,10 @@ import unescape from 'unescape';
 import missingImage from 'root/img/dashboard/missingImage.png';
 
 export default function PostDashboardList({
-  list, 
-  titleKey, 
-  links, 
-  onMenuItemClick, 
+  list,
+  titleKey,
+  links,
+  onMenuItemClick,
   showControls = true,
   route
 }) {
@@ -29,7 +29,7 @@ export default function PostDashboardList({
         {list && list.map((item, i) =>
           <ListItem
             key={i}
-            onClick={() => onMenuItemClick('EDIT_CONTENT', i)} 
+            onClick={() => onMenuItemClick('EDIT_CONTENT', i)}
           >
             <Box
               full="horizontal"
@@ -41,9 +41,12 @@ export default function PostDashboardList({
               <Box direction="column">
                 <Box direction="row" responsive={false} align="center">
                   <Box pad="small">
-                    <Image size="thumb" src={
-                      item.image ? item.image.path : missingImage
-                    } />
+                    <Image
+                      size="thumb"
+                      src={
+                        item.image ? item.image.path : missingImage
+                      }
+                    />
                   </Box>
                   <Box direction="column" justify="center" responsive={false}>
                     <Heading margin="none" tag="h3">
@@ -59,9 +62,9 @@ export default function PostDashboardList({
                 <Box align="end" justify="center">
                   <Menu
                     closeOnClick
-                    responsive={true}
+                    responsive
                     inline={false}
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={e => e.stopPropagation()}
                     dropAlign={{ right: 'right' }}
                   >
                     <Anchor
@@ -93,7 +96,7 @@ export default function PostDashboardList({
                     />
                   </Menu>
                 </Box>
-              :
+                :
                 null
               }
             </Box>
@@ -102,4 +105,4 @@ export default function PostDashboardList({
       </List>
     </Box>
   );
-};
+}

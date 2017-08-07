@@ -7,7 +7,7 @@ import EditIcon from 'grommet/components/icons/base/Edit';
 import DocumentIcon from 'grommet/components/icons/base/Document';
 import { isImage, shortenText } from 'grommet-cms/utils';
 
-export default function AssetTile (props) {
+export default function AssetTile(props) {
   const { id, path, title, onDeleteClick, size, showControls, onClick } = props;
 
   const tileSize = () => {
@@ -37,42 +37,44 @@ export default function AssetTile (props) {
 
   const thumbnail = (isImage(path))
     ? <Box
-        texture={path}
-        size={tileSize()}
-        style={{
-          backgroundSize: 'cover',
-          maxHeight: 'unset',
-          flexGrow: 1
-        }}
-        colorIndex="grey-3"
-      />
+      texture={path}
+      size={tileSize()}
+      style={{
+        backgroundSize: 'cover',
+        maxHeight: 'unset',
+        flexGrow: 1
+      }}
+      colorIndex="grey-3"
+    />
     : (<Box
-        size={tileSize()}
-        colorIndex="grey-3"
-        align="center"
-        style={{
-          backgroundSize: 'cover',
-          maxHeight: 'unset',
-          flexGrow: 1
-        }}
-        justify="center"
-      >
-        <DocumentIcon size={size} />
-      </Box>);
+      size={tileSize()}
+      colorIndex="grey-3"
+      align="center"
+      style={{
+        backgroundSize: 'cover',
+        maxHeight: 'unset',
+        flexGrow: 1
+      }}
+      justify="center"
+    >
+      <DocumentIcon size={size} />
+    </Box>);
 
   const controls = (showControls)
     ? <Box colorIndex="light-2" align="end">
-        <Menu responsive={true}
-          inline={false}
-          dropAlign={{ right: 'right'}}>
-          <Anchor onClick={onDeleteClick}>
-            <TrashIcon size="small" /> Delete
-          </Anchor>
-          <Anchor path={`/dashboard/asset/${id}`}>
-            <EditIcon size="small" /> Edit
-          </Anchor>
-        </Menu>
-      </Box>
+      <Menu
+        responsive
+        inline={false}
+        dropAlign={{ right: 'right' }}
+      >
+        <Anchor onClick={onDeleteClick}>
+          <TrashIcon size="small" /> Delete
+        </Anchor>
+        <Anchor path={`/dashboard/asset/${id}`}>
+          <EditIcon size="small" /> Edit
+        </Anchor>
+      </Menu>
+    </Box>
     : undefined;
 
   return (
@@ -89,7 +91,7 @@ export default function AssetTile (props) {
       </Box>
     </Box>
   );
-};
+}
 
 AssetTile.propTypes = {
   id: PropTypes.string,

@@ -11,7 +11,6 @@ import DashboardContentBlock from
 import { blockAddList, blockAdd } from './actions';
 
 export class DashboardContentBlocks extends Component {
-
   constructor() {
     super();
     this._renderBlocks = this._renderBlocks.bind(this);
@@ -20,8 +19,7 @@ export class DashboardContentBlocks extends Component {
 
   componentWillMount() {
     // Check if parent component passed in blocks.
-    if (this.props.blocks)
-      this.props.dispatch(blockAddList(this.props.blocks));
+    if (this.props.blocks) { this.props.dispatch(blockAddList(this.props.blocks)); }
   }
 
   _onAddBlock() {
@@ -49,10 +47,10 @@ export class DashboardContentBlocks extends Component {
             No blocks here yet
           </Heading>
           <Button
-            onClick={this._onAddBlock} 
+            onClick={this._onAddBlock}
             plain
-            label="Add One" 
-            icon={<AddIcon />} 
+            label="Add One"
+            icon={<AddIcon />}
           />
         </Box>
       </Box>
@@ -66,7 +64,7 @@ export class DashboardContentBlocks extends Component {
       </List>
     );
   }
-};
+}
 
 DashboardContentBlocks.propTypes = {
   blocks: PropTypes.array,

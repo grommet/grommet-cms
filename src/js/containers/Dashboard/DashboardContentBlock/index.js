@@ -8,7 +8,7 @@ import Anchor from 'grommet/components/Anchor';
 import Article from 'grommet/components/Article';
 import { BlockSelector, PreviewHeader } from 'grommet-cms-content-blocks';
 import { BlockTypeMap, PageHeader, ConfirmLayer } from 'grommet-cms/components';
-import { toggleBoxLayoutForm  } from 'grommet-cms/containers/Dashboard/DashboardPostPage/actions';
+import { toggleBoxLayoutForm } from 'grommet-cms/containers/Dashboard/DashboardPostPage/actions';
 import {
   blockEdit,
   blockRemove,
@@ -92,10 +92,8 @@ export class DashboardContentBlock extends Component {
   }
 
   _onBlockMove(id, direction) {
-    if (direction === 'up')
-      this.props.dispatch(blockMoveUp(id));
-    if (direction === 'down')
-      this.props.dispatch(blockMoveDown(id));
+    if (direction === 'up') { this.props.dispatch(blockMoveUp(id)); }
+    if (direction === 'down') { this.props.dispatch(blockMoveDown(id)); }
   }
 
   _onLayoutClick(id) {
@@ -111,7 +109,7 @@ export class DashboardContentBlock extends Component {
         <Layer
           flush
           align="center"
-          hidden={false} 
+          hidden={false}
           onClose={this._onCloseClick.bind(this, id)}
         >
           <Box>
@@ -124,10 +122,10 @@ export class DashboardContentBlock extends Component {
                 />
               }
             />
-            <Box 
+            <Box
               style={{ maxWidth: 777 }}
-              pad="large" 
-              ref={(selector) => this.blockSelector = selector}
+              pad="large"
+              ref={selector => this.blockSelector = selector}
             >
               <Article style={{ overflow: 'scroll' }}>
                 <BlockSelector
@@ -155,7 +153,6 @@ export class DashboardContentBlock extends Component {
       ) : undefined;
 
 
-
     // Show block preview when editing/creating is complete.
     const preview = (!edit && blockType)
       ? (
@@ -179,7 +176,7 @@ export class DashboardContentBlock extends Component {
       ? 'neutral-1'
       : 'light-2';
 
-    let layer = (this.state.layer)
+    const layer = (this.state.layer)
       ? <ConfirmLayer onSubmit={this._onDeleteSubmit} onClose={this._onLayerClose} />
       : null;
 
@@ -205,7 +202,7 @@ export class DashboardContentBlock extends Component {
       </Box>
     );
   }
-};
+}
 
 DashboardContentBlock.propTypes = {
   dispatch: PropTypes.func.isRequired
@@ -213,7 +210,7 @@ DashboardContentBlock.propTypes = {
 
 function mapStateToProps(state, props) {
   const blockIndex = state.contentBlocks.findIndex(
-    (block) => block.id === props.id
+    block => block.id === props.id
   );
   const block = state.contentBlocks[blockIndex];
   if (block) {

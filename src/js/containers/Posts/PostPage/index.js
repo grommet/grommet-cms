@@ -42,7 +42,7 @@ export class PostPage extends Component {
             justify="center"
             align="center"
           >
-            <Headline size="medium" margin="none" strong={true}>
+            <Headline size="medium" margin="none" strong>
               {title}
             </Headline>
             <Label className="post-feed-item--subtitle">

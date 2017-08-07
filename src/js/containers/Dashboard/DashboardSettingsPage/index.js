@@ -9,8 +9,8 @@ import * as settingsActionCreators from 'grommet-cms/containers/Settings/actions
 export class DashboardSettingsPage extends Component {
   render() {
     return (
-      <Box 
-        primary 
+      <Box
+        primary
         direction="column"
         full="horizontal"
       >
@@ -21,7 +21,7 @@ export class DashboardSettingsPage extends Component {
       </Box>
     );
   }
-};
+}
 
 function mapStateToProps(state, props) {
   return {
@@ -29,7 +29,7 @@ function mapStateToProps(state, props) {
     error: state.settings.error,
     isLoading: state.settings.isLoading
   };
-};
+}
 
 function mapDispatchToProps(dispatch) {
   return {

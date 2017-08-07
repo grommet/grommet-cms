@@ -10,7 +10,7 @@ const initialState = {
 };
 
 function dashboardPosts(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.DASHBOARD_POSTS_TOGGLE_FORM:
       return {
         ...state,

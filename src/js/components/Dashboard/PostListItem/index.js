@@ -29,7 +29,7 @@ export default function PostListItem(props: {
     <ListItem separator="horizontal">
       <Box
         full="horizontal"
-        pad={{ horizontal: "medium" }}
+        pad={{ horizontal: 'medium' }}
         direction="row"
         justify="between"
       >
@@ -39,11 +39,11 @@ export default function PostListItem(props: {
         </Box>
         <Box align="end" justify="center">
           <Menu
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
             closeOnClick
-            responsive={true}
+            responsive
             inline={false}
-            dropAlign={{ right: 'right'}}
+            dropAlign={{ right: 'right' }}
           >
             <Anchor
               icon={<ArticleIcon size="small" />}

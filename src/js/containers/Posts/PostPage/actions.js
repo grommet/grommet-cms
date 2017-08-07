@@ -35,7 +35,7 @@ export function postDeleteSuccess() {
 }
 
 export function setPost(post) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch({
       type: ActionTypes.SET_POST,
       post
@@ -47,12 +47,12 @@ export const postClearError = () => ({
   type: ActionTypes.POST_CLEAR_ERROR
 });
 
-export const postDeleteSection = (index) => ({
+export const postDeleteSection = index => ({
   type: ActionTypes.POST_DELETE_SECTION,
   index
 });
 
-export const postAddSection = (section) => ({
+export const postAddSection = section => ({
   type: ActionTypes.POST_ADD_SECTION,
   ...section
 });
@@ -63,7 +63,7 @@ export const postEditSection = (section, index) => ({
   index
 });
 
-export const postDuplicateSection = (index) => ({
+export const postDuplicateSection = index => ({
   type: ActionTypes.POST_DUPLICATE_SECTION,
   index
 });
@@ -82,17 +82,17 @@ export const postSetContentBlocks = (contentBlocks, index) => ({
   index
 });
 
-export const postRemoveUnusedContentBlocksFromSection = (index) => ({
+export const postRemoveUnusedContentBlocksFromSection = index => ({
   type: ActionTypes.POST_REMOVE_UNUSED_CONTENT_BLOCKS,
   index
 });
 
-export const postMoveSectionUp = (index) => ({
+export const postMoveSectionUp = index => ({
   type: ActionTypes.POST_MOVE_UP_SECTION,
   index
 });
 
-export const postMoveSectionDown = (index) => ({
+export const postMoveSectionDown = index => ({
   type: ActionTypes.POST_MOVE_DOWN_SECTION,
   index
 });
@@ -101,7 +101,7 @@ export const postMoveSectionDown = (index) => ({
 export function deletePost(post) {
   return (dispatch, getState) => {
     dispatch(postsRequest());
-    let { url } = getState().api;
+    const { url } = getState().api;
     fetch(`${url}/post/${post._id}/delete`, {
       method: 'POST',
       credentials: 'include',
@@ -120,7 +120,7 @@ export function deletePost(post) {
             dispatch(postDeleteSuccess());
           }
         },
-        err => {
+        (err) => {
           // Switch this out for Dashboard error.
           dispatch(postsError('There was an error processing your request.'));
         }
@@ -132,7 +132,7 @@ export function deletePost(post) {
 export function getPosts(page = 0, type = '') {
   return (dispatch, getState) => {
     dispatch(postsRequest());
-    let { url } = getState().api;
+    const { url } = getState().api;
     return fetch(`${url}/posts?type=${type}&page=${page}`, {
       method: 'GET',
       mode: 'cors',
@@ -146,7 +146,7 @@ export function getPosts(page = 0, type = '') {
           statusText: response.statusText,
           json
         })
-      ))
+        ))
       .then(
         ({ status, statusText, json }) => {
           if (status >= 400) {
@@ -156,7 +156,7 @@ export function getPosts(page = 0, type = '') {
             dispatch(postsSuccess(json));
           }
         },
-        err => {
+        (err) => {
           // Switch this out for Dashboard error.
           dispatch(postsError('There was an error processing your request.'));
         }
@@ -168,7 +168,7 @@ export function getPosts(page = 0, type = '') {
 export function getPost(id, title) {
   return (dispatch, getState) => {
     dispatch(postsRequest());
-    let { url: apiUrl } = getState().api;
+    const { url: apiUrl } = getState().api;
     const url = (!title)
       ? `${apiUrl}/post/${id}`
       : `${apiUrl}/post/title/${title}`;
@@ -185,7 +185,7 @@ export function getPost(id, title) {
           statusText: response.statusText,
           json
         })
-      ))
+        ))
       .then(
         ({ status, statusText, json }) => {
           if (status >= 400) {
@@ -195,7 +195,7 @@ export function getPost(id, title) {
             dispatch(postSuccess(json));
           }
         },
-        err => {
+        (err) => {
           // dispatch app error
           dispatch(postsError('There was an error processing your request.'));
         }
@@ -211,7 +211,7 @@ export function submitPost(post) {
 
   return (dispatch, getState) => {
     dispatch(postsRequest());
-    let { url } = getState().api;
+    const { url } = getState().api;
     return fetch(`${url}/${endPoint}`, {
       method: 'POST',
       credentials: 'include',
@@ -228,7 +228,7 @@ export function submitPost(post) {
             dispatch(postSuccess(post));
           }
         },
-        err => {
+        (err) => {
           // dispatch app error
           dispatch(postsError('There was an error processing your request.'));
         }
@@ -241,7 +241,7 @@ export function updatePost(post) {
 
   return (dispatch, getState) => {
     dispatch(postsRequest());
-    let { url } = getState().api;
+    const { url } = getState().api;
     return fetch(`${url}/${endPoint}`, {
       method: 'POST',
       credentials: 'include',
@@ -258,7 +258,7 @@ export function updatePost(post) {
             dispatch(getPosts(0, post._type));
           }
         },
-        err => {
+        (err) => {
           // dispatch app error
           dispatch(postsError('There was an error processing your request.'));
         }

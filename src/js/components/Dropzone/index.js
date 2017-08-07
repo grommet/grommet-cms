@@ -19,7 +19,6 @@ const CSSClassnames = {
 const CLASS_ROOT = CSSClassnames.DROPZONE;
 
 class Dropzone extends Component {
-  
   constructor() {
     super();
     this._onClick = this._onClick.bind(this);
@@ -96,7 +95,7 @@ class Dropzone extends Component {
     e.preventDefault();
     e.stopPropagation();
   }
-  
+
   _onClearFilePreview(i) {
     const { files } = this.state;
     const newFiles = [
@@ -110,13 +109,13 @@ class Dropzone extends Component {
       onDOMChange.call(this, newFiles, e);
     }
   }
-  
+
   _onOpen() {
     const fileInput = findDOMNode(this.refs.fileInput);
     fileInput.value = null;
     fileInput.click();
   }
-  
+
   _onDrop(e) {
     e.preventDefault();
     const { multiple, onDOMChange } = this.props;
@@ -130,14 +129,14 @@ class Dropzone extends Component {
       }
     });
     const newFiles = multiple
-      ? [ ...this.state.files, ...files ]
+      ? [...this.state.files, ...files]
       : files;
     this.setState({
       dragActive: false,
       files: newFiles
     });
   }
-  
+
   _onDragOver(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -152,18 +151,18 @@ class Dropzone extends Component {
 
     return false;
   }
-  
+
   _onDragEnter(e) {
     e.preventDefault();
   }
-  
+
   _onDragLeave(e) {
     e.preventDefault();
     this.setState({
       dragActive: false
     });
   }
-  
+
   _renderPreview(files) {
     if (!files.length) {
       return null;
@@ -171,28 +170,38 @@ class Dropzone extends Component {
     return (
       <Tiles pad="none" flush={false}>
         {files.map((item, i) =>
-          <Tile key={i} pad="none" margin={{ horizontal: 'small' }}
-            className={`${CLASS_ROOT}__preview-tile`}>
-            <Button plain a11yTitle="Clear image preview"
+          <Tile
+            key={i}
+            pad="none"
+            margin={{ horizontal: 'small' }}
+            className={`${CLASS_ROOT}__preview-tile`}
+          >
+            <Button
+              plain
+              a11yTitle="Clear image preview"
               onClick={this._onClearFilePreview.bind(this, i)}
-              className={`${CLASS_ROOT}__closer-button`} 
-              icon={<CloseIcon className={`${CLASS_ROOT}__closer-icon`} />} />
+              className={`${CLASS_ROOT}__closer-button`}
+              icon={<CloseIcon className={`${CLASS_ROOT}__closer-icon`} />}
+            />
             {isImage(item.name)
               ? <Image size="thumb" src={item.preview} />
               : (
-                  <Box
-                    className={`${CLASS_ROOT}__file-preview`}
-                    align="center" justify="center" colorIndex="unknown">
-                    <DocumentIcon size="small" />
-                  </Box>
-                )
+                <Box
+                  className={`${CLASS_ROOT}__file-preview`}
+                  align="center"
+                  justify="center"
+                  colorIndex="unknown"
+                >
+                  <DocumentIcon size="small" />
+                </Box>
+              )
             }
-          </Tile>  
+          </Tile>
         )}
       </Tiles>
     );
   }
-  
+
   render() {
     const boxProps = Props.pick(this.props, Object.keys(Box.propTypes));
     const { className, label, multiple } = Props.omit(this.props, Object.keys(Box.propTypes));
@@ -207,22 +216,32 @@ class Dropzone extends Component {
     return (
       <Box align="center" justify="center" pad="medium">
         {dragDropSupported ?
-          <Box {...boxProps} onDrop={this._onDrop}
-            onDragEnter={this._onDragEnter} onDragOver={this._onDragOver}
-            onDragLeave={this._onDragLeave} onClick={this._onClick} className={classes}>
+          <Box
+            {...boxProps}
+            onDrop={this._onDrop}
+            onDragEnter={this._onDragEnter}
+            onDragOver={this._onDragOver}
+            onDragLeave={this._onDragLeave}
+            onClick={this._onClick}
+            className={classes}
+          >
             <Label>
               {label || ''}
             </Label>
           </Box>
-        :
+          :
           <Button
             label={label}
             onClick={this._onClick}
           />
         }
         <input
-          ref="fileInput" multiple={multiple} onChange={this._onDrop}
-          type="file" className={`${CLASS_ROOT}__input`} />
+          ref="fileInput"
+          multiple={multiple}
+          onChange={this._onDrop}
+          type="file"
+          className={`${CLASS_ROOT}__input`}
+        />
         {this._renderPreview(files)}
       </Box>
     );

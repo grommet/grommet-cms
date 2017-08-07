@@ -46,7 +46,7 @@ class Requests {
       try {
         const headers = Requests.makeHeaders();
         const json = await Requests.makeRequest(url, 'PUT', headers, body);
-        res(json); 
+        res(json);
       } catch (err) {
         rej(err);
       }

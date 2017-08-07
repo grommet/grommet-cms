@@ -5,14 +5,13 @@ import AscIcon from 'grommet/components/icons/base/LinkDown';
 import DescIcon from 'grommet/components/icons/base/LinkUp';
 
 export default class TableHeader extends Component {
-
   _onSort(index) {
     const { onSort, sortAscending, sortIndex } = this.props;
     let nextAscending;
     if (index !== sortIndex) {
       nextAscending = false;
     } else {
-      nextAscending = ! sortAscending;
+      nextAscending = !sortAscending;
     }
     onSort(index, nextAscending);
   }
@@ -41,7 +40,9 @@ export default class TableHeader extends Component {
 
         if (onSort) {
           content = (
-            <Button plain fill
+            <Button
+              plain
+              fill
               onClick={this._onSort.bind(this, index)}
             >
               {content}

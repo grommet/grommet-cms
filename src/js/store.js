@@ -27,10 +27,10 @@ const middlewareBuilder = () => {
 const finalCreateStore = compose(
   ...middlewareBuilder(),
   (process.env.NODE_ENV !== 'production'
-    && typeof(window) !== 'undefined'
+    && typeof (window) !== 'undefined'
     && window.devToolsExtension)
     ? window.devToolsExtension()
-      : f => f
+    : f => f
 )(createStore);
 
 export default function configureStore(initialState) {
@@ -44,4 +44,4 @@ export default function configureStore(initialState) {
   }
 
   return store;
-};
+}

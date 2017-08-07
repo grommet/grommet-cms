@@ -19,7 +19,7 @@ type ConfirmLayerProps = {
 export default function ConfirmLayer(props: ConfirmLayerProps) {
   const action = props.action || 'delete';
   return (
-    <Layer onClose={props.onClose} closer={true}>
+    <Layer onClose={props.onClose} closer>
       <Form>
         <Header pad="medium" direction="column">
           <Heading margin="none">
@@ -44,7 +44,7 @@ export default function ConfirmLayer(props: ConfirmLayerProps) {
               style={{ marginRight: 5 }}
             />
             <Button
-              label={"cancel"}
+              label={'cancel'}
               plain={false}
               onClick={props.onClose}
               style={{ marginLeft: 5 }}

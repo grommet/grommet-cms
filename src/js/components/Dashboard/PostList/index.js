@@ -29,31 +29,31 @@ export default class PostList extends Component {
     return (
       <Box full="horizontal">
         <PageHeader
-          title="Edit Page Sections" 
+          title="Edit Page Sections"
           controls={
             <Anchor
               icon={<AddIcon size="small" />}
               label="Add Section"
               onClick={onAddSection}
             />
-          } 
+          }
         />
         <List
           selectable={!disabled}
           onSelect={onSelectSection}
         >
           {sections && sections.length ?
-            sections.map((item, i) => 
-              <PostListItem 
+            sections.map((item, i) =>
+              <PostListItem
                 key={i}
                 items={sections}
                 minOrder={Math.min(...sections.map(i => i.order))}
                 maxOrder={Math.max(...sections.map(i => i.order))}
-                onMenuItemClick={(name) => onMenuItemClick(name, i)}
+                onMenuItemClick={name => onMenuItemClick(name, i)}
                 item={item}
               />
             )
-          : 
+            :
             (
               <Box align="center" pad="medium">
                 <Heading tag="h2">No Sections yet</Heading>

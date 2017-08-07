@@ -28,19 +28,19 @@ export default function PostPreview({ post, selectedSection }: Props) {
     return (
       <div>
         {post.sections
-          .filter((_,i) => selectedSection === i)
-          .map((item, i) => 
+          .filter((_, i) => selectedSection === i)
+          .map((item, i) =>
             <SectionLayoutRenderer
               key={i}
               section={item}
             />
-        )}
+          )}
       </div>
     );
   }
   return (
     <div>
-      {post.sections.map((item, i) => 
+      {post.sections.map((item, i) =>
         <SectionLayoutRenderer
           key={i}
           section={item}

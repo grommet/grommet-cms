@@ -73,7 +73,7 @@ export function assetsSetPage(page) {
 }
 
 export function assetsIncrementPage() {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const { currentPage } = getState().assets;
     debounce(
       dispatch(
@@ -89,7 +89,7 @@ export function assetsIncrementPage() {
 export function deleteAsset(id) {
   return (dispatch, getState) => {
     dispatch(assetsRequest());
-    let { url } = getState().api;
+    const { url } = getState().api;
     fetch(`${url}/file/${id}/delete`, {
       method: 'POST',
       credentials: 'include',
@@ -108,7 +108,7 @@ export function deleteAsset(id) {
             dispatch(assetsDeleteSuccess());
           }
         },
-        err => {
+        (err) => {
           // Switch this out for Dashboard error.
           dispatch(assetsError('There was an error processing your request.'));
         }
@@ -121,13 +121,13 @@ export function submitAsset(data, forwardWhenDone = true) {
   const endPoint = (!data.id)
     ? 'file/create'
     : `file/edit/${data.id}`;
-  let formData = new FormData();
+  const formData = new FormData();
 
-  for(let name in data) {
+  for (const name in data) {
     formData.append(name, data[name]);
   }
   return (dispatch, getState) => {
-    let { url } = getState().api;
+    const { url } = getState().api;
 
     dispatch(assetsRequest());
     return fetch(`${url}/${endPoint}`, {
@@ -135,16 +135,16 @@ export function submitAsset(data, forwardWhenDone = true) {
       credentials: 'include',
       body: formData,
       headers: {
-        'Accept': 'application/json, */*'
+        Accept: 'application/json, */*'
       }
     })
-      .then(response => 
+      .then(response =>
         response.json().then(json => ({
           status: response.status,
           statusText: response.statusText,
           json
         })
-      ))
+        ))
       .then(
         ({ status, statusText, json }) => {
           if (status >= 400) {
@@ -155,7 +155,7 @@ export function submitAsset(data, forwardWhenDone = true) {
             if (forwardWhenDone) browserHistory.push('/dashboard/assets');
           }
         },
-        err => {
+        (err) => {
           // dispatch app error
           console.log(err);
           dispatch(assetsError('There was an error processing your request.'));
@@ -172,7 +172,7 @@ export function getAssets(page, showLoading = true, pageId = '', searchTerm = ''
     if (showLoading) {
       dispatch(assetsRequest());
     }
-    let { url } = getState().api;
+    const { url } = getState().api;
     const { perPage } = getState().assets;
     const urlComponents = {
       page,
@@ -182,8 +182,8 @@ export function getAssets(page, showLoading = true, pageId = '', searchTerm = ''
       orderBy,
       ascending
     };
-    let query = qs.stringify(urlComponents);
-    let uri = `${url}/files?${query}`;
+    const query = qs.stringify(urlComponents);
+    const uri = `${url}/files?${query}`;
     return fetch(uri, {
       method: 'GET',
       mode: 'cors',
@@ -198,23 +198,21 @@ export function getAssets(page, showLoading = true, pageId = '', searchTerm = ''
           statusText: response.statusText,
           json
         })
-      ))
+        ))
       .then(
         ({ status, statusText, json }) => {
           if (status >= 400) {
             const text = statusText;
             dispatch(assetsError(text));
+          } else if (page > 1) {
+            // add the assets to the end of the list
+            dispatch(assetsSuccess(json));
           } else {
-            if (page > 1) {
-              // add the assets to the end of the list
-              dispatch(assetsSuccess(json));
-            } else {
-              // replace the assets
-              dispatch(assetSuccess(json));
-            }
+            // replace the assets
+            dispatch(assetSuccess(json));
           }
         },
-        err => {
+        (err) => {
           // Switch this out for Dashboard error.
           dispatch(assetsError('There was an error processing your request.'));
         }
@@ -227,13 +225,13 @@ export function getAssetsTotalCount(pageId = '', searchTerm = '', showLoading = 
     if (showLoading) {
       dispatch(assetsRequest());
     }
-    let { url } = getState().api;
+    const { url } = getState().api;
     const urlComponents = {
       pageId,
       searchTerm
     };
-    let query = qs.stringify(urlComponents);
-    let uri = `${url}/assets-count?${query}`;
+    const query = qs.stringify(urlComponents);
+    const uri = `${url}/assets-count?${query}`;
     return fetch(uri, {
       method: 'GET',
       mode: 'cors',
@@ -242,20 +240,20 @@ export function getAssetsTotalCount(pageId = '', searchTerm = '', showLoading = 
         'Content-Type': 'application/json'
       })
     })
-    .then(res => res.json())
-    .then(json => {
-      dispatch(assetsCountSuccess(json.total));
-    })
-    .catch(_ => {
-      dispatch(assetsError('There was an error processing your request.'));
-    });
+      .then(res => res.json())
+      .then((json) => {
+        dispatch(assetsCountSuccess(json.total));
+      })
+      .catch((_) => {
+        dispatch(assetsError('There was an error processing your request.'));
+      });
   };
 }
 
 export function getAssetsPostTypes() {
   return (dispatch, getState) => {
     dispatch(assetsRequest());
-    let { url } = getState().api;
+    const { url } = getState().api;
     return fetch(`${url}/pages`, {
       method: 'GET',
       mode: 'cors',
@@ -264,13 +262,13 @@ export function getAssetsPostTypes() {
         'Content-Type': 'application/json'
       })
     })
-    .then(res => res.json())
-    .then(json => {
-      dispatch(assetsPostTypesSuccess(json));
-    })
-    .catch(_ => {
-      dispatch(assetsError('There was an error processing your request.'));
-    });
+      .then(res => res.json())
+      .then((json) => {
+        dispatch(assetsPostTypesSuccess(json));
+      })
+      .catch((_) => {
+        dispatch(assetsError('There was an error processing your request.'));
+      });
   };
 }
 
@@ -278,7 +276,7 @@ export function getAssetsPostTypes() {
 export function getAsset(id) {
   return (dispatch, getState) => {
     dispatch(assetsRequest());
-    let { url } = getState().api;
+    const { url } = getState().api;
     return fetch(`${url}/file?id=${id}`, {
       method: 'GET',
       mode: 'cors',
@@ -293,7 +291,7 @@ export function getAsset(id) {
           statusText: response.statusText,
           json
         })
-      ))
+        ))
       .then(
         ({ status, statusText, json }) => {
           if (status >= 400) {
@@ -303,7 +301,7 @@ export function getAsset(id) {
             dispatch(assetSuccess(json));
           }
         },
-        err => {
+        (err) => {
           // Switch this out for Dashboard error.
           dispatch(assetsError('There was an error processing your request.'));
         }

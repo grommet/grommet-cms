@@ -24,7 +24,7 @@ class HeroForm extends Component {
       />
     );
   }
-};
+}
 
 HeroForm.propTypes = {
   onSubmit: PropTypes.func

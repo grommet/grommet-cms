@@ -2,7 +2,7 @@ import initialState from './state';
 import * as T from './constants';
 
 export default function reducer(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case T.REMOVE_LOGO:
       return {
         ...state,

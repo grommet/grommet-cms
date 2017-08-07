@@ -103,15 +103,15 @@ export default class MarqueeForm extends Component {
     const { title, image } = this.props.post;
 
     if (!title) {
-      this.setState({ error: 'A title is required.'});
+      this.setState({ error: 'A title is required.' });
       return false;
     }
 
     if (!image) {
-      this.setState({ error: 'An Image is required.  If no image is desired, please use the FPO image.'});
+      this.setState({ error: 'An Image is required.  If no image is desired, please use the FPO image.' });
       return false;
     }
-    
+
     this.setState({ error: '' });
     return true;
   }
@@ -143,9 +143,9 @@ export default class MarqueeForm extends Component {
     const unescapedTitle = unescape(title || '');
     const assetsLayer = (this.state.assetsLayer)
       ? <DashboardAssetsLayer
-          onAssetSelect={this._onAssetSelect}
-          onClose={this._toggleAssetsLayer}
-        />
+        onAssetSelect={this._onAssetSelect}
+        onClose={this._toggleAssetsLayer}
+      />
       : undefined;
     const errorBox = (error)
       ? <Box>{error}</Box>
@@ -257,7 +257,7 @@ export default class MarqueeForm extends Component {
               <Button
                 label="submit"
                 onClick={this._onSubmit}
-                primary={true}
+                primary
                 type="submit"
               />
               <Button
@@ -271,7 +271,7 @@ export default class MarqueeForm extends Component {
       </Box>
     );
   }
-};
+}
 
 MarqueeForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,

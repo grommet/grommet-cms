@@ -9,7 +9,7 @@ const initialState = {
 };
 
 function user(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.USER_CREATE_REQUEST:
       return Object.assign({}, state, {
         request: true,

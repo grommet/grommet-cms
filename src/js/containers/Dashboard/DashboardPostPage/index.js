@@ -172,7 +172,7 @@ export class DashboardPostPage extends Component {
         this._onSelectSection(i);
         break;
       default: break;
-    };
+    }
   }
 
   _onAddSection() {
@@ -334,7 +334,7 @@ export class DashboardPostPage extends Component {
         const section = this.props.post.sections[this.state.selectedSection];
         if (section.contentBlocks && section.contentBlocks.length) {
           return section.contentBlocks
-            .filter((item) => item.edit === true).length > 0;
+            .filter(item => item.edit === true).length > 0;
         }
       }
     }
@@ -395,7 +395,7 @@ export class DashboardPostPage extends Component {
       />
     );
   }
-};
+}
 
 DashboardPostPage.propTypes = propTypes;
 
@@ -422,6 +422,6 @@ function mapStateToProps(state, props) {
     boxLayoutFormSubmission: selectBoxLayoutFormSubmission(state),
     showSectionLayoutOptions: selectAdvancedLayoutOptions(state)
   };
-};
+}
 
 export default connect(mapStateToProps)(DashboardPostPage);

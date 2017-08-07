@@ -14,12 +14,11 @@ export function getFileTransfer(event, allowMultiple) {
   if (items.length > 0) {
     if (allowMultiple) {
       return Array.prototype.slice.call(items);
-    } else {
-      return [items[0]];
     }
+    return [items[0]];
   }
   return [];
-};
+}
 
 export function supportsDragDrop() {
   if (document) {
@@ -31,16 +30,15 @@ export function supportsDragDrop() {
 }
 
 export default {
-  pick (props, fields) {
-    const has = (p) => props.hasOwnProperty(p);
+  pick(props, fields) {
+    const has = p => props.hasOwnProperty(p);
     const obj = {};
     (fields || []).forEach((field) => {
-      if (has(field))
-        obj[field] = props[field];
+      if (has(field)) { obj[field] = props[field]; }
     });
     return obj;
   },
-  omit (props, fields) {
+  omit(props, fields) {
     const obj = {};
     Object.keys(props).forEach((p) => {
       if ((fields || []).indexOf(p) === -1) {

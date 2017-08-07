@@ -11,7 +11,8 @@ class App extends React.Component {
       <GrommetApp centered={false}>
         <Helmet
           title="Home"
-          titleTemplate="Grommet | %s" />
+          titleTemplate="Grommet | %s"
+        />
         <Nav {...this.context.config.frontend} />
         <main>
           {this.props.children}

@@ -25,14 +25,14 @@ export const clearErrors = (): PostFeedPageAction => ({
 
 export const getPosts = (page: number = 0) =>
   (dispatch: (action: any) => void, getState: any) => {
-    let { url } = getState().api;
+    const { url } = getState().api;
     const postsUrl = `${url}/posts?page=${page}`;
     dispatch(loadDataInitiation());
     Request.get(postsUrl)
-      .then(res => {
+      .then((res) => {
         dispatch(loadDataSuccess(res));
       })
-      .catch(err => {
+      .catch((err) => {
         const message = 'There was an error processing your request.' +
           '  Please try again.';
         dispatch(

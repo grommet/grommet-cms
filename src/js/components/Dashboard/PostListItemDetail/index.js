@@ -50,7 +50,7 @@ export default function PostListItemDetail(props: {
             <Button
               label="done"
               onClick={onSubmit}
-              primary={true}
+              primary
               type="submit"
             />
           </Menu>

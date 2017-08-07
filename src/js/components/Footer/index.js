@@ -21,7 +21,7 @@ export default function Footer(props: {
           {logo}
         </Box>
         <Box basis="1/3" justify="center">
-          <Heading 
+          <Heading
             className="post-feed-item--header"
             align="center"
             tag="h3"

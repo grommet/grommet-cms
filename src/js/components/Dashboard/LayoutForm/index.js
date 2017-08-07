@@ -28,7 +28,7 @@ export default function LayoutForm(props: {
   onChange: Function
 }) {
   const { onChange, title, fields, showHelp, onToggleHelp } = props;
-  const flexDirection: string = fields[0].value || "row";
+  const flexDirection: string = fields[0].value || 'row';
   return (
     <fieldset>
       <Box direction="row" align="center" justify="start">
@@ -51,7 +51,7 @@ export default function LayoutForm(props: {
             label={field.label}
             htmlFor={field.name}
           >
-            {field.type === 'Select' && 
+            {field.type === 'Select' &&
               <Select
                 id={field.name}
                 name={field.name}
@@ -62,12 +62,12 @@ export default function LayoutForm(props: {
                 options={field.options}
               />
             }
-            {field.type === 'CheckBox' && 
+            {field.type === 'CheckBox' &&
               <CheckBox
                 id={field.name}
                 name={field.name}
                 label={helpText}
-                checked={(field.value === 'false') ? false : true}
+                checked={field.value !== 'false'}
                 onChange={({ target }) =>
                   onChange({
                     value: (target.checked) ? 'true' : 'false',
@@ -79,7 +79,7 @@ export default function LayoutForm(props: {
           </FormField>
         );
       })}
-    </fieldset>  
+    </fieldset>
   );
 }
 

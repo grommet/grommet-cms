@@ -5,12 +5,12 @@ import Box from 'grommet/components/Box';
 import Header from 'grommet/components/Header';
 import Menu from 'grommet/components/Menu';
 
-type NavLinks = Array<{ 
+type NavLinks = Array<{
   label: string,
   path: string
 }>;
 
-export default function Nav (props: {
+export default function Nav(props: {
   rightNavLinks: NavLinks,
   leftNavLinks: NavLinks,
   title?: string,
@@ -26,15 +26,21 @@ export default function Nav (props: {
         />
       </Box>
     )
-  : 
+    :
     null;
   return (
-    <Header className="mobile-hide" size="large" colorIndex="neutral-4"
-      justify="center" separator="bottom" pad={{ horizontal: 'medium' }}>
+    <Header
+      className="mobile-hide"
+      size="large"
+      colorIndex="neutral-4"
+      justify="center"
+      separator="bottom"
+      pad={{ horizontal: 'medium' }}
+    >
       <Box full="horizontal" direction="row" justify="between" responsive={false}>
         <Box direction="row">
           {titleElement}
-          <Menu inline={true} direction="row" responsive={false} align="center">
+          <Menu inline direction="row" responsive={false} align="center">
             {leftNavLinks.map((item, i) =>
               <Anchor
                 {...item}
@@ -43,7 +49,7 @@ export default function Nav (props: {
             )}
           </Menu>
         </Box>
-        <Menu inline={true} direction="row" responsive={false} align="center">
+        <Menu inline direction="row" responsive={false} align="center">
           {rightNavLinks.map((item, i) =>
             <Anchor
               {...item}
@@ -54,4 +60,4 @@ export default function Nav (props: {
       </Box>
     </Header>
   );
-};
+}

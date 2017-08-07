@@ -48,8 +48,8 @@ export default function AssetTableRows({
           <AssetTableRow
             checked={checkedIndices.indexOf(index) >= 0}
             key={uuid()}
-            onClickCheckbox={(checked) => onClickCheckbox(index, checked)}
-            onClickMenu={(action) => onClickMenu(action, item)}
+            onClickCheckbox={checked => onClickCheckbox(index, checked)}
+            onClickMenu={action => onClickMenu(action, item)}
             allowMultiSelect={allowMultiSelect}
             {...props}
           />

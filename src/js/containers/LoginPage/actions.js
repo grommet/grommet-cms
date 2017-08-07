@@ -28,7 +28,7 @@ export function logoutSuccess() {
 
 export function login(user) {
   return (dispatch, getState) => {
-    let { url } = getState().api;
+    const { url } = getState().api;
     fetch(`${url}/user/login`, {
       method: 'POST',
       credentials: 'include',
@@ -37,25 +37,25 @@ export function login(user) {
       }),
       body: JSON.stringify(user)
     })
-      .then(response => 
+      .then(response =>
         response.json().then(json => ({
           status: response.status,
           statusText: response.statusText,
           json
         })
-      ))
+        ))
       .then(
         ({ status, statusText, json }) => {
           if (status >= 400) {
             const text = (status === 401)
-              ? `The email and password you entered don't match.`
+              ? 'The email and password you entered don\'t match.'
               : statusText;
             dispatch(loginError(text));
           } else {
             dispatch(loginSuccess(json));
           }
         },
-        err => {
+        (err) => {
           // dispatch app error
           dispatch(loginError('There was an error processing your request.'));
         }
@@ -67,7 +67,7 @@ export function logout(user) {
   return (dispatch, getState) => {
     dispatch(loginRequest());
 
-    let { url } = getState().api;
+    const { url } = getState().api;
     fetch(`${url}/user/logout`, {
       method: 'GET',
       credentials: 'include'
@@ -81,7 +81,7 @@ export function logout(user) {
             browserHistory.push('/dashboard');
           }
         },
-        err => {
+        (err) => {
           // dispatch app error
           dispatch(loginError('There was an error processing your request.'));
         }

@@ -24,12 +24,12 @@ export class DashboardUserEditPage extends Component {
 
   componentDidMount() {
     this.props.dispatch(getUser(this.props.params.id))
-    .then(({ user }) => this.setState({
-      role: {
-        value: user.role,
-        label: (user.role === 0) ? 'Admin' : 'Editor'
-      }
-    }));
+      .then(({ user }) => this.setState({
+        role: {
+          value: user.role,
+          label: (user.role === 0) ? 'Admin' : 'Editor'
+        }
+      }));
   }
 
   _onSubmit(data, event) {
@@ -48,7 +48,7 @@ export class DashboardUserEditPage extends Component {
   _onChange({ target, value }) {
     const key = target.id;
     const val = value || target.value;
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
     this.setState(obj);
   }
@@ -78,7 +78,7 @@ export class DashboardUserEditPage extends Component {
       </Box>
     );
   }
-};
+}
 
 function mapStateToProps(state) {
   const { user: loggedInUser } = state.login;

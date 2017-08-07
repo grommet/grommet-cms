@@ -61,24 +61,24 @@ export class DashboardAssetsLayer extends Component {
     const assetForm = (this.state.addNewAsset)
       ?
       <Article
-        full
-        align="center"
-        justify="center"
-        style={{ overflow: 'scroll' }}
-      >
-        <AssetForm
+          full
+          align="center"
+          justify="center"
+          style={{ overflow: 'scroll' }}
+        >
+          <AssetForm
           isLayer
           hasHeader={false}
           params={{ id: 'create' }}
           onCancel={this._onAssetFormCancel}
           onSubmit={onAssetFormSubmit}
         />
-      </Article>
+        </Article>
       : undefined;
 
 
     return (
-      <Layer align="center" flush={true} onClose={this.props.onClose}>
+      <Layer align="center" flush onClose={this.props.onClose}>
         <PageHeader
           title="Assets"
           controls={
@@ -106,12 +106,12 @@ export class DashboardAssetsLayer extends Component {
       </Layer>
     );
   }
-};
+}
 
 function mapStateToProps(state, props) {
   const { error, request } = state.assets;
   return {
-    error, 
+    error,
     request
   };
 }

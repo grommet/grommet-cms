@@ -31,7 +31,7 @@ export function deleteUser(id) {
   return (dispatch, getState) => {
     dispatch(usersRequest());
 
-    let { url } = getState().api;
+    const { url } = getState().api;
     fetch(`${url}/user/${id}/delete`, {
       method: 'POST',
       credentials: 'include',
@@ -50,7 +50,7 @@ export function deleteUser(id) {
             dispatch(userDeleteSuccess());
           }
         },
-        err => {
+        (err) => {
           // Switch this out for Dashboard error.
           dispatch(usersError('There was an error processing your request.'));
         }
@@ -62,7 +62,7 @@ export function getUsers() {
   return (dispatch, getState) => {
     dispatch(usersRequest());
 
-    let { url } = getState().api;
+    const { url } = getState().api;
     fetch(`${url}/users`, {
       method: 'GET',
       credentials: 'include'
@@ -73,7 +73,7 @@ export function getUsers() {
           statusText: response.statusText,
           json
         })
-      ))
+        ))
       .then(
         ({ status, statusText, json }) => {
           if (status >= 400) {
@@ -83,7 +83,7 @@ export function getUsers() {
             dispatch(usersSuccess(json));
           }
         },
-        err => {
+        (err) => {
           // Switch this out for Dashboard error.
           dispatch(usersError('There was an error processing your request.'));
         }

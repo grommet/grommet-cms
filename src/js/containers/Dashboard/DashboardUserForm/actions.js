@@ -28,9 +28,9 @@ export function userRequestError(errorMsg) {
   };
 }
 
-export const getUser = (userId) =>
+export const getUser = userId =>
   (dispatch, getState) => {
-    let { url } = getState().api;
+    const { url } = getState().api;
 
     return fetch(`${url}/user/${userId}`, {
       method: 'GET',
@@ -44,31 +44,30 @@ export const getUser = (userId) =>
           status: response.status,
           json
         })
-      ))
+        ))
       .then(
         ({ status, json }) => {
           if (status >= 400) {
             // Status looks bad
             return dispatch(userRequestError(json.message));
-          } else {
-            // Status looks good
-            return dispatch(userGetSuccess(json));
           }
+          // Status looks good
+          return dispatch(userGetSuccess(json));
         },
-        err => {
+        err =>
           // dispatch app error
-          return dispatch(userRequestError(json.message));
-        }
+          dispatch(userRequestError(json.message))
+
       );
   };
 
 export const userPost = (user, loggedInRole) =>
   (dispatch, getState) => {
-    let { url } = getState().api;
+    const { url } = getState().api;
     const { role: loggedInRole } = getState().login.user;
     const endPoint = (user._id)
       ? `/user/${user._id}/edit`
-      : `/user/register`;
+      : '/user/register';
 
     fetch(`${url}${endPoint}`, {
       method: 'POST',
@@ -83,7 +82,7 @@ export const userPost = (user, loggedInRole) =>
           status: response.status,
           json
         })
-      ))
+        ))
       .then(
         ({ status, json }) => {
           if (status >= 400) {
@@ -92,14 +91,14 @@ export const userPost = (user, loggedInRole) =>
           } else {
             // Status looks good
             dispatch(userRequestSuccess(json));
-            if(loggedInRole === 0) {
+            if (loggedInRole === 0) {
               browserHistory.push('/dashboard/users');
             } else {
               browserHistory.push('/dashboard/homepage');
             }
           }
         },
-        err => {
+        (err) => {
           // dispatch app error
           dispatch(userRequestError(json.message));
         }

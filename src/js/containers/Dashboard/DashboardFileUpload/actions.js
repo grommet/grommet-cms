@@ -31,14 +31,14 @@ export function fileInsert(layer) {
 export function fileUpload(file) {
   const endPoint = 'file/create';
 
-  let formData = new FormData();
+  const formData = new FormData();
 
-  for(name in file) {
+  for (name in file) {
     formData.append(name, file[name]);
   }
 
   return (dispatch, getState) => {
-    let { url } = getState().api;
+    const { url } = getState().api;
 
     dispatch(fileRequest());
     fetch(`${url}/${endPoint}`, {
@@ -46,13 +46,13 @@ export function fileUpload(file) {
       credentials: 'include',
       body: formData
     })
-      .then(response => 
+      .then(response =>
         response.json().then(json => ({
           status: response.status,
           statusText: response.statusText,
           json
         })
-      ))
+        ))
       .then(
         ({ status, statusText, json }) => {
           if (status >= 400) {
@@ -62,7 +62,7 @@ export function fileUpload(file) {
             dispatch(fileSuccess(json));
           }
         },
-        err => {
+        (err) => {
           // dispatch app error
           console.log(err);
           dispatch(fileError('There was an error processing your request.'));

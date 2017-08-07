@@ -21,7 +21,7 @@ export const selectData = createSelector(
 
 export const selectLogo = createSelector(
   selectData,
-  data => {
+  (data) => {
     let logo = logoMap.HPE;
     if (data && data.branding) {
       if (!data.branding.logo) {
@@ -47,13 +47,11 @@ export const selectSettingsForm = createSelector(
 
 export const selectSubmission = createSelector(
   selectSettingsState(),
-  settings => {
-    return {
-      branding: {
-        ...settings.form.branding,
-        theme: settings.form.branding.theme.value.value,
-        logo: settings.form.branding.logo ? settings.form.branding.logo._id : ''
-      }
-    };
-  }
+  settings => ({
+    branding: {
+      ...settings.form.branding,
+      theme: settings.form.branding.theme.value.value,
+      logo: settings.form.branding.logo ? settings.form.branding.logo._id : ''
+    }
+  })
 );

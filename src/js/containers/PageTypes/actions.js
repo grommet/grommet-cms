@@ -84,13 +84,13 @@ export function clearError() {
 }
 
 export function loadData() {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const { url } = getState().api;
     dispatch(requestInitiation());
     return fetch(`${url}/pageTypes`)
-      .then((res) => res.json())
-      .then((data) => dispatch(loadDataSuccess(data)))
-      .catch((err) => dispatch(requestFailure(err)));
+      .then(res => res.json())
+      .then(data => dispatch(loadDataSuccess(data)))
+      .catch(err => dispatch(requestFailure(err)));
   };
 }
 
@@ -98,7 +98,7 @@ export function deletePageType(id) {
   return (dispatch, getState) => {
     dispatch(requestInitiation());
 
-    let { url } = getState().api;
+    const { url } = getState().api;
     fetch(`${url}/pageType/${id}/delete`, {
       method: 'POST',
       credentials: 'include',
@@ -118,16 +118,16 @@ export function deletePageType(id) {
             dispatch(deleteSuccess());
           }
         },
-        err => {
+        (err) => {
           dispatch(requestFailure('There was an error processing your request.'));
         }
       );
   };
 }
 
-export const getPageType = (id) =>
+export const getPageType = id =>
   (dispatch, getState) => {
-    let { url } = getState().api;
+    const { url } = getState().api;
     dispatch(requestInitiation());
     return fetch(`${url}/pageType/${id}`, {
       method: 'GET',
@@ -141,21 +141,20 @@ export const getPageType = (id) =>
           status: response.status,
           json
         })
-      ))
+        ))
       .then(
         ({ status, json }) => {
           if (status >= 400) {
             // Status looks bad
             return dispatch(requestFailure(json.message));
-          } else {
-            // Status looks good
-            return dispatch(getPageTypeSuccess(json));
           }
+          // Status looks good
+          return dispatch(getPageTypeSuccess(json));
         },
-        err => {
+        err =>
           // dispatch app error
-          return dispatch(requestFailure(json.message));
-        }
+          dispatch(requestFailure(json.message))
+
       );
   };
 
@@ -166,7 +165,7 @@ export function submitPageType(pageType) {
 
   return (dispatch, getState) => {
     dispatch(requestInitiation());
-    let { url } = getState().api;
+    const { url } = getState().api;
     return fetch(`${url}/${endPoint}`, {
       method: 'POST',
       credentials: 'include',
@@ -185,7 +184,7 @@ export function submitPageType(pageType) {
             browserHistory.push('/dashboard/pageTypes');
           }
         },
-        err => {
+        (err) => {
           // dispatch app error
           dispatch(requestFailure('There was an error processing your request.'));
         }

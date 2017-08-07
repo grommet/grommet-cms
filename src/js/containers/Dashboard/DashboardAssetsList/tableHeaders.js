@@ -4,7 +4,7 @@ const headers = ['', 'Title', 'File Name', 'Created At', 'Created By', '', ''];
 
 export const map = {
   '': '',
-  'Title': 'title',
+  Title: 'title',
   'File Name': 'path',
   'Created At': 'createdAt',
   'Created By': 'createdBy'

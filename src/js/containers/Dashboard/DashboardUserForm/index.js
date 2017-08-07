@@ -22,7 +22,7 @@ export class DashboardUserForm extends Component {
   _onChange(event) {
     const key = event.target.id;
     const val = event.target.value;
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
     this.setState(obj);
   }
@@ -44,12 +44,13 @@ export class DashboardUserForm extends Component {
           username={this.state.username}
           password={this.state.password}
           onChange={this._onChange}
-          onSubmit={this._onSubmit} />
-          {this.props.error}
+          onSubmit={this._onSubmit}
+        />
+        {this.props.error}
       </Box>
     );
   }
-};
+}
 
 DashboardUserForm.propTypes = {
   dispatch: PropTypes.func.isRequired

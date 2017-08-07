@@ -35,7 +35,7 @@ export default class ListTypeToggle extends React.Component {
       });
     }
   }
-  
+
   _toggleSelected: (index: number) => void;
   _toggleSelected(index: number) {
     const oldIndex = this.state.selectedIndex;
@@ -46,9 +46,9 @@ export default class ListTypeToggle extends React.Component {
       this.props.onToggleSelected(index);
     }
   }
-  
+
   state: State;
-  
+
   render() {
     const { selectedIndex } = this.state;
     return (
@@ -62,8 +62,8 @@ export default class ListTypeToggle extends React.Component {
           onClick={() => this._toggleSelected(0)}
         >
           <Box
-            align='center'
-            justify='center'
+            align="center"
+            justify="center"
             pad={{ horizontal: 'small', vertical: 'small' }}
           >
             <SortIcon />
@@ -74,8 +74,8 @@ export default class ListTypeToggle extends React.Component {
           onClick={() => this._toggleSelected(1)}
         >
           <Box
-            align='center'
-            justify='center'
+            align="center"
+            justify="center"
             pad={{ horizontal: 'small', vertical: 'small' }}
           >
             <AppsIcon />

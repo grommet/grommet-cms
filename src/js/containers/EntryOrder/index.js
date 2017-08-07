@@ -17,19 +17,19 @@ export class EntryOrder extends Component {
   }
 
   _onListButtonClick(entry, direction, index) {
-    let entryArray = Object.assign([], this.state.entries);
-    let updatedEntry = Object.assign({}, this.state.entries[index]);
+    const entryArray = Object.assign([], this.state.entries);
+    const updatedEntry = Object.assign({}, this.state.entries[index]);
     entryArray.splice(index, 1);
 
     // Lists are sorted from lowest number to highest.
     // This is to match up with automatically incrementing IDs.
-    switch(direction) {
-      case "increment":
+    switch (direction) {
+      case 'increment':
         updatedEntry.order = (updatedEntry.order > 0)
           ? updatedEntry.order - 1
           : updatedEntry.order;
         break;
-      case "decrement":
+      case 'decrement':
         updatedEntry.order = (updatedEntry.order <= this.state.entries.length)
           ? updatedEntry.order + 1
           : updatedEntry.order;
@@ -38,7 +38,7 @@ export class EntryOrder extends Component {
 
     entryArray.splice(updatedEntry.order, 0, updatedEntry);
 
-    entryArray.map((item, index)=>{
+    entryArray.map((item, index) => {
       entryArray[index].order = index;
     });
 
@@ -46,13 +46,13 @@ export class EntryOrder extends Component {
   }
 
   _sortArray(entries) {
-    let sortedEntries =  entries.sort((a, b) => {
-      if(a.order < b.order) return -1;
-      if(a.order > b.order) return 1;
+    const sortedEntries = entries.sort((a, b) => {
+      if (a.order < b.order) return -1;
+      if (a.order > b.order) return 1;
       return 0;
     });
 
-    sortedEntries.map((item, index)=>{
+    sortedEntries.map((item, index) => {
       sortedEntries[index].order = index;
     });
 
@@ -60,24 +60,25 @@ export class EntryOrder extends Component {
   }
 
   _onClose() {
-    this.setState({layerActive: false});
+    this.setState({ layerActive: false });
   }
 
   render() {
     return (
       <div>
-        <Layer closer={true} onClose={this.props.onClose}>
+        <Layer closer onClose={this.props.onClose}>
           <EntryOrderList
             entries={this.state.entries}
             posts={this.props.posts}
             onCancel={this.props.onClose}
             onListButtonClick={this._onListButtonClick}
             onSubmit={this.props.onSubmit.bind(this, this.state.entries)}
-            request={this.props.request} />
+            request={this.props.request}
+          />
         </Layer>
       </div>
     );
   }
-};
+}
 
 export default EntryOrder;

@@ -55,11 +55,11 @@ export class DashboardUsersPage extends Component {
   }
 
   render() {
-    let layer = (this.state.layer)
+    const layer = (this.state.layer)
       ? <ConfirmLayer onSubmit={this._onDeleteSubmit} onClose={this._onLayerClose} />
       : null;
 
-    let deleteMethod = (this.props.users.length > 1)
+    const deleteMethod = (this.props.users.length > 1)
       ? this._confirmDelete
       : null;
 
@@ -85,13 +85,13 @@ export class DashboardUsersPage extends Component {
             titleKey="username"
             route="users"
             onDelete={deleteMethod}
-            links={true}
+            links
           />
         </Article>
       </Box>
     );
   }
-};
+}
 
 DashboardUsersPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -106,6 +106,6 @@ function mapStateToProps(state, props) {
     error,
     users
   };
-};
+}
 
 export default connect(mapStateToProps)(DashboardUsersPage);

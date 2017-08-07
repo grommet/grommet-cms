@@ -47,7 +47,7 @@ const initialState = {
 };
 
 function dashboard(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.DASHBOARD_LOAD_NAV_SUCCESS:
       return {
         ...state,

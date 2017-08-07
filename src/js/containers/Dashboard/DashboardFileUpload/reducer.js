@@ -8,13 +8,13 @@ const initialState = {
 };
 
 export function file(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.FILE_INSERT_REQUEST:
       return Object.assign({}, state, {
         insertRequest: action.insertRequest,
         error: ''
       });
-      break; 
+      break;
     case ActionTypes.FILE_UPLOAD_REQUEST:
       return Object.assign({}, state, {
         uploadRequest: true,
@@ -37,7 +37,7 @@ export function file(state = initialState, action) {
         url: ''
       });
       break;
-    default: 
+    default:
       return state;
   }
 }

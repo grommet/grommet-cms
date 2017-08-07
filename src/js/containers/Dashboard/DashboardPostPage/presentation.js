@@ -118,10 +118,10 @@ export class DashboardPostPagePresentation extends Component {
                     onClick={
                       selectedSection != null
                         ? () =>
-                            onSectionMenuItemClick(
-                              'EDIT_SECTION',
-                              selectedSection
-                            )
+                          onSectionMenuItemClick(
+                            'EDIT_SECTION',
+                            selectedSection
+                          )
                         : null
                     }
                     icon={<SettingsOptionIcon size="small" />}
@@ -160,7 +160,7 @@ export class DashboardPostPagePresentation extends Component {
       </Box>
     );
   }
-};
+}
 
 DashboardPostPagePresentation.propTypes = {
   sectionLayoutForm: PropTypes.object,

@@ -11,7 +11,7 @@ class DashboardPageTypesPage extends Component {
     super();
     this._onAddClick = this._onAddClick.bind(this);
   }
-  
+
   _onAddClick() {
     browserHistory.push('/dashboard/pageTypes/create');
   }

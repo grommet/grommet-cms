@@ -12,21 +12,20 @@ export default function WithLoading(props: {
   const { isLoading, children, fullHeight } = props;
   if (!isLoading) {
     return <div>{children}</div>;
-  } else {
-    return (
-      <Box>
-        {isLoading &&
-          <Section
-            full={fullHeight}
-            justify="center"
-            align="center"
-          >
-            <LoadingIndicator />
-          </Section>
-        }
-      </Box>
-    );
   }
+  return (
+    <Box>
+      {isLoading &&
+      <Section
+        full={fullHeight}
+        justify="center"
+        align="center"
+      >
+        <LoadingIndicator />
+      </Section>
+      }
+    </Box>
+  );
 }
 
 WithLoading.propTypes = {

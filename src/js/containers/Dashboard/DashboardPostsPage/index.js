@@ -50,8 +50,7 @@ export class DashboardPostsPage extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.posts !== prevProps.posts && this.props.request === false)
-      this.setState({orderLayer: false});
+    if (this.props.posts !== prevProps.posts && this.props.request === false) { this.setState({ orderLayer: false }); }
   }
 
   componentWillReceiveProps({ request, posts, redirect, params, currentPage }) {
@@ -84,7 +83,7 @@ export class DashboardPostsPage extends Component {
 
   _onSubmitPost() {
     const { newPost, params, addPostForm, request } = this.props;
-    if(!request && newPost) {
+    if (!request && newPost) {
       let post = newPost;
       if (addPostForm.selectedPostIndex === null) {
         post = {
@@ -118,7 +117,7 @@ export class DashboardPostsPage extends Component {
   _onPostChange({ target, option }) {
     const { newPost } = this.props;
     const key = target.id;
-    let val = option || target.value;
+    const val = option || target.value;
     let updatedPost;
     if (newPost) {
       updatedPost = {
@@ -166,7 +165,7 @@ export class DashboardPostsPage extends Component {
 
   _onMenuItemClick(type, index) {
     const { _id: id } = this.props.posts[index];
-    switch(type) {
+    switch (type) {
       case 'EDIT_PAGE': {
         this.props.dispatch(toggleAddPostFormVisibility(index));
         break;
@@ -249,8 +248,8 @@ export class DashboardPostsPage extends Component {
   _renderLoader(request) {
     return (request)
       ? <Box full align="center" justify="center">
-          <LoadingIndicator />
-        </Box>
+        <LoadingIndicator />
+      </Box>
       : <NoneFound message="Click 'Add Page' to add one." />;
   }
 
@@ -264,21 +263,21 @@ export class DashboardPostsPage extends Component {
     const layer = (this.state.layer)
       ?
         <ConfirmLayer
-          onSubmit={this._onDeleteSubmit}
-          onClose={this._onLayerClose}
-        />
+        onSubmit={this._onDeleteSubmit}
+        onClose={this._onLayerClose}
+      />
       : null;
 
     const list = (Array.isArray(posts) && posts.length > 0 && !request)
       ? <PostDashboardList
-          list={this.props.posts}
-          onMenuItemClick={this._onMenuItemClick} 
-        />
+        list={this.props.posts}
+        onMenuItemClick={this._onMenuItemClick}
+      />
       : this._renderLoader(request);
 
     return (
-      <Box 
-        primary 
+      <Box
+        primary
         direction="column"
         full="horizontal"
         style={{ maxHeight: 'calc(100vh - 80px)' }}
@@ -290,7 +289,7 @@ export class DashboardPostsPage extends Component {
           form={{
             onSubmit: this._onSubmitPost,
             post: newPost || selectedPost || {},
-            url: url,
+            url,
             onCancel: this._onCancelPost,
             onChange: this._onPostChange
           }}
@@ -315,7 +314,7 @@ export class DashboardPostsPage extends Component {
       </Box>
     );
   }
-};
+}
 
 DashboardPostsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -336,7 +335,7 @@ DashboardPostsPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-function mapStateToProps (state, props) {
+function mapStateToProps(state, props) {
   const { request, error, posts, post } = state.posts;
   const { addPostForm, redirect, currentPage } = state.dashboardPosts;
   const { url } = state.fileUpload;
@@ -350,6 +349,6 @@ function mapStateToProps (state, props) {
     currentPage,
     addPostForm
   };
-};
+}
 
 export default connect(mapStateToProps)(DashboardPostsPage);

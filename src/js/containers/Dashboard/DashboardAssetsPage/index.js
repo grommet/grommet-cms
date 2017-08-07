@@ -28,6 +28,6 @@ export class DashboardAssetsPage extends Component {
       </Box>
     );
   }
-};
+}
 
 export default DashboardAssetsPage;

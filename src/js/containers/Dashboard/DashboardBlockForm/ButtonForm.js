@@ -32,9 +32,9 @@ export class ButtonForm extends Component {
 
   _onChange({ target, option }) {
     const key = target.id;
-    let val = option || target.value;
+    const val = option || target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -47,11 +47,10 @@ export class ButtonForm extends Component {
   }
 
   _onAssetSelect(asset) {
-    this.setState({ asset: asset });
+    this.setState({ asset });
   }
 
   render() {
-
     return (
       <BlockButtonForm
         url={this.props.url}
@@ -66,7 +65,7 @@ export class ButtonForm extends Component {
       </BlockButtonForm>
     );
   }
-};
+}
 
 ButtonForm.propTypes = {
   onSubmit: PropTypes.func,

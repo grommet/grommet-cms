@@ -31,9 +31,9 @@ export class CardForm extends Component {
 
   _onChange({ target }) {
     const key = target.id;
-    let val = target.value;
+    const val = target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -44,8 +44,7 @@ export class CardForm extends Component {
   }
 
   _validateForm({ image, content }) {
-    if (image !== '' && content !== '')
-      return true;
+    if (image !== '' && content !== '') { return true; }
 
     return false;
   }
@@ -85,7 +84,7 @@ export class CardForm extends Component {
       </BlockCardForm>
     );
   }
-};
+}
 
 CardForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,

@@ -24,7 +24,7 @@ class PageTypes extends Component {
       });
     }
   }
-  
+
   componentWillMount() {
     this.props.actions.loadData();
   }
@@ -44,9 +44,9 @@ class PageTypes extends Component {
   _handleMoveAction = (direction, index) => {
     this.props.actions.reorderPageType(index, direction);
   }
-  
+
   _handleMenuItemClick(type, index) {
-    switch(type) {
+    switch (type) {
       case 'EDIT':
         this._handleEditAction(index);
         break;
@@ -61,7 +61,7 @@ class PageTypes extends Component {
         break;
     }
   }
-  
+
   _handleClosingLayer() {
     this.props.actions.cancelDeletion();
   }

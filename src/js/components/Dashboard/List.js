@@ -15,11 +15,12 @@ export default function List(props) {
       }
 
       const title = (props.links)
-        ? <Link 
-            to={`/dashboard/${props.route}/${itemId}`}
-            style={{textDecoration:'none'}}>
-            {itemTitle}
-          </Link>
+        ? <Link
+          to={`/dashboard/${props.route}/${itemId}`}
+          style={{ textDecoration: 'none' }}
+        >
+          {itemTitle}
+        </Link>
         : <span>{itemTitle}</span>;
 
       const onClickDelete = (props.onDelete)
@@ -31,8 +32,15 @@ export default function List(props) {
         : null;
 
       return (
-        <Box key={`item-${itemId}`} className="posts-list__post" separator="bottom" 
-          direction="row" flex="grow" pad="medium" full="horizontal">
+        <Box
+          key={`item-${itemId}`}
+          className="posts-list__post"
+          separator="bottom"
+          direction="row"
+          flex="grow"
+          pad="medium"
+          full="horizontal"
+        >
           <Box flex="grow">
             <Heading tag="h3">{title}</Heading>
           </Box>
@@ -49,4 +57,4 @@ export default function List(props) {
       {postsList}
     </Box>
   );
-};
+}

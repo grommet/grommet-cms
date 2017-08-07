@@ -6,21 +6,21 @@ export const blockAdd = () => (
   }
 );
 
-export const blockRemove = (id) => (
+export const blockRemove = id => (
   {
     type: ActionTypes.BLOCK_REMOVE,
     id
   }
 );
 
-export const blockEdit = (id) => (
+export const blockEdit = id => (
   {
     type: ActionTypes.BLOCK_EDIT,
     id
   }
 );
 
-export const blockDuplicate = (id) => ({
+export const blockDuplicate = id => ({
   type: ActionTypes.BLOCK_DUPLICATE,
   id
 });
@@ -45,7 +45,7 @@ export const blockSubmit = (id, content) => (
   }
 );
 
-export const blockMoveUp = (id) => (
+export const blockMoveUp = id => (
   {
     type: ActionTypes.BLOCK_MOVE_UP,
     id
@@ -58,14 +58,14 @@ export const blockSetContentBlockLayout = (id, layout) => ({
   id
 });
 
-export const blockMoveDown = (id) => (
+export const blockMoveDown = id => (
   {
     type: ActionTypes.BLOCK_MOVE_DOWN,
     id
   }
 );
 
-export const blockAddList = (list) => (
+export const blockAddList = list => (
   {
     type: ActionTypes.BLOCK_ADD_LIST,
     list
