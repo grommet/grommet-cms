@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<BackAnchor /> should render with default props 1`] = `
 <Box
   announce={false}
@@ -5,16 +7,19 @@ exports[`<BackAnchor /> should render with default props 1`] = `
   focusable={true}
   pad="none"
   responsive={true}
-  tag="div">
+  tag="div"
+>
   <Anchor
     animateIcon={true}
     icon={
       <LinkPrevious
-        responsive={true} />
+        responsive={true}
+      />
     }
     label="Posts"
     method="push"
     onClick={[Function]}
-    tag="a" />
+    tag="a"
+  />
 </Box>
 `;

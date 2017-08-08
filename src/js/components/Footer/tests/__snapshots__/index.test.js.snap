@@ -1,10 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<Footer /> should render with default props 1`] = `
 <Footer
   align="center"
   colorIndex="brand"
   direction="row"
   primary={true}
-  responsive={false}>
+  responsive={false}
+>
   <Box
     announce={false}
     direction="row"
@@ -12,7 +15,8 @@ exports[`<Footer /> should render with default props 1`] = `
     full="horizontal"
     pad="large"
     responsive={true}
-    tag="div">
+    tag="div"
+  >
     <Box
       announce={false}
       basis="1/3"
@@ -21,7 +25,8 @@ exports[`<Footer /> should render with default props 1`] = `
       justify="center"
       pad="none"
       responsive={true}
-      tag="div" />
+      tag="div"
+    />
     <Box
       announce={false}
       basis="1/3"
@@ -30,11 +35,13 @@ exports[`<Footer /> should render with default props 1`] = `
       justify="center"
       pad="none"
       responsive={true}
-      tag="div">
+      tag="div"
+    >
       <Heading
         align="center"
         className="post-feed-item--header"
-        tag="h3">
+        tag="h3"
+      >
         © 2017 Grommet Labs
       </Heading>
     </Box>
@@ -46,13 +53,15 @@ exports[`<Footer /> should render with default props 1`] = `
       justify="center"
       pad="none"
       responsive={true}
-      tag="div">
+      tag="div"
+    >
       <Anchor
         align="end"
         animateIcon={true}
         href="mailto:hello@grommet.io"
         method="push"
-        tag="a">
+        tag="a"
+      >
         Get in touch
       </Anchor>
       <Anchor
@@ -60,7 +69,8 @@ exports[`<Footer /> should render with default props 1`] = `
         animateIcon={true}
         href="https://grommet.io"
         method="push"
-        tag="a">
+        tag="a"
+      >
         https://grommet.io
       </Anchor>
     </Box>

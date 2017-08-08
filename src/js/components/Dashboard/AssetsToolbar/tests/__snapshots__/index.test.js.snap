@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<AssetsToolbar /> should create a snapshot 1`] = `
 <styled.div>
   <Box
@@ -8,13 +10,21 @@ exports[`<AssetsToolbar /> should create a snapshot 1`] = `
     focusable={true}
     pad="medium"
     responsive={true}
-    tag="div">
+    tag="div"
+  >
     <Button
-      label="use selected images"
+      className=""
+      icon={
+        <Checkmark
+          responsive={true}
+        />
+      }
+      label="use selected assets"
       method="push"
       onClick={[Function]}
       primary={true}
-      type="button" />
+      type="button"
+    />
   </Box>
 </styled.div>
 `;
