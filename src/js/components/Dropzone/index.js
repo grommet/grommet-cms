@@ -106,12 +106,12 @@ class Dropzone extends Component {
       files: newFiles
     });
     if (typeof onDOMChange === 'function') {
-      onDOMChange.call(this, newFiles, e);
+      onDOMChange.call(this, newFiles, e); // eslint-disable-line
     }
   }
 
   _onOpen() {
-    const fileInput = findDOMNode(this.refs.fileInput);
+    const fileInput = findDOMNode(this.refs.fileInput); // eslint-disable-line
     fileInput.value = null;
     fileInput.click();
   }
@@ -125,7 +125,7 @@ class Dropzone extends Component {
     }
     files.forEach((file) => {
       if (window) {
-        file.preview = window.URL.createObjectURL(file);
+        file.preview = window.URL.createObjectURL(file); // eslint-disable-line
       }
     });
     const newFiles = multiple
@@ -236,7 +236,7 @@ class Dropzone extends Component {
           />
         }
         <input
-          ref="fileInput"
+          ref="fileInput" // eslint-disable-line
           multiple={multiple}
           onChange={this._onDrop}
           type="file"

@@ -1,7 +1,7 @@
 /* @flow */
+import Request from 'grommet-cms/utils/request';
 import * as T from './constants';
 import type { PostFeedPageAction, PostType } from './flowTypes';
-import Request from 'grommet-cms/utils/request';
 
 export const loadDataInitiation = (): PostFeedPageAction => ({
   type: T.LOAD_DATA_INITIATION
@@ -32,7 +32,7 @@ export const getPosts = (page: number = 0) =>
       .then((res) => {
         dispatch(loadDataSuccess(res));
       })
-      .catch((err) => {
+      .catch(() => {
         const message = 'There was an error processing your request.' +
           '  Please try again.';
         dispatch(

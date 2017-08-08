@@ -26,11 +26,16 @@ import {
 
 type Props = {
   error: string,
+  dispatch: Function,
   posts: Asset,
   request: boolean,
   hasHeader?: boolean,
   onCancel?: Function,
-  isLayer?: boolean
+  onSubmit: Function,
+  isLayer?: boolean,
+  params: {
+    id?: string
+  }
 };
 
 export class DashboardAssetPage extends Component {
@@ -42,7 +47,6 @@ export class DashboardAssetPage extends Component {
   };
 
   _onChange: () => void;
-  _onSubmit: () => void;
   _removeAssetClick: () => void;
 
   constructor(props: Props) {
@@ -56,9 +60,9 @@ export class DashboardAssetPage extends Component {
     };
 
     this._onChange = this._onChange.bind(this);
-    this._onSubmit = this._onSubmit.bind(this);
     this._removeAssetClick = this._removeAssetClick.bind(this);
-    (this:any)._onChangeFile = this._onChangeFile.bind(this);
+    (this: any)._onSubmit = this._onSubmit.bind(this);
+    (this: any)._onChangeFile = this._onChangeFile.bind(this);
   }
 
   componentWillMount() {
@@ -225,7 +229,7 @@ export class DashboardAssetPage extends Component {
               <Button
                 label="submit"
                 primary
-                onClick={(this.state.title != '' && !this.props.request)
+                onClick={(this.state.title !== '' && !this.props.request)
                   ? this._onSubmit.bind(this, this.state)
                   : null
                 }
@@ -247,7 +251,7 @@ export class DashboardAssetPage extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { error, posts, request } = state.assets;
   return {
     error,

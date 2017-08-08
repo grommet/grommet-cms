@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import * as ActionTypes from './constants';
 import { browserHistory } from 'react-router';
+import * as ActionTypes from './constants';
 
 export function loginRequest() {
   return { type: ActionTypes.USER_LOGIN_REQUEST };
@@ -55,7 +55,7 @@ export function login(user) {
             dispatch(loginSuccess(json));
           }
         },
-        (err) => {
+        () => {
           // dispatch app error
           dispatch(loginError('There was an error processing your request.'));
         }
@@ -63,7 +63,7 @@ export function login(user) {
   };
 }
 
-export function logout(user) {
+export function logout() {
   return (dispatch, getState) => {
     dispatch(loginRequest());
 
@@ -81,7 +81,7 @@ export function logout(user) {
             browserHistory.push('/dashboard');
           }
         },
-        (err) => {
+        () => {
           // dispatch app error
           dispatch(loginError('There was an error processing your request.'));
         }

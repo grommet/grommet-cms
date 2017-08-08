@@ -39,8 +39,8 @@ export const sync = (data: Object) =>
           return dispatch(loadDataFailure({ message: 'Error syncing data.' }));
         }
 
-        dispatch(loadDataSuccess(json));
+        dispatch(loadDataSuccess());
         return (json);
       })
-      .catch(err => dispatch(loadDataFailure({ message: 'Error syncing data.' })));
+      .catch(() => dispatch(loadDataFailure({ message: 'Error syncing data.' })));
   };

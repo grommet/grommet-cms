@@ -6,7 +6,7 @@ import AddIcon from 'grommet/components/icons/base/Add';
 import { PageHeader } from 'grommet-cms/components';
 import { DashboardAssetsList } from 'grommet-cms/containers';
 
-export class DashboardAssetsPage extends Component {
+export class DashboardAssetsPage extends Component { // eslint-disable-line
   render() {
     return (
       <Box full="horizontal">

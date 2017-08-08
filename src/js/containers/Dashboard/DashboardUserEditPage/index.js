@@ -53,7 +53,7 @@ export class DashboardUserEditPage extends Component {
     this.setState(obj);
   }
 
-  _validate({ password, passwordConfirm, role }) {
+  _validate({ password, passwordConfirm }) {
     if (password && !passwordConfirm) return false;
     if (password && passwordConfirm && password !== passwordConfirm) return false;
     return true;

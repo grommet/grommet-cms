@@ -5,7 +5,7 @@ import LinkPreviousIcon from 'grommet/components/icons/base/LinkPrevious';
 import Anchor from 'grommet/components/Anchor';
 import PageTypesForm from 'grommet-cms/containers/PageTypes/form';
 
-class DashboardPageTypeEditPage extends Component {
+class DashboardPageTypeEditPage extends Component { // eslint-disable-line
   render() {
     return (
       <Box

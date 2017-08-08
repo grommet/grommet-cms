@@ -118,7 +118,7 @@ export function deletePageType(id) {
             dispatch(deleteSuccess());
           }
         },
-        (err) => {
+        () => {
           dispatch(requestFailure('There was an error processing your request.'));
         }
       );
@@ -151,9 +151,9 @@ export const getPageType = id =>
           // Status looks good
           return dispatch(getPageTypeSuccess(json));
         },
-        err =>
+        () =>
           // dispatch app error
-          dispatch(requestFailure(json.message))
+          dispatch(requestFailure('There was an an error processing your request.'))
 
       );
   };
@@ -184,7 +184,7 @@ export function submitPageType(pageType) {
             browserHistory.push('/dashboard/pageTypes');
           }
         },
-        (err) => {
+        () => {
           // dispatch app error
           dispatch(requestFailure('There was an error processing your request.'));
         }

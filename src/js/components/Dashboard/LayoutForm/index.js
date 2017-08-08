@@ -8,11 +8,6 @@ import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import { FlexBoxHelpLayer } from 'grommet-cms/components';
 
-declare type OptionType = {
-  value: any,
-  label: any
-} | string | number;
-
 export default function LayoutForm(props: {
   title: string,
   fields: Array<{
@@ -20,7 +15,7 @@ export default function LayoutForm(props: {
     help: string | { row: string, column: string },
     name: string,
     type: 'Select' | 'CheckBox',
-    options: Array<any>,
+    options?: Array<any>,
     value: ?string
   }>,
   showHelp: boolean,

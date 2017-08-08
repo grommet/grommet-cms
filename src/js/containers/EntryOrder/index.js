@@ -38,8 +38,8 @@ export class EntryOrder extends Component {
 
     entryArray.splice(updatedEntry.order, 0, updatedEntry);
 
-    entryArray.map((item, index) => {
-      entryArray[index].order = index;
+    entryArray.map((item, itemIndex) => {
+      entryArray[itemIndex].order = itemIndex;
     });
 
     this.setState({ entries: entryArray });

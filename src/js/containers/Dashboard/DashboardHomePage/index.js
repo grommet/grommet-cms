@@ -55,7 +55,7 @@ DashboardHomePage.propTypes = {
   )
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     posts: state.dashboardHomepage.data,
     request: state.dashboardHomepage.request

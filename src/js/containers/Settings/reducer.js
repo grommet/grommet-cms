@@ -52,7 +52,8 @@ export default function reducer(state = initialState, action) {
             title: action.data.branding.title,
             theme: {
               ...state.form.branding.theme,
-              value: state.form.branding.theme.options.filter(i => i.value === action.data.branding.theme)[0]
+              value: state.form.branding.theme.options
+                .filter(i => i.value === action.data.branding.theme)[0]
             }
           }
         }

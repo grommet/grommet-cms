@@ -71,7 +71,8 @@ export default function assetsList(
         table: {
           ...state.table,
           checkBoxes: {
-            checkedIndices: state.table.checkBoxes.checkedIndices.filter(item => item !== action.index)
+            checkedIndices: state.table.checkBoxes.checkedIndices
+              .filter(item => item !== action.index)
           }
         }
       };

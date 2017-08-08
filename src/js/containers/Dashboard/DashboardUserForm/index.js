@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-
 import { connect } from 'react-redux';
-import { userPost, userRequestError } from './actions';
-
 import Box from 'grommet/components/Box';
 import { UserForm } from 'grommet-cms/components';
+import { userPost, userRequestError } from './actions';
 
 export class DashboardUserForm extends Component {
   constructor(props) {

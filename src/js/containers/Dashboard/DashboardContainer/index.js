@@ -30,7 +30,8 @@ export class Dashboard extends Component {
   }
 
   _renderNav() {
-    const { leftNavAnchor, pageMenu, params, user, navLinks, settings, logo, location } = this.props;
+    const { leftNavAnchor, pageMenu, params, user, navLinks,
+      settings, logo, location } = this.props;
     const leftAnchor = leftNavAnchor && leftNavAnchor.title ?
       (
         <BackAnchor
@@ -110,7 +111,7 @@ Dashboard.propTypes = {
   logo: PropTypes.node
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { loggedIn, user } = state.login;
   const { loading, error, leftNavAnchor, pageMenu, navLinks } = state.dashboard;
   return {

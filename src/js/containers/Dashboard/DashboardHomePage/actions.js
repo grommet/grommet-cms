@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import * as ActionTypes from './constants';
 import { browserHistory } from 'react-router';
+import * as ActionTypes from './constants';
 
 export function dataRequest() {
   return {
@@ -43,10 +43,7 @@ export function getData() {
       } else {
         dispatch(dataSuccess(json));
       }
-    }, (err) => {
-      // Switch this out for Dashboard error.
-      dispatch(dataError('There was an error processing your request.'));
-    });
+    }, () => dispatch(dataError('There was an error processing your request.')));
   };
 }
 
@@ -65,16 +62,14 @@ export function submit(data) {
       }),
       body: JSON.stringify(data)
     }).then(
-      ({ status, statusText, json }) => {
+      ({ status, statusText }) => {
         if (status >= 400) {
           dispatch(dataError(statusText));
         } else {
           // redirect
           browserHistory.push('/dashboard/homepage');
         }
-      }, (err) => {
-        dispatch(dataError('There was an error processing your request.'));
-      }
+      }, () => dispatch(dataError('There was an error processing your request.'))
     );
   };
 }

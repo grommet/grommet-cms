@@ -19,7 +19,7 @@ class PostFeedPage extends React.Component {
   props: PostFeedPageProps;
   constructor() {
     super();
-    (this:any).renderError = this.renderError.bind(this);
+    (this: any).renderError = this.renderError.bind(this);
   }
   componentDidMount() {
     this.props.actions.getPosts();
@@ -39,8 +39,7 @@ class PostFeedPage extends React.Component {
   render() {
     const {
       posts,
-      isLoading,
-      loadingError
+      isLoading
     } = this.props;
     return (
       <WithLoading isLoading={isLoading} fullHeight>
@@ -56,13 +55,13 @@ class PostFeedPage extends React.Component {
           )
             :
           <Box full pad="large">
-              <Heading align="center">
+            <Heading align="center">
               No posts
               </Heading>
-            </Box>
+          </Box>
           }
         </Section>
-        {this.renderError(loadingError)}
+        {this.renderError()}
       </WithLoading>
     );
   }

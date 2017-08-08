@@ -4,14 +4,11 @@ export type LOAD_DATA_SUCCESS_TYPE = 'POSTFEEDPAGE/LOAD_DATA_SUCCESS';
 export type LOAD_DATA_FAILURE_TYPE = 'POSTFEEDPAGE/LOAD_DATA_FAILURE';
 export type CLEAR_ERRORS_TYPE = 'POSTFEEDPAGE/CLEAR_ERRORS';
 
-export type PostFeedPageState = {
-  isLoading: boolean,
-  posts: ?Array<PostType>,
-  loadingError: ?{ message: string }
-}
+export type PostType = any;
 
 export type PostFeedPageAction = {
-  type: LOAD_DATA_INITIATION_TYPE | LOAD_DATA_SUCCESS_TYPE | LOAD_DATA_FAILURE_TYPE | CLEAR_ERRORS_TYPE,
+  type: LOAD_DATA_INITIATION_TYPE | LOAD_DATA_SUCCESS_TYPE
+    | LOAD_DATA_FAILURE_TYPE | CLEAR_ERRORS_TYPE,
   error?: ?{ message: string },
   posts?: ?Array<PostType>
 }
@@ -29,4 +26,8 @@ export type PostFeedPageProps = {
   posts?: ?Array<PostType>
 }
 
-export type PostType = any;
+export type PostFeedPageState = {
+  isLoading: boolean,
+  posts: ?Array<PostType>,
+  loadingError: ?{ message: string }
+}

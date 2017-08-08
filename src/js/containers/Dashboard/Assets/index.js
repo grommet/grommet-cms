@@ -28,9 +28,9 @@ export default class AssetUpload extends React.Component {
   props: AssetUploadProps;
   constructor() {
     super();
-    (this:any)._toggleAssetsLayer = this._toggleAssetsLayer.bind(this);
-    (this:any)._renderAssetLayer = this._renderAssetLayer.bind(this);
-    (this:any)._onAssetSelect = this._onAssetSelect.bind(this);
+    (this: any)._toggleAssetsLayer = this._toggleAssetsLayer.bind(this);
+    (this: any)._renderAssetLayer = this._renderAssetLayer.bind(this);
+    (this: any)._onAssetSelect = this._onAssetSelect.bind(this);
     this._onAssetsSelect = this._onAssetsSelect.bind(this);
     this.state = {
       assetLayer: false

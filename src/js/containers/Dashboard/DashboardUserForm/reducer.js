@@ -15,26 +15,22 @@ function user(state = initialState, action) {
         request: true,
         error: ''
       });
-      break;
     case ActionTypes.USER_CREATE_SUCCESS:
       return Object.assign({}, state, {
         request: false,
         error: ''
       });
-      break;
     case ActionTypes.USER_GET_SUCCESS:
       return Object.assign({}, state, {
         request: false,
         error: '',
         ...action.user
       });
-      break;
     case ActionTypes.USER_CREATE_ERROR:
       return Object.assign({}, state, {
         request: false,
         error: action.error
       });
-      break;
     default:
       return state;
   }

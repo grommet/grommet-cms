@@ -49,7 +49,7 @@ export function disperseElements(array, objectsToAdd, afterIndex) {
   const min = afterIndex + 1;
   const dispersedArray = array.slice(0);
 
-  objectsToAdd.map((item, index) => {
+  objectsToAdd.forEach((item) => {
     const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
     dispersedArray.splice(randomIndex, 0, item);
   });
@@ -60,7 +60,7 @@ export function disperseElements(array, objectsToAdd, afterIndex) {
 // Twitter ID integers are too large for javascript to compute without data loss.
 // https://webapplog.com/decreasing-64-bit-tweet-id-in-javascript
 export function decStrNum(n) {
-  n = n.toString();
+  n = n.toString(); // eslint-disable-line
   let result = n;
   let i = n.length - 1;
 

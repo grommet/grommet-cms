@@ -18,7 +18,7 @@ import DashboardPostPageNotifier from './notifier';
 
 const CLASS_ROOT = 'dashboard--post-page';
 
-export class DashboardPostPagePresentation extends Component {
+export class DashboardPostPagePresentation extends Component { // eslint-disable-line
   render() {
     const {
       post,
@@ -129,7 +129,9 @@ export class DashboardPostPagePresentation extends Component {
                 }
               />
               <Box full="horizontal">
-                <PostPreview selectedSection={selectedSection} post={post} />
+                { post && post.title &&
+                  <PostPreview selectedSection={selectedSection} post={post} />
+                }
               </Box>
             </Box>
           </Split>

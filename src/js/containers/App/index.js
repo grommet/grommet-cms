@@ -5,7 +5,7 @@ import GrommetApp from 'grommet/components/App';
 import Helmet from 'react-helmet';
 import { Nav, Footer } from 'grommet-cms/components';
 
-class App extends React.Component {
+class App extends React.Component { // eslint-disable-line
   render() {
     return (
       <GrommetApp centered={false}>

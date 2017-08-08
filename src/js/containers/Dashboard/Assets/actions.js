@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
-import * as ActionTypes from './constants';
 import { browserHistory } from 'react-router';
 import qs from 'querystring';
 import { debounce } from 'grommet-cms/utils';
+import * as ActionTypes from './constants';
 
 export function assetsRequest(showLoading) {
   return {
@@ -85,37 +85,6 @@ export function assetsIncrementPage() {
   };
 }
 
-// Delete asset.
-export function deleteAsset(id) {
-  return (dispatch, getState) => {
-    dispatch(assetsRequest());
-    const { url } = getState().api;
-    fetch(`${url}/file/${id}/delete`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      })
-    })
-      .then(
-        ({ status, statusText }) => {
-          if (status >= 400) {
-            const text = statusText;
-            dispatch(assetsError(text));
-          } else {
-            // Refresh posts.
-            dispatch(getAssets());
-            dispatch(assetsDeleteSuccess());
-          }
-        },
-        (err) => {
-          // Switch this out for Dashboard error.
-          dispatch(assetsError('There was an error processing your request.'));
-        }
-      );
-  };
-}
-
 // Create Asset.
 export function submitAsset(data, forwardWhenDone = true) {
   const endPoint = (!data.id)
@@ -123,7 +92,7 @@ export function submitAsset(data, forwardWhenDone = true) {
     : `file/edit/${data.id}`;
   const formData = new FormData();
 
-  for (const name in data) {
+  for (const name in data) { // eslint-disable-line
     formData.append(name, data[name]);
   }
   return (dispatch, getState) => {
@@ -164,8 +133,8 @@ export function submitAsset(data, forwardWhenDone = true) {
   };
 }
 
-// Get Assets list. 
-// This route is auth protected to avoid publicly listing a site's full list 
+// Get Assets list.
+// This route is auth protected to avoid publicly listing a site's full list
 // of resources/assets.
 export function getAssets(page, showLoading = true, pageId = '', searchTerm = '', ascending = false, orderBy = 'createdAt') {
   return (dispatch, getState) => {
@@ -212,7 +181,38 @@ export function getAssets(page, showLoading = true, pageId = '', searchTerm = ''
             dispatch(assetSuccess(json));
           }
         },
-        (err) => {
+        () => {
+          // Switch this out for Dashboard error.
+          dispatch(assetsError('There was an error processing your request.'));
+        }
+      );
+  };
+}
+
+// Delete asset.
+export function deleteAsset(id) {
+  return (dispatch, getState) => {
+    dispatch(assetsRequest());
+    const { url } = getState().api;
+    fetch(`${url}/file/${id}/delete`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(
+        ({ status, statusText }) => {
+          if (status >= 400) {
+            const text = statusText;
+            dispatch(assetsError(text));
+          } else {
+            // Refresh posts.
+            dispatch(getAssets());
+            dispatch(assetsDeleteSuccess());
+          }
+        },
+        () => {
           // Switch this out for Dashboard error.
           dispatch(assetsError('There was an error processing your request.'));
         }
@@ -244,7 +244,7 @@ export function getAssetsTotalCount(pageId = '', searchTerm = '', showLoading = 
       .then((json) => {
         dispatch(assetsCountSuccess(json.total));
       })
-      .catch((_) => {
+      .catch(() => {
         dispatch(assetsError('There was an error processing your request.'));
       });
   };
@@ -266,7 +266,7 @@ export function getAssetsPostTypes() {
       .then((json) => {
         dispatch(assetsPostTypesSuccess(json));
       })
-      .catch((_) => {
+      .catch(() => {
         dispatch(assetsError('There was an error processing your request.'));
       });
   };
@@ -301,7 +301,7 @@ export function getAsset(id) {
             dispatch(assetSuccess(json));
           }
         },
-        (err) => {
+        () => {
           // Switch this out for Dashboard error.
           dispatch(assetsError('There was an error processing your request.'));
         }

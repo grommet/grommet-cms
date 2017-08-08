@@ -14,14 +14,12 @@ export function file(state = initialState, action) {
         insertRequest: action.insertRequest,
         error: ''
       });
-      break;
     case ActionTypes.FILE_UPLOAD_REQUEST:
       return Object.assign({}, state, {
         uploadRequest: true,
         error: '',
         url: ''
       });
-      break;
     case ActionTypes.FILE_UPLOAD_SUCCESS:
       return Object.assign({}, state, {
         insertRequest: false,
@@ -29,14 +27,12 @@ export function file(state = initialState, action) {
         error: '',
         url: action.file.path
       });
-      break;
     case ActionTypes.FILE_UPLOAD_ERROR:
       return Object.assign({}, state, {
         uploadRequest: false,
         error: action.error,
         url: ''
       });
-      break;
     default:
       return state;
   }

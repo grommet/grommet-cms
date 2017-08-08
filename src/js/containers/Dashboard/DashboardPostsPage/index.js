@@ -9,8 +9,8 @@ import { getPosts, deletePost, submitPost, setPost, updatePost } from
   'grommet-cms/containers/Posts/PostPage/actions';
 import { blockAddList } from
   'grommet-cms/containers/Dashboard/DashboardContentBlocks/actions';
-import { toggleAddPostFormVisibility, addPostRedirect, incrementCurrentPage } from './actions';
 import { unslugify } from 'grommet-cms/utils';
+import { toggleAddPostFormVisibility, addPostRedirect, incrementCurrentPage } from './actions';
 
 export class DashboardPostsPage extends Component {
   constructor(props) {
@@ -49,11 +49,13 @@ export class DashboardPostsPage extends Component {
     this._setPageHeaderTitle();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.posts !== prevProps.posts && this.props.request === false) { this.setState({ orderLayer: false }); }
+  componentDidUpdate(prevProps) {
+    if (this.props.posts !== prevProps.posts && this.props.request === false) {
+      this.setState({ orderLayer: false }); // eslint-disable-line
+    }
   }
 
-  componentWillReceiveProps({ request, posts, redirect, params, currentPage }) {
+  componentWillReceiveProps({ request, redirect, params, currentPage }) {
     if (!request && request !== this.props.request) {
       if (redirect) {
         this.props.dispatch(addPostRedirect());
@@ -263,9 +265,9 @@ export class DashboardPostsPage extends Component {
     const layer = (this.state.layer)
       ?
         <ConfirmLayer
-        onSubmit={this._onDeleteSubmit}
-        onClose={this._onLayerClose}
-      />
+          onSubmit={this._onDeleteSubmit}
+          onClose={this._onLayerClose}
+        />
       : null;
 
     const list = (Array.isArray(posts) && posts.length > 0 && !request)
@@ -335,7 +337,7 @@ DashboardPostsPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { request, error, posts, post } = state.posts;
   const { addPostForm, redirect, currentPage } = state.dashboardPosts;
   const { url } = state.fileUpload;

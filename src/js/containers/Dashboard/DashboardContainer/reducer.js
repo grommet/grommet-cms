@@ -66,13 +66,11 @@ function dashboard(state = initialState, action) {
       return Object.assign({}, state, {
         loading: true
       });
-      break;
     case ActionTypes.DASHBOARD_ERROR:
       return Object.assign({}, state, {
         error: action.error,
         loading: false
       });
-      break;
     default:
       return state;
   }

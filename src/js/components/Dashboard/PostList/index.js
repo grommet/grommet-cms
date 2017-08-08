@@ -16,7 +16,7 @@ type Props = {
   disabled: boolean
 }
 
-export default class PostList extends Component {
+export default class PostList extends Component { // eslint-disable-line
   props: Props;
   render() {
     const {
@@ -47,8 +47,8 @@ export default class PostList extends Component {
               <PostListItem
                 key={i}
                 items={sections}
-                minOrder={Math.min(...sections.map(i => i.order))}
-                maxOrder={Math.max(...sections.map(i => i.order))}
+                minOrder={Math.min(...sections.map(j => j.order))}
+                maxOrder={Math.max(...sections.map(k => k.order))}
                 onMenuItemClick={name => onMenuItemClick(name, i)}
                 item={item}
               />

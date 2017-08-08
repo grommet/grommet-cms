@@ -21,8 +21,8 @@ export default function BoxLayoutForm(props: {
   fields: Array<{
     label: string,
     name: string,
-    type: "Select",
-    options: Array<string>,
+    type: "Select" | "CheckBox",
+    options: ?Array<string>,
     value: ?string
   }>
 }) {

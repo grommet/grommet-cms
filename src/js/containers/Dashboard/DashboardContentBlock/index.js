@@ -101,7 +101,7 @@ export class DashboardContentBlock extends Component {
   }
 
   render() {
-    const { blockType, edit, id } = this.props;
+    const { blockType, edit, id } = this.props; // eslint-disable-line
 
     // Show block selector when editing and no block type is defined.
     const blockSelector = (edit && !blockType)

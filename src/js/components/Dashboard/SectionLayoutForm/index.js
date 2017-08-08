@@ -12,11 +12,6 @@ import Heading from 'grommet/components/Heading';
 import Menu from 'grommet/components/Menu';
 import { LayoutForm, ViewMoreViewLess } from 'grommet-cms/components';
 
-declare type OptionType = {
-  value: any,
-  label: any
-} | string | number;
-
 export default function SectionLayoutForm(props: {
   onClose: Function,
   onChange: Function,
@@ -69,7 +64,6 @@ export default function SectionLayoutForm(props: {
             <fieldset>
               <FormField label="Name" htmlFor="name">
                 <input
-                  autoFocus
                   id="name"
                   name="name"
                   type="text"

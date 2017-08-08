@@ -27,37 +27,6 @@ export function userDeleteSuccess() {
   };
 }
 
-export function deleteUser(id) {
-  return (dispatch, getState) => {
-    dispatch(usersRequest());
-
-    const { url } = getState().api;
-    fetch(`${url}/user/${id}/delete`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      })
-    })
-      .then(
-        ({ status, statusText }) => {
-          if (status >= 400) {
-            const text = statusText;
-            dispatch(usersError(text));
-          } else {
-            // Refresh users list.
-            dispatch(getUsers());
-            dispatch(userDeleteSuccess());
-          }
-        },
-        (err) => {
-          // Switch this out for Dashboard error.
-          dispatch(usersError('There was an error processing your request.'));
-        }
-      );
-  };
-}
-
 export function getUsers() {
   return (dispatch, getState) => {
     dispatch(usersRequest());
@@ -83,7 +52,38 @@ export function getUsers() {
             dispatch(usersSuccess(json));
           }
         },
-        (err) => {
+        () => {
+          // Switch this out for Dashboard error.
+          dispatch(usersError('There was an error processing your request.'));
+        }
+      );
+  };
+}
+
+export function deleteUser(id) {
+  return (dispatch, getState) => {
+    dispatch(usersRequest());
+
+    const { url } = getState().api;
+    fetch(`${url}/user/${id}/delete`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(
+        ({ status, statusText }) => {
+          if (status >= 400) {
+            const text = statusText;
+            dispatch(usersError(text));
+          } else {
+            // Refresh users list.
+            dispatch(getUsers());
+            dispatch(userDeleteSuccess());
+          }
+        },
+        () => {
           // Switch this out for Dashboard error.
           dispatch(usersError('There was an error processing your request.'));
         }

@@ -33,7 +33,7 @@ export function fileUpload(file) {
 
   const formData = new FormData();
 
-  for (name in file) {
+  for (name in file) { // eslint-disable-line
     formData.append(name, file[name]);
   }
 

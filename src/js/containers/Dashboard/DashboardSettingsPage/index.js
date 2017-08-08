@@ -6,7 +6,7 @@ import { PageHeader } from 'grommet-cms/components';
 import { Settings } from 'grommet-cms/containers';
 import * as settingsActionCreators from 'grommet-cms/containers/Settings/actions';
 
-export class DashboardSettingsPage extends Component {
+export class DashboardSettingsPage extends Component { // eslint-disable-line
   render() {
     return (
       <Box
@@ -23,7 +23,7 @@ export class DashboardSettingsPage extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     data: state.settings.data,
     error: state.settings.error,

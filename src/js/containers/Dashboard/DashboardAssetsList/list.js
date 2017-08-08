@@ -116,8 +116,8 @@ export class AssetsList extends Component {
         this.props.dispatch(clearSelectedIndicies());
         this._onLayerClose();
         checkedIndices.forEach((index) => {
-          const asset = this.props.assets[index];
-          this.props.dispatch(deleteAsset(asset._id));
+          const assetProp = this.props.assets[index];
+          this.props.dispatch(deleteAsset(assetProp._id));
         });
       }
     }
@@ -300,7 +300,7 @@ AssetsList.defaultProps = {
   tileSize: 'small'
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { error, request, currentPage, perPage, totalCount } = state.assets;
   return {
     error,

@@ -97,37 +97,6 @@ export const postMoveSectionDown = index => ({
   index
 });
 
-// Delete post.
-export function deletePost(post) {
-  return (dispatch, getState) => {
-    dispatch(postsRequest());
-    const { url } = getState().api;
-    fetch(`${url}/post/${post._id}/delete`, {
-      method: 'POST',
-      credentials: 'include',
-      headers: new Headers({
-        'Content-Type': 'application/json'
-      })
-    })
-      .then(
-        ({ status, statusText }) => {
-          if (status >= 400) {
-            const text = statusText;
-            dispatch(postsError(text));
-          } else {
-            // Refresh posts.
-            dispatch(getPosts(0, post._type));
-            dispatch(postDeleteSuccess());
-          }
-        },
-        (err) => {
-          // Switch this out for Dashboard error.
-          dispatch(postsError('There was an error processing your request.'));
-        }
-      );
-  };
-}
-
 // Get posts.
 export function getPosts(page = 0, type = '') {
   return (dispatch, getState) => {
@@ -156,7 +125,38 @@ export function getPosts(page = 0, type = '') {
             dispatch(postsSuccess(json));
           }
         },
-        (err) => {
+        () => {
+          // Switch this out for Dashboard error.
+          dispatch(postsError('There was an error processing your request.'));
+        }
+      );
+  };
+}
+
+// Delete post.
+export function deletePost(post) {
+  return (dispatch, getState) => {
+    dispatch(postsRequest());
+    const { url } = getState().api;
+    fetch(`${url}/post/${post._id}/delete`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      })
+    })
+      .then(
+        ({ status, statusText }) => {
+          if (status >= 400) {
+            const text = statusText;
+            dispatch(postsError(text));
+          } else {
+            // Refresh posts.
+            dispatch(getPosts(0, post._type));
+            dispatch(postDeleteSuccess());
+          }
+        },
+        () => {
           // Switch this out for Dashboard error.
           dispatch(postsError('There was an error processing your request.'));
         }
@@ -195,7 +195,7 @@ export function getPost(id, title) {
             dispatch(postSuccess(json));
           }
         },
-        (err) => {
+        () => {
           // dispatch app error
           dispatch(postsError('There was an error processing your request.'));
         }
@@ -228,7 +228,7 @@ export function submitPost(post) {
             dispatch(postSuccess(post));
           }
         },
-        (err) => {
+        () => {
           // dispatch app error
           dispatch(postsError('There was an error processing your request.'));
         }
@@ -258,7 +258,7 @@ export function updatePost(post) {
             dispatch(getPosts(0, post._type));
           }
         },
-        (err) => {
+        () => {
           // dispatch app error
           dispatch(postsError('There was an error processing your request.'));
         }

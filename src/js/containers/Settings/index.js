@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Box from 'grommet/components/Box';
 import Article from 'grommet/components/Article';
+import { submitAsset } from 'grommet-cms/containers/Dashboard/Assets/actions';
 import * as actionCreators from './actions';
 import SettingsPresentation from './presentation';
-import { submitAsset } from 'grommet-cms/containers/Dashboard/Assets/actions';
 import { selectSettingsForm, selectMessage, selectSubmission, selectError, selectIsLoading } from './selectors';
 
 class Settings extends Component {

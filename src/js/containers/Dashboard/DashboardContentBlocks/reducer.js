@@ -38,16 +38,13 @@ export function contentBlocks(state = initialState, action) {
         })),
         edit: true
       });
-      break;
 
     case BLOCK_ADD_LIST:
-      const newList = action.list.slice(0);
-      return newList;
+      return action.list.slice(0);
 
     case BLOCK_REMOVE:
       newBlocks.splice(blockIndex, 1);
       return newBlocks;
-      break;
 
     case BLOCK_CANCEL:
       return initialState;
@@ -82,8 +79,6 @@ export function contentBlocks(state = initialState, action) {
       }
       return state;
 
-      break;
-
     case BLOCK_MOVE_DOWN:
       if (blockIndex + 1 <= state.length - 1) {
         const blockToMove = newBlocks[blockIndex];
@@ -92,8 +87,6 @@ export function contentBlocks(state = initialState, action) {
         return newBlocks;
       }
       return state;
-
-      break;
 
     default:
       return state;

@@ -13,15 +13,12 @@ import DownIcon from 'grommet/components/icons/base/Down';
 import Anchor from 'grommet/components/Anchor';
 import Label from 'grommet/components/Label';
 import unescape from 'unescape';
-import missingImage from 'root/img/dashboard/missingImage.png';
+import missingImage from '../../../img/dashboard/missingImage.png';
 
 export default function PostDashboardList({
   list,
-  titleKey,
-  links,
   onMenuItemClick,
-  showControls = true,
-  route
+  showControls = true
 }) {
   return (
     <Box full="horizontal" align="center" direction="column">
@@ -85,13 +82,13 @@ export default function PostDashboardList({
                     <Anchor
                       icon={<UpIcon size="small" />}
                       label="Move Up"
-                      disabled={item.sortOrder === Math.min(...list.map(i => i.sortOrder))}
+                      disabled={item.sortOrder === Math.min(...list.map(j => j.sortOrder))}
                       onClick={() => onMenuItemClick('MOVE_UP', i)}
                     />
                     <Anchor
                       icon={<DownIcon size="small" />}
                       label="Move Down"
-                      disabled={item.sortOrder === Math.max(...list.map(i => i.sortOrder))}
+                      disabled={item.sortOrder === Math.max(...list.map(k => k.sortOrder))}
                       onClick={() => onMenuItemClick('MOVE_DOWN', i)}
                     />
                   </Menu>

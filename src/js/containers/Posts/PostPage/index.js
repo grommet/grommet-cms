@@ -9,10 +9,6 @@ import { SectionLayoutRenderer } from 'grommet-cms-content-blocks';
 import { WithLoading } from 'grommet-cms/components';
 
 export class PostPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     this.props.dispatch(getPost(undefined, this.props.params.slug));
   }
@@ -63,7 +59,7 @@ export class PostPage extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { post, error, request } = state.posts;
   return {
     post,

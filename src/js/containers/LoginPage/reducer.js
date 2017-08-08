@@ -19,7 +19,6 @@ function login(state = initialState, action) {
         loginRequest: true,
         loginError: ''
       });
-      break;
     case ActionTypes.USER_LOGIN_SUCCESS:
       return Object.assign({}, state, {
         loginRequest: false,
@@ -27,20 +26,17 @@ function login(state = initialState, action) {
         loginError: '',
         user: action.user
       });
-      break;
     case ActionTypes.USER_LOGIN_ERROR:
       return Object.assign({}, state, {
         loginRequest: false,
         loginError: action.loginError
       });
-      break;
     case ActionTypes.USER_LOGOUT_SUCCESS:
       return Object.assign({}, state, {
         loginRequest: false,
         loginError: '',
         loggedIn: false
       });
-      break;
     default:
       return state;
   }

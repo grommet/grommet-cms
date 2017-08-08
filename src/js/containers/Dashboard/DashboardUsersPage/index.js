@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getUsers, deleteUser } from './actions';
 import { browserHistory } from 'react-router';
 import Anchor from 'grommet/components/Anchor';
 import AddIcon from 'grommet/components/icons/base/Add';
 import Box from 'grommet/components/Box';
 import Article from 'grommet/components/Article';
 import { ConfirmLayer, PageHeader, List as DashboardList } from 'grommet-cms/components';
+import { getUsers, deleteUser } from './actions';
 
 export class DashboardUsersPage extends Component {
   constructor(props) {
@@ -99,7 +99,7 @@ DashboardUsersPage.propTypes = {
   users: PropTypes.array
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { request, error, users } = state.users;
   return {
     request,

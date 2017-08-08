@@ -12,7 +12,7 @@ class Requests {
       };
     }
     const res = await fetch(url, request);
-    return await res.json();
+    return res.json();
   }
   static makeHeaders() {
     const headers = new Headers();

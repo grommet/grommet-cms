@@ -1,6 +1,6 @@
 // @ flow
-import type { SectionFormSubmission, SectionForm } from './flowTypes';
 import { slugify } from 'grommet-cms/utils';
+import type { SectionFormSubmission, SectionForm } from './flowTypes';
 
 export default (sectionForm: SectionForm): SectionFormSubmission => {
   const name = sectionForm.name.value || '';

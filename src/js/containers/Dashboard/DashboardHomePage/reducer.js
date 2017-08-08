@@ -13,23 +13,17 @@ function dashboardHomepage(state = initialState, action) {
         request: true,
         data: {}
       });
-      break;
-
     case ActionTypes.DASHBOARD_HOME_PAGE_SUCCESS:
       return Object.assign({}, state, {
         request: false,
         error: '',
         data: action.data
       });
-      break;
-
     case ActionTypes.DASHBOARD_HOME_PAGE_ERROR:
       return Object.assign({}, state, {
         request: false,
         error: action.error
       });
-      break;
-
     default:
       return state;
   }

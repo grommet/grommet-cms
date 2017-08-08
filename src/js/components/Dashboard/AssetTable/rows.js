@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import AssetTableRow from './row';
 import { highlightContent, uuid } from 'grommet-cms/utils';
+import AssetTableRow from './row';
 
 type Asset = any;
 export type Props = {

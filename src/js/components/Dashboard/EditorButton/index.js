@@ -15,7 +15,12 @@ class EditorButton extends Component {
       className += ' richeditor__style-button--active';
     }
     return (
-      <span className={className} onMouseDown={this.onToggle}>
+      <span
+        className={className}
+        onMouseDown={this.onToggle}
+        role="Button"
+        tabIndex={0}
+      >
         {this.props.label}
       </span>
     );

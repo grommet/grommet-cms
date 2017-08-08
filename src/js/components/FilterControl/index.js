@@ -7,7 +7,7 @@ import Label from 'grommet/components/Label';
 import Button from 'grommet/components/Button';
 import FilterIcon from 'grommet/components/icons/base/Filter';
 
-export default class FilterControl extends Component {
+export default class FilterControl extends Component { // eslint-disable-line
   render() {
     const { filteredTotal, onClick, unfilteredTotal } = this.props;
     const top = (unfilteredTotal > 0) ? unfilteredTotal : '';

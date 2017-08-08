@@ -20,6 +20,8 @@ import {
   postSetContentBlocks,
   postRemoveUnusedContentBlocksFromSection
 } from 'grommet-cms/containers/Posts/PostPage/actions';
+import { debounce } from 'grommet-cms/utils';
+import { unslugify } from 'grommet-cms/utils';
 import {
   toggleSectionForm,
   postSectionFormInput,
@@ -34,14 +36,12 @@ import {
   confirmDeletion,
   cancelDeletion
 } from './actions';
-import { debounce } from 'grommet-cms/utils';
 import {
   selectPostSectionFormSubmission,
   selectBoxLayoutFormSubmission,
   selectAdvancedLayoutOptions,
   selectLayer
 } from './selectors';
-import { unslugify } from 'grommet-cms/utils';
 import propTypes from './propTypes';
 import DashboardPostPagePresentation from './presentation';
 
@@ -237,7 +237,7 @@ export class DashboardPostPage extends Component {
       const section = this.props.post.sections[index];
       this._onChangeSectionForm({ name: 'name', value: section.name });
       if (section.layout && section.layout.length) {
-        section.layout.forEach((item, i) => {
+        section.layout.forEach((item) => {
           this._onChangeSectionForm({ name: item.name, value: item.value });
         });
       }
@@ -283,7 +283,7 @@ export class DashboardPostPage extends Component {
         .filter(item => item.id === id)[0];
       if (selectedBlock && selectedBlock.layout) {
         const layoutItems = selectedBlock.layout;
-        layoutItems.forEach((item, i) => {
+        layoutItems.forEach((item) => {
           this._onChangeBoxLayoutForm({ name: item.name, value: item.value });
         });
       }
@@ -403,7 +403,7 @@ DashboardPostPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { post, error, request } = state.posts;
   const { sectionLayoutForm, boxLayoutForm, toastMessage } = state.dashboardPost;
   const { contentBlocks } = state;

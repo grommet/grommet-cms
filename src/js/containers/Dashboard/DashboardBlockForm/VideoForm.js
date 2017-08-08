@@ -20,9 +20,9 @@ export class VideoForm extends Component {
     this._onAssetSelect = this._onAssetSelect.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
+      this.setState({ // eslint-disable-line
         image: `${this.props.url}`
       });
     }
@@ -86,7 +86,7 @@ VideoForm.propTypes = {
   url: PropTypes.string
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { url } = state.fileUpload;
   return { url };
 }

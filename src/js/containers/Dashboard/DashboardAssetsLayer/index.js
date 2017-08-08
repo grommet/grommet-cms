@@ -17,7 +17,8 @@ type Props = {
   assets: Array<Asset>,
   request: boolean,
   onAssetSelect: Function,
-  onAssetsSelect: ?Function
+  onAssetsSelect: ?Function,
+  onClose: Function
 };
 
 export class DashboardAssetsLayer extends Component {
@@ -36,8 +37,8 @@ export class DashboardAssetsLayer extends Component {
     };
 
     this._onAssetFormSubmit = this._onAssetFormSubmit.bind(this);
-    (this:any)._onAssetFormCancel = this._onAssetFormCancel.bind(this);
-    (this:any)._onAddAssetClick = this._onAddAssetClick.bind(this);
+    (this: any)._onAssetFormCancel = this._onAssetFormCancel.bind(this);
+    (this: any)._onAddAssetClick = this._onAddAssetClick.bind(this);
   }
 
   _onAssetFormSubmit() {
@@ -60,19 +61,19 @@ export class DashboardAssetsLayer extends Component {
     const onAssetFormSubmit = (!this.props.request) ? this._onAssetFormSubmit : undefined;
     const assetForm = (this.state.addNewAsset)
       ?
-      <Article
+        <Article
           full
           align="center"
           justify="center"
           style={{ overflow: 'scroll' }}
         >
           <AssetForm
-          isLayer
-          hasHeader={false}
-          params={{ id: 'create' }}
-          onCancel={this._onAssetFormCancel}
-          onSubmit={onAssetFormSubmit}
-        />
+            isLayer
+            hasHeader={false}
+            params={{ id: 'create' }}
+            onCancel={this._onAssetFormCancel}
+            onSubmit={onAssetFormSubmit}
+          />
         </Article>
       : undefined;
 
@@ -108,7 +109,7 @@ export class DashboardAssetsLayer extends Component {
   }
 }
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { error, request } = state.assets;
   return {
     error,

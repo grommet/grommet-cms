@@ -14,7 +14,7 @@ export default function AddPostForm(props: {
     post?: {
       title?: string,
       subtitle?: string,
-      date?: string,
+      date?: Date,
       image?: string
     },
     url?: string,

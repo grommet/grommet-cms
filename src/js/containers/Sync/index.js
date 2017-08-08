@@ -9,36 +9,38 @@ import FormField from 'grommet/components/FormField';
 import FormFields from 'grommet/components/FormFields';
 import Paragraph from 'grommet/components/Paragraph';
 import Select from 'grommet/components/Select';
+import { ConfirmLayer, SyncLayer } from 'grommet-cms/components';
+import { loadData as loadPageTypes } from 'grommet-cms/containers/PageTypes/actions';
+import type { SyncProps } from './flowTypes';
 // import * as EmailActionCreators from '../Email/actions';
 import * as SyncActionCreators from './actions';
 import { selectPageTypesList as selectPageTypes } from '../PageTypes/selectors';
-import { ConfirmLayer, SyncLayer } from 'grommet-cms/components';
-import { loadData as loadPageTypes } from 'grommet-cms/containers/PageTypes/actions';
-import type { SyncProps, SyncState } from './flowTypes';
+
+type State = {
+  action: {
+    label: string,
+    value: string
+  },
+  resourceType: {
+    label: string,
+    value: string,
+  },
+  pageType: {
+    label: string,
+    value: string
+  },
+  page: {
+    label: string,
+    value: string
+  },
+  searchValue: string,
+  layer: boolean,
+  syncLayer: boolean
+};
 
 export class Sync extends Component {
   props: SyncProps
-  state: {
-    action: {
-      label: string,
-      value: string
-    },
-    resourceType: {
-      label: string,
-      value: string,
-    },
-    pageType: {
-      label: string,
-      value: string
-    },
-    page: {
-      label: string,
-      value: string
-    },
-    searchValue: string,
-    layer: boolean,
-    syncLayer: boolean
-  }
+  state: State
 
   constructor(props: SyncProps) {
     super(props);
@@ -65,18 +67,18 @@ export class Sync extends Component {
       syncLayer: false
     };
 
-    (this:any)._isValid = this._isValid.bind(this);
-    (this:any)._onChange = this._onChange.bind(this);
-    (this:any)._onLayerClose = this._onLayerClose.bind(this);
-    (this:any)._onSearch = this._onSearch.bind(this);
-    (this:any)._onSubmit = this._onSubmit.bind(this);
-    (this:any)._renderConfirmLayer = this._renderConfirmLayer.bind(this);
-    (this:any)._renderPageList = this._renderPageList.bind(this);
-    (this:any)._syncData = this._syncData.bind(this);
+    (this: any)._isValid = this._isValid.bind(this);
+    (this: any)._onChange = this._onChange.bind(this);
+    (this: any)._onLayerClose = this._onLayerClose.bind(this);
+    (this: any)._onSearch = this._onSearch.bind(this);
+    (this: any)._onSubmit = this._onSubmit.bind(this);
+    (this: any)._renderConfirmLayer = this._renderConfirmLayer.bind(this);
+    (this: any)._renderPageList = this._renderPageList.bind(this);
+    (this: any)._syncData = this._syncData.bind(this);
   }
 
   componentDidMount() {
-    // this.props.routeActions.getRoutes();
+    this.props.routeActions.getRoutes();
     if (this.props.pageTypes.length === 0) {
       this.props.actions.loadPageTypes();
     }
@@ -134,11 +136,11 @@ export class Sync extends Component {
     this.setState({ searchValue: data.target.value });
   }
 
-  _onSubmit(data: any) {
+  _onSubmit() {
     this.setState({ layer: true });
   }
 
-  _isValid(formData: SyncState) {
+  _isValid(formData: State) {
     const { action, pageType, page, resourceType } = formData;
 
     if (action.value && pageType.value === 'all') {
@@ -155,7 +157,7 @@ export class Sync extends Component {
     return false;
   }
 
-  _renderConfirmLayer({ action, pageType, page, resourceType }: SyncState) {
+  _renderConfirmLayer({ action, pageType, page }: State) {
     let confirmNote = (action.label === 'Pull')
       ? 'This action will overwrite all local assets'
       : 'This action will overwrite all remote assets';
@@ -172,12 +174,12 @@ export class Sync extends Component {
         name="this data"
         note={<Paragraph margin="none">{confirmNote}</Paragraph>}
         onClose={this._onLayerClose}
-        onSubmit={this._syncData.bind(this, { action, pageType, page, resourceType })}
+        onSubmit={this._syncData.bind(this, this.state)}
       />
     );
   }
 
-  _syncData({ action, pageType, page, resourceType }: SyncState) {
+  _syncData({ action, pageType, page, resourceType }: State) {
     this.setState({
       layer: false,
       syncLayer: true
@@ -190,7 +192,7 @@ export class Sync extends Component {
     const { action, layer, pageType, searchValue, syncLayer, resourceType } = this.state;
     const { routes, syncError, syncSuccess, syncRequest, pageTypes } = this.props;
     const onFormSubmit = (this._isValid(this.state))
-      ? this._onSubmit.bind(this, this.state)
+      ? this._onSubmit()
       : undefined;
     const confirmLayerNode = (layer)
       ? this._renderConfirmLayer(this.state)

@@ -71,7 +71,7 @@ DashboardContentBlocks.propTypes = {
   dispatch: PropTypes.func.isRequired
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { contentBlocks } = state;
 
   return {

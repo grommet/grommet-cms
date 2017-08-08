@@ -160,7 +160,6 @@ export default class MarqueeForm extends Component {
               <fieldset>
                 <FormField label="Title" htmlFor="title">
                   <input
-                    autoFocus
                     id="title"
                     name="title"
                     type="text"

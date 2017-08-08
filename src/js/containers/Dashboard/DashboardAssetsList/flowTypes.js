@@ -67,7 +67,7 @@ export type DashboardAssetsListAction = {
         CLEAR_FORM_TYPE,
   term?: string,
   options?: GrommetCustomTypes$SelectValueType[],
-  form? : 'pageTypes' | 'postTypes',
+  form?: 'pageTypes' | 'postTypes',
   checked?: boolean,
   index?: number,
   onChange?: Function,

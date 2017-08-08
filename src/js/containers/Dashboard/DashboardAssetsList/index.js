@@ -127,7 +127,7 @@ export class DashboardAssetsList extends Component {
   _onSearchKeyDown: (e: Event) => void;
   _onSearchKeyDown(e: Event) {
     if (isLetter(e)) {
-      if (typeof this._interval !== null) {
+      if (typeof this._interval !== null) { // eslint-disable-line
         clearTimeout(this._interval);
       }
     }

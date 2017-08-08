@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
-import * as ActionTypes from './constants';
 import { browserHistory } from 'react-router';
+import * as ActionTypes from './constants';
 
 export function userRequest() {
   return {
@@ -54,14 +54,11 @@ export const getUser = userId =>
           // Status looks good
           return dispatch(userGetSuccess(json));
         },
-        err =>
-          // dispatch app error
-          dispatch(userRequestError(json.message))
-
+        () => dispatch(userRequestError('There was an error processing your request.'))
       );
   };
 
-export const userPost = (user, loggedInRole) =>
+export const userPost = user =>
   (dispatch, getState) => {
     const { url } = getState().api;
     const { role: loggedInRole } = getState().login.user;
@@ -98,9 +95,6 @@ export const userPost = (user, loggedInRole) =>
             }
           }
         },
-        (err) => {
-          // dispatch app error
-          dispatch(userRequestError(json.message));
-        }
+        () => dispatch(userRequestError('There was an error processing your request.'))
       );
   };

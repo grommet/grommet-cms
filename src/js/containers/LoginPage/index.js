@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { login } from './actions';
 import Box from 'grommet/components/Box';
 import { browserHistory } from 'react-router';
 import { UserForm } from 'grommet-cms/components';
 import { selectLogo } from 'grommet-cms/containers/Settings/selectors';
+import { login } from './actions';
 
 export class LoginPage extends Component {
   constructor(props) {
@@ -95,7 +95,7 @@ LoginPage.propTypes = {
   logo: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { loginRequest, loginError, loggedIn } = state.login;
   return {
     logo: selectLogo(state),

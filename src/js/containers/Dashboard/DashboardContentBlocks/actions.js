@@ -25,11 +25,11 @@ export const blockDuplicate = id => ({
   id
 });
 
-export const blockType = (id, blockType) => (
+export const blockType = (id, blockTypeName) => (
   {
     type: ActionTypes.BLOCK_TYPE,
     id,
-    blockType
+    blockType: blockTypeName
   }
 );
 

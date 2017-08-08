@@ -57,3 +57,5 @@ export const getRoutes = (store) => {
     </Router>
   );
 };
+
+export default getRoutes;
