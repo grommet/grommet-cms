@@ -147,9 +147,10 @@
   "scripts": {
     "api-dev": "NODE_ENV=test ./node_modules/.bin/nodemon server ./server/server",
     "test": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=test node --harmony node_modules/.bin/jest",
+    "test-update": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=test node --harmony node_modules/.bin/jest --updateSnapshot",
     "test:update": "npm run test -- -u",
     "test:watch": "npm run test -w",
-    "build": "gulp dist",
+    "build": "cross-env NODE_ENV=production grommet pack",
     "dev": "cross-env NODE_ENV=development grommet pack",
     "dev:alias": "gulp dev --useAlias",
     "start": "node server ./server/server",
@@ -160,7 +161,7 @@
     "generate": "npm run generator",
     "generate:component": "plop --plopfile ./config/generators/index.js component",
     "generate:container": "plop --plopfile ./config/generators/index.js container",
-    "setup": "flow-typed install && npm install",
+    "setup": "flow-typed install && yarn",
     "docs": "docsify serve ./docs"
   }
 }
