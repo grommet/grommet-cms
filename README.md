@@ -9,7 +9,7 @@ To run this application, execute the following commands:
   1. Install NPM modules
 
   ```bash
-  $ npm install
+  $ yarn
   ```
 
   2. Add .env file. The project comes with a .env.example file which can be renamed to .env. These are your enviroment variables.
@@ -25,6 +25,7 @@ To run this application, execute the following commands:
   DB_PW="" // the db password
   BASE_URL="http://localhost:8003" // base url for your front end
   API_URL="http://localhost:8000/api" // base url for your API.
+  API_PREFIX="dashboard" // Path for urls to your API, routes will look like /dashboard/api/my-route.
 ```
 
   3. Ensure Mongo is running. Upon starting the server the application will automatically build a hello world post and a temporary dashboard user.
@@ -32,8 +33,7 @@ To run this application, execute the following commands:
   4. To start the server run:
 
   ```bash
-  $ npm run build
-  $ npm start
+  $ npm run api-dev
   ```
 
   5. To start the development server:
@@ -42,13 +42,17 @@ To run this application, execute the following commands:
   $ npm run dev
   ```
 
-  6. To create the website distribution bundle:
+  6. To create the website production distribution bundle:
 
   ```bash
-  $ npm run dist
+  $ npm run build
   ```
 
-Once this is installed, you can run `docker-compose build`.  After the build has completed, run `docker run -it brand-central-cms` to get the server running.  You can now navigate to https://0.0.0.0:8000 to see the running app.
+  7. To run the distribution bundle:
+
+  ```bash
+  $ npm start
+  ```
 
 ## Generators
 The projects contains built in code generation tools for easy project scaffolding.
