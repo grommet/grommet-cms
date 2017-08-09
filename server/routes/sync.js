@@ -4,7 +4,7 @@ import colors from 'colors';
 import { isAdmin } from '../middleware/auth';
 
 const router = express.Router();
-const exec = require('child_process').exec;
+const exec = require('child_process').exec; // eslint-disable-line import/newline-after-import
 const baseDir = path.join(__dirname, '..', '..');
 
 const sync = (action, postId, resourceType) =>
@@ -20,7 +20,7 @@ const sync = (action, postId, resourceType) =>
       singleCmd = ` --single ${postId}`;
     }
     if (resourceType) {
-      switch(resourceType) {
+      switch (resourceType) {
         case 'assets':
           singleCmd = ` --assets`;
           break;
@@ -51,9 +51,11 @@ const sync = (action, postId, resourceType) =>
     });
 
     syncScript.on('exit', (err) => { // eslint-disable-line consistent-return
-      if (err === 1) return reject({
-        message: 'Error syncing environments.'
-      });
+      if (err === 1) {
+        return reject({
+          message: 'Error syncing environments.'
+        });
+      }
     });
   });
 

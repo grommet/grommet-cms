@@ -11,16 +11,16 @@ const initialPageTypes = [
 
 export default function buildPageTypes() {
   createBanner('Starting to build page types');
-  return new Promise((res, rej) => {
+  return new Promise((res) => {
     PageType.find({}).exec((err, pageTypes) => {
       if (pageTypes.length === 0) {
         setTimeout(() => {
           PageType.create(
             initialPageTypes,
-            (err) => {
-              if (err) {
+            (pageTypeErr) => {
+              if (pageTypeErr) {
                 createBanner('Error creating page types', 'red');
-                throw err;
+                throw pageTypeErr;
               }
               createBanner('Created page type collection');
               res();

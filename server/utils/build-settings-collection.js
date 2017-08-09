@@ -8,7 +8,7 @@ const initialData = {
   }
 };
 
-const createSettings = (data) =>
+const createSettings = data =>
   new Promise((res) => {
     Settings.create(
       data,
@@ -16,17 +16,15 @@ const createSettings = (data) =>
         if (err) {
           throw err;
         }
-  
         createBanner('Created settings collection');
-  
         res(savedSettings);
       }
     );
   });
 
 export default function buildSettings() {
-  return new Promise((res, rej) => {
-    Settings.findOne({}).exec((err, post) => {
+  return new Promise((res) => {
+    Settings.findOne({}).exec(() => {
       createBanner('Settings not found, creating new Settings.');
 
       return createSettings(initialData)

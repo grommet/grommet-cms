@@ -1,5 +1,5 @@
 export function slugify(text) {
-  let slug = text.toString().toLowerCase()
+  const slug = text.toString().toLowerCase()
     .replace(/\s+/g, '-')        // Replace spaces with -
     .replace(/[^\w\-]+/g, '')    // Remove all non-word chars
     .replace(/\-\-+/g, '-')      // Replace multiple - with single -
@@ -7,14 +7,14 @@ export function slugify(text) {
     .replace(/-+$/, '');         // Trim - from end of text
 
   return slug.substring(0, 72);
-};
+}
 
 export function slugifyFile(file) {
-  const extension = file.substr(file.lastIndexOf('.')+1);
-  let fileName = slugify(file.substr(0, file.lastIndexOf('.'))) || slugify(file);
-  let sluggedFile = `${fileName}-${Date.now()}.${extension}`;
+  const extension = file.substr(file.lastIndexOf('.') + 1);
+  const fileName = slugify(file.substr(0, file.lastIndexOf('.'))) || slugify(file);
+  const sluggedFile = `${fileName}-${Date.now()}.${extension}`;
   return sluggedFile;
-};
+}
 
 export function unslugify(text = '') {
   if (text.includes('-')) {

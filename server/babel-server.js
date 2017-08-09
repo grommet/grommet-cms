@@ -1,8 +1,10 @@
-require('babel-register');
+/* eslint-disable */
+require('babel-core/register');
 require('babel-polyfill');
+require('isomorphic-fetch');
 require('./utils/ignoreAssets');
-// Environment Variables
-require('node-env-file');
-env(path.join(__dirname, '..', '.env'));
+var env = require('node-env-file');
+var path = require('path');
 
-require('./server.js');
+env(path.join(__dirname, '.env'));
+var app = require(process.argv[2]);

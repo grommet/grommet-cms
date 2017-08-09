@@ -20,9 +20,7 @@ export const apiPrefix = ({ API_PREFIX }) => {
   return '/api';
 };
 
-export const findIdInArray = (id, array) => {
-  return array.find(item => String(item._id) === id);
-};
+export const findIdInArray = (id, array) => array.find(item => String(item._id) === id);
 
 export const getFileTimestamp = () => {
   const today = new Date();
@@ -32,7 +30,7 @@ export const getFileTimestamp = () => {
 
   if (dd < 10) {
     dd = '0' + dd; // eslint-disable-line
-  } 
+  }
   if (mm < 10) {
     mm = '0' + mm; // eslint-disable-line
   }
@@ -105,7 +103,7 @@ export const updateAssetPaths = ({ sections, assets }) =>
         });
       }
 
-      if (sectionIndex === sections.length -1) {
+      if (sectionIndex === sections.length - 1) {
         resolve(updatedSections);
       }
     });
@@ -161,7 +159,7 @@ export const parseAssets = (sections, thumbnail) =>
         });
       }
 
-      if (index === sections.length -1) {
+      if (index === sections.length - 1) {
         resolve(assetArray);
       }
     });

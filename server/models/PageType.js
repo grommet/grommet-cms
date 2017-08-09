@@ -8,6 +8,6 @@ const PageType = new Schema({
   sortOrder: { type: Number }
 });
 
-PageType.plugin(AutoIncrement,  { id: 'pt_sort_order', inc_field: 'sortOrder' });
+PageType.plugin(AutoIncrement, { id: 'pt_sort_order', inc_field: 'sortOrder' });
 
 export default mongoose.model('PageType', PageType);

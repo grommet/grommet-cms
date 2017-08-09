@@ -10,9 +10,9 @@ export default function initScript() {
       console.log(colors.green('Running page type init script'));
       buildPageTypeCollection()
         .then(() => buildSettingsCollection())
-        .catch((err) => {
+        .catch(() => {
           console.error(`An error has occured while running db init script ${JSON.stringify(err)}`);
         });
     }
   });
-};
+}

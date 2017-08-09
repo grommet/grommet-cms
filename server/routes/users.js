@@ -1,26 +1,23 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-var User = require('../models/User');
-var isAuthed = require('../middleware/auth').isAuthed;
-var isAdmin = require('../middleware/auth').isAdmin;
+import express from 'express';
+import passport from 'passport';
+import User from '../models/User';
+import { isAuthed, isAdmin } from '../middleware/auth';
 
+const router = express.Router();
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// Get users route ** auth
 router.get('/users', isAdmin, (req, res) => {
-  User.find().sort({'_id': -1}).exec((err, users) => {
+  User.find().sort({ _id: -1 }).exec((err, users) => {
     if (err) {
       return res.status(400).send(err);
     }
-
     return res.status(200).send(users);
   });
 });
 
-router.post('/user/login', passport.authenticate('local'), function(req, res) {
-  const userRole =  (req.user.role !== undefined)
+router.post('/user/login', passport.authenticate('local'), (req, res) => {
+  const userRole = (req.user.role !== undefined)
     ? req.user.role
     : 1;
 
@@ -31,7 +28,7 @@ router.post('/user/login', passport.authenticate('local'), function(req, res) {
   });
 });
 
-router.get('/user/logout', isAuthed, function(req, res) {
+router.get('/user/logout', isAuthed, (req, res) => {
   req.logout();
   res.status(200).send('success');
 });
@@ -43,14 +40,13 @@ router.get('/user/:id', isAuthed, (req, res) => {
         message: err
       });
     }
-
     return res.status(200).send(user);
   });
 });
 
 router.post('/user/register', isAdmin, (req, res) => {
   User.register(new User({
-    username : req.body.username,
+    username: req.body.username,
     role: 1
   }), req.body.password, (err, user) => {
     if (err) {
@@ -58,13 +54,12 @@ router.post('/user/register', isAdmin, (req, res) => {
         message: err
       });
     }
-
     return res.status(200).send(user);
   });
 });
 
 router.post('/user/:id/delete', isAdmin, (req, res) => {
-  return User.findOne({'_id' : req.params.id }).remove().exec((err) => {
+  User.findOne({ _id: req.params.id }).remove().exec((err) => {
     if (err) {
       return res.status(400).send({ message: 'Unauthorized' });
     }
@@ -80,7 +75,7 @@ router.post('/user/:id/edit', isAuthed, (req, res) => {
     });
   }
 
-  return User.findOne({'_id' : req.params.id }).exec((err, user) => {
+  return User.findOne({ _id: req.params.id }).exec((err, user) => {
     if (err) {
       return res.status(400).send({
         message: err
@@ -88,24 +83,22 @@ router.post('/user/:id/edit', isAuthed, (req, res) => {
     }
 
     const { password, passwordConfirm, role } = req.body;
-    const saveUser = (userToSave) => 
-      userToSave.save((err, savedUser) => {
-        if (err) {
+    const saveUser = userToSave =>
+      userToSave.save((userErr, savedUser) => {
+        if (userErr) {
           return res.status(400).send({
-            message: err
+            message: userErr
           });
         }
-        
         return res.status(200).send(savedUser);
       });
 
     user.role = role;
 
     if (password !== '' && passwordConfirm !== '' && password === passwordConfirm) {
-      return user.setPassword(password, (data) => saveUser(user));
-    } else {
-      return saveUser(user);
+      return user.setPassword(password, () => saveUser(user));
     }
+    return saveUser(user);
   });
 });
 

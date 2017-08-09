@@ -14,14 +14,14 @@ const rebuildDist = () => {
 
   bundleScript.on('exit', (err) => { // eslint-disable-line consistent-return
     if (err === 1) {
-      console.log(colors.red('Error building theme:', error));
+      console.log(colors.red('Error building theme:', err));
     }
   });
 };
 
-export const updateTheme = (theme) =>
-  new Promise((resolve, reject) => {
-    const stylesDir =  `${baseDir}/src/scss`;
+export const updateTheme = theme =>
+  new Promise((resolve) => {
+    const stylesDir = `${baseDir}/src/scss`;
     const fullFilePath = `${stylesDir}/index.scss`;
     const themePath = themeMap[theme];
     const content = scssTemplate(themePath);
