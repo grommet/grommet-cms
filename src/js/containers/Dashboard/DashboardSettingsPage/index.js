@@ -6,11 +6,11 @@ import { PageHeader } from 'grommet-cms/components';
 import { Settings } from 'grommet-cms/containers';
 import * as settingsActionCreators from 'grommet-cms/containers/Settings/actions';
 
-export class DashboardSettingsPage extends Component {
+export class DashboardSettingsPage extends Component { // eslint-disable-line
   render() {
     return (
-      <Box 
-        primary 
+      <Box
+        primary
         direction="column"
         full="horizontal"
       >
@@ -21,15 +21,15 @@ export class DashboardSettingsPage extends Component {
       </Box>
     );
   }
-};
+}
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     data: state.settings.data,
     error: state.settings.error,
     isLoading: state.settings.isLoading
   };
-};
+}
 
 function mapDispatchToProps(dispatch) {
   return {

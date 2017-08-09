@@ -33,13 +33,13 @@ export function loadDataFailure(error) {
 }
 
 export function loadData() {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const { url } = getState().api;
     dispatch(loadDataInitiation());
     return fetch(`${url}/settings`)
-      .then((res) => res.json())
-      .then((data) => dispatch(loadDataSuccess(data)))
-      .catch((err) => dispatch(loadDataFailure(err)));
+      .then(res => res.json())
+      .then(data => dispatch(loadDataSuccess(data)))
+      .catch(err => dispatch(loadDataFailure(err)));
   };
 }
 
@@ -79,7 +79,7 @@ export function submitDataFailure(error) {
 }
 
 export function submitData(data) {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const { url } = getState().api;
     dispatch(submitDataInitiation());
     return fetch(`${url}/settings/edit`, {
@@ -90,8 +90,8 @@ export function submitData(data) {
       }),
       body: JSON.stringify(data)
     })
-      .then((res) =>
-        res.json().then((json) => ({
+      .then(res =>
+        res.json().then(json => ({
           status: res.status,
           statusText: res.statusText,
           json
@@ -105,6 +105,6 @@ export function submitData(data) {
 
         return dispatch(submitDataSuccess(json.message));
       })
-      .catch((err) => dispatch(submitDataFailure(err)));
+      .catch(err => dispatch(submitDataFailure(err)));
   };
 }

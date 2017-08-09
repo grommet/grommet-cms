@@ -20,7 +20,7 @@ const PostSchema = new Schema({
 
 PostSchema.index({ title: 'text', slug: 'text' });
 
-PostSchema.plugin(AutoIncrement,  { id: 'sort_order', inc_field: 'sortOrder', reference_fields: ['_type'] });
+PostSchema.plugin(AutoIncrement, { id: 'sort_order', inc_field: 'sortOrder', reference_fields: ['_type'] });
 const Post = mongoose.model('Post', PostSchema);
 
 export default {

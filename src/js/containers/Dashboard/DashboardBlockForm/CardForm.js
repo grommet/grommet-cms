@@ -21,9 +21,9 @@ export class CardForm extends Component {
     this._onAssetSelect = this._onAssetSelect.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
+      this.setState({ // eslint-disable-line
         image: `${this.props.url}`
       });
     }
@@ -31,9 +31,9 @@ export class CardForm extends Component {
 
   _onChange({ target }) {
     const key = target.id;
-    let val = target.value;
+    const val = target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -44,8 +44,7 @@ export class CardForm extends Component {
   }
 
   _validateForm({ image, content }) {
-    if (image !== '' && content !== '')
-      return true;
+    if (image !== '' && content !== '') { return true; }
 
     return false;
   }
@@ -85,7 +84,7 @@ export class CardForm extends Component {
       </BlockCardForm>
     );
   }
-};
+}
 
 CardForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
@@ -93,7 +92,7 @@ CardForm.propTypes = {
   url: PropTypes.string
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { url } = state.fileUpload;
   return { url };
 }

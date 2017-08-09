@@ -24,7 +24,7 @@ export class ButtonForm extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.asset !== this.props.url && this.props.url !== '') {
-      this.setState({
+      this.setState({ // eslint-disable-line
         asset: `${this.props.url}`
       });
     }
@@ -32,9 +32,9 @@ export class ButtonForm extends Component {
 
   _onChange({ target, option }) {
     const key = target.id;
-    let val = option || target.value;
+    const val = option || target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
@@ -47,11 +47,10 @@ export class ButtonForm extends Component {
   }
 
   _onAssetSelect(asset) {
-    this.setState({ asset: asset });
+    this.setState({ asset });
   }
 
   render() {
-
     return (
       <BlockButtonForm
         url={this.props.url}
@@ -66,14 +65,14 @@ export class ButtonForm extends Component {
       </BlockButtonForm>
     );
   }
-};
+}
 
 ButtonForm.propTypes = {
   onSubmit: PropTypes.func,
   url: PropTypes.string
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { url } = state.fileUpload;
   return { url };
 }

@@ -2,12 +2,12 @@ import express from 'express';
 import multer from 'multer';
 import fs from 'fs';
 import path from 'path';
+import mkdirp from 'mkdirp';
+import mongoose from 'mongoose';
 import File from '../models/File';
 import Post from '../models/Post';
-import mkdirp from 'mkdirp';
 import { slugifyFile } from '../utils/slugify';
 import { isAuthed } from '../middleware/auth';
-import mongoose from 'mongoose';
 
 const router = express.Router();
 const currYear = new Date().getFullYear();
@@ -16,7 +16,7 @@ const uploadsDir = path.join(__dirname, '..', '..');
 
 // Setup file multer storage.
 const storage = multer.diskStorage({
-  destination: function (req, file, callback) {
+  destination: (req, file, callback) => {
     const destPath = `./uploads/media/${currYear}/${currMonth}`;
 
     // Check if destination directory exists, if not make one.
@@ -29,21 +29,21 @@ const storage = multer.diskStorage({
       callback(null, destPath);
     }
   },
-  filename: function (req, file, callback) {
+  filename: (req, file, callback) => {
     // slugifyFile method will slugify and time stamp a file name.
     callback(null, slugifyFile(file.originalname));
   }
 });
-const upload = multer({storage: storage});
+const upload = multer({ storage });
 
 // Edit file
-router.post('/file/edit/:id', isAuthed, upload.single('file'), function (req, res) {
-  File.findById(req.params.id, function (err, file) {
+router.post('/file/edit/:id', isAuthed, upload.single('file'), (req, res) => {
+  File.findById(req.params.id, (err, file) => {
     if (err) {
       return res.status(400).send(err);
     }
-    const filePath = (req.file !== undefined) 
-      ? '/' + req.file.path
+    const filePath = (req.file !== undefined)
+      ? `/${req.file.path}`
       : file.path;
 
     if (req.file !== undefined) {
@@ -52,22 +52,21 @@ router.post('/file/edit/:id', isAuthed, upload.single('file'), function (req, re
       console.log(`${uploadsDir}${file.path}`);
     }
 
-    file.path = filePath;
-    file.title = req.body.title;
+    file.path = filePath; // eslint-disable-line no-param-reassign
+    file.title = req.body.title; // eslint-disable-line no-param-reassign
 
-    return file.save(function(err) {
-      if (err) return res.status(400).send(err);
-      
+    return file.save((fileErr) => {
+      if (fileErr) return res.status(400).send(fileErr);
       return res.status(200).send(file);
     });
   });
 });
 
 // Create file
-router.post('/file/create', isAuthed, upload.single('file'), 
-  function(req, res) {
-    const filePath = (req.file !== undefined) 
-      ? '/' + req.file.path 
+router.post('/file/create', isAuthed, upload.single('file'),
+  (req, res) => {
+    const filePath = (req.file !== undefined)
+      ? `/${req.file.path}`
       : null;
 
     File.create({
@@ -75,7 +74,7 @@ router.post('/file/create', isAuthed, upload.single('file'),
       path: filePath,
       createdBy: req.user.username || 'admin',
       createdAt: Date.now()
-    }, function (err, post) {
+    }, (err, post) => {
       if (err) {
         console.log(`File error: ${err}, ${post}`);
         return res.status(400).send(err);
@@ -86,7 +85,7 @@ router.post('/file/create', isAuthed, upload.single('file'),
 );
 
 // Get files
-router.get('/files', isAuthed, function(req, res) {
+router.get('/files', isAuthed, (req, res) => {
   const page = req.query.page || 0;
   const limit = req.query.limit ? parseInt(req.query.limit, 10) : 12;
   const searchTermQuery = req.query.searchTerm || '';
@@ -125,21 +124,18 @@ router.get('/files', isAuthed, function(req, res) {
         };
       }
 
-      File.find(query)
-        .where('_id')
-        .in(post.assets)
-        .sort({ [orderBy]: ascending ? 1 : -1 })
-        .skip(skip)
-        .limit(limit)
-        .exec(
-          function(err, files) {
-            if (err) {
-              return res.status(400).send(err);
-            }
-
-            return res.status(200).send(files);
-          }
-        );
+      return File.find(query)
+      .where('_id')
+      .in(post.assets)
+      .sort({ [orderBy]: ascending ? 1 : -1 })
+      .skip(skip)
+      .limit(limit)
+      .exec((fileErr, files) => {
+        if (err) {
+          return res.status(400).send(fileErr);
+        }
+        return res.status(200).send(files);
+      });
     });
   } else {
     File.find({
@@ -158,35 +154,33 @@ router.get('/files', isAuthed, function(req, res) {
         }
       ]
     })
-      .skip(skip)
-      .limit(limit)
-      .sort({ [orderBy]: ascending ? 1 : -1 })
-      .exec(
-        function(err, files) {
-          if (err) {
-            return res.status(400).send(err);
-          }
-
-          return res.status(200).send(files);
+    .skip(skip)
+    .limit(limit)
+    .sort({ [orderBy]: ascending ? 1 : -1 })
+    .exec(
+      (err, files) => {
+        if (err) {
+          return res.status(400).send(err);
         }
-      );
+        return res.status(200).send(files);
+      }
+    );
   }
-
 });
 
-router.get('/assets-count', function(req, res) {
+router.get('/assets-count', (req, res) => {
   const searchTermQuery = req.query.searchTerm || '';
   const pageIdQuery = req.query.pageId || '';
   if (pageIdQuery !== '') {
     Post
     .Post
-    .findOne({ "_id": new mongoose.Types.ObjectId(pageIdQuery) })
+    .findOne({ _id: new mongoose.Types.ObjectId(pageIdQuery) })
     .populate('assets')
     .exec((err, post) => {
       if (err) {
         return res.status(400).send(err);
       }
-      
+
       let query = {};
       if (searchTermQuery !== '') {
         query = {
@@ -197,18 +191,17 @@ router.get('/assets-count', function(req, res) {
         };
       }
 
-      File.find(query)
-        .where('_id')
-        .in(post.assets)
-        .exec(
-          function(err, files) {
-            if (err) {
-              return res.status(400).send(err);
-            }
-
-            return res.status(200).send({ total: files.length });
+      return File.find(query)
+      .where('_id')
+      .in(post.assets)
+      .exec(
+        (fileErr, files) => {
+          if (fileErr) {
+            return res.status(400).send(fileErr);
           }
-        );
+          return res.status(200).send({ total: files.length });
+        }
+      );
     });
   } else {
     File.find({
@@ -217,28 +210,24 @@ router.get('/assets-count', function(req, res) {
         $options: 'i'
       }
     })
-      .exec(
-        function(err, files) {
-          if (err) {
-            return res.status(400).send(err);
-          }
-
-          const count = files.length;
-
-          return res.status(200).send({ total: count });
-        }
-      );
+    .exec((err, files) => {
+      if (err) {
+        return res.status(400).send(err);
+      }
+      const count = files.length;
+      return res.status(200).send({ total: count });
+    });
   }
 });
 
 
 // Get file (unprotected)
-router.get('/file', function (req, res) {
+router.get('/file', (req, res) => {
   const id = (req.query.id)
     ? req.query.id
     : 0;
 
-  File.findById(id, function (err, file) {
+  File.findById(id, (err, file) => {
     if (err) {
       return res.status(400).send(err);
     }
@@ -248,8 +237,8 @@ router.get('/file', function (req, res) {
 });
 
 // Delete File
-router.post('/file/:id/delete', isAuthed, function(req, res) { 
-  File.findOne({'_id' : req.params.id }).exec(function(err, file) {
+router.post('/file/:id/delete', isAuthed, (req, res) => {
+  File.findOne({ _id: req.params.id }).exec((err, file) => {
     if (err) {
       return res.status(400).send(err);
     }
@@ -260,7 +249,7 @@ router.post('/file/:id/delete', isAuthed, function(req, res) {
       fs.unlinkSync(`${uploadsDir}${file.path}`);
     }
 
-    return file.remove((err) => res.status(200).send('success'));
+    return file.remove(() => res.status(200).send('success'));
   });
 });
 

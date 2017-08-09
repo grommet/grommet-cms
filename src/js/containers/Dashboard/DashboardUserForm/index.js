@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-
 import { connect } from 'react-redux';
-import { userPost, userRequestError } from './actions';
-
 import Box from 'grommet/components/Box';
 import { UserForm } from 'grommet-cms/components';
+import { userPost, userRequestError } from './actions';
 
 export class DashboardUserForm extends Component {
   constructor(props) {
@@ -22,7 +20,7 @@ export class DashboardUserForm extends Component {
   _onChange(event) {
     const key = event.target.id;
     const val = event.target.value;
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
     this.setState(obj);
   }
@@ -44,12 +42,13 @@ export class DashboardUserForm extends Component {
           username={this.state.username}
           password={this.state.password}
           onChange={this._onChange}
-          onSubmit={this._onSubmit} />
-          {this.props.error}
+          onSubmit={this._onSubmit}
+        />
+        {this.props.error}
       </Box>
     );
   }
-};
+}
 
 DashboardUserForm.propTypes = {
   dispatch: PropTypes.func.isRequired

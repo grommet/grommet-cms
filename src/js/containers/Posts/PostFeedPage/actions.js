@@ -1,7 +1,7 @@
 /* @flow */
+import Request from 'grommet-cms/utils/request';
 import * as T from './constants';
 import type { PostFeedPageAction, PostType } from './flowTypes';
-import Request from 'grommet-cms/utils/request';
 
 export const loadDataInitiation = (): PostFeedPageAction => ({
   type: T.LOAD_DATA_INITIATION
@@ -25,14 +25,14 @@ export const clearErrors = (): PostFeedPageAction => ({
 
 export const getPosts = (page: number = 0) =>
   (dispatch: (action: any) => void, getState: any) => {
-    let { url } = getState().api;
+    const { url } = getState().api;
     const postsUrl = `${url}/posts?page=${page}`;
     dispatch(loadDataInitiation());
     Request.get(postsUrl)
-      .then(res => {
+      .then((res) => {
         dispatch(loadDataSuccess(res));
       })
-      .catch(err => {
+      .catch(() => {
         const message = 'There was an error processing your request.' +
           '  Please try again.';
         dispatch(

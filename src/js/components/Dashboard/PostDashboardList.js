@@ -13,14 +13,12 @@ import DownIcon from 'grommet/components/icons/base/Down';
 import Anchor from 'grommet/components/Anchor';
 import Label from 'grommet/components/Label';
 import unescape from 'unescape';
+import missingImage from '../../../img/dashboard/missingImage.png';
 
 export default function PostDashboardList({
-  list, 
-  titleKey, 
-  links, 
-  onMenuItemClick, 
-  showControls = true,
-  route
+  list,
+  onMenuItemClick,
+  showControls = true
 }) {
   return (
     <Box full="horizontal" align="center" direction="column">
@@ -28,7 +26,7 @@ export default function PostDashboardList({
         {list && list.map((item, i) =>
           <ListItem
             key={i}
-            onClick={() => onMenuItemClick('EDIT_CONTENT', i)} 
+            onClick={() => onMenuItemClick('EDIT_CONTENT', i)}
           >
             <Box
               full="horizontal"
@@ -40,9 +38,12 @@ export default function PostDashboardList({
               <Box direction="column">
                 <Box direction="row" responsive={false} align="center">
                   <Box pad="small">
-                    <Image size="thumb" src={
-                      item.image ? item.image.path : '/dashboard-assets/img/dashboard/missingImage.png'
-                    } />
+                    <Image
+                      size="thumb"
+                      src={
+                        item.image ? item.image.path : missingImage
+                      }
+                    />
                   </Box>
                   <Box direction="column" justify="center" responsive={false}>
                     <Heading margin="none" tag="h3">
@@ -58,10 +59,10 @@ export default function PostDashboardList({
                 <Box align="end" justify="center">
                   <Menu
                     closeOnClick
-                    responsive={true}
+                    responsive
                     inline={false}
-                    onClick={(e) => e.stopPropagation()}
-                    dropAlign={{ right: 'right'}}
+                    onClick={e => e.stopPropagation()}
+                    dropAlign={{ right: 'right' }}
                   >
                     <Anchor
                       icon={<ArticleIcon size="small" />}
@@ -81,18 +82,18 @@ export default function PostDashboardList({
                     <Anchor
                       icon={<UpIcon size="small" />}
                       label="Move Up"
-                      disabled={item.sortOrder === Math.min(...list.map(i => i.sortOrder))}
+                      disabled={item.sortOrder === Math.min(...list.map(j => j.sortOrder))}
                       onClick={() => onMenuItemClick('MOVE_UP', i)}
                     />
                     <Anchor
                       icon={<DownIcon size="small" />}
                       label="Move Down"
-                      disabled={item.sortOrder === Math.max(...list.map(i => i.sortOrder))}
+                      disabled={item.sortOrder === Math.max(...list.map(k => k.sortOrder))}
                       onClick={() => onMenuItemClick('MOVE_DOWN', i)}
                     />
                   </Menu>
                 </Box>
-              :
+                :
                 null
               }
             </Box>
@@ -101,4 +102,4 @@ export default function PostDashboardList({
       </List>
     </Box>
   );
-};
+}

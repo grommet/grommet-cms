@@ -127,7 +127,7 @@ export class DashboardAssetsList extends Component {
   _onSearchKeyDown: (e: Event) => void;
   _onSearchKeyDown(e: Event) {
     if (isLetter(e)) {
-      if (typeof this._interval !== null) {
+      if (typeof this._interval !== null) { // eslint-disable-line
         clearTimeout(this._interval);
       }
     }
@@ -162,7 +162,7 @@ export class DashboardAssetsList extends Component {
   _onChangePostTypes({ value }: { value: string }) {
     this.props.actions.setFormFieldValue(value, 'postTypes');
   }
-  
+
   _onToggleForm: () => void;
   _onToggleForm() {
     this.props.actions.toggleForm();
@@ -184,7 +184,7 @@ export class DashboardAssetsList extends Component {
     this.props.actions.setSortIndex(index);
     this.props.actions.toggleTableSortOrder(ascending);
   }
-  
+
   render() {
     const {
       layerVisible,
@@ -245,16 +245,16 @@ export class DashboardAssetsList extends Component {
             onSearchRequest={() => this.setState({ requiresSearch: false })}
             searchTerm={searchTerm}
             checkedIndices={table.checkBoxes.checkedIndices}
-            tileSize={tileSize || "small"}
+            tileSize={tileSize || 'small'}
             onSort={this._onSortTable}
           />
         </Article>
       </Box>
     );
   }
-};
+}
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   layerVisible: state.assetsList.layerVisible,
   form: state.assetsList.form,
   postTypes: state.assets.postTypes,

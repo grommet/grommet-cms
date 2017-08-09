@@ -32,8 +32,8 @@ router.post('/settings/edit', isAdmin, (req, res) => {
       settings.branding.logo = req.body.branding.logo ? req.body.branding.logo : undefined;
       settings.branding.theme = req.body.branding.theme;
 
-      return settings.save((err, savedSettings) => {
-        if (err) {
+      return settings.save((settingsErr, savedSettings) => {
+        if (settingsErr) {
           return res.status(400).send();
         }
 
@@ -41,22 +41,21 @@ router.post('/settings/edit', isAdmin, (req, res) => {
 
         if (prevTheme !== savedSettings.branding.theme) {
           return updateTheme(savedSettings.branding.theme)
-          .then((updatedTheme) => {
-            return res.status(200).send({
+          .then(() =>
+            res.status(200).send({
               settings: savedSettings.toObject(),
-              updateView: (nodeEnv !== 'production') ? true : false,
+              updateView: nodeEnv !== 'production',
               message: (nodeEnv !== 'production')
                 ? message
                 : 'Success! Grommet CMS is now updating and restarting. This process can take up to 5 minutes.'
-            });
-          });
-        } else {
-          return res.status(200).send({
-            settings: savedSettings.toObject(),
-            updateView: false,
-            message
-          });
+            })
+          );
         }
+        return res.status(200).send({
+          settings: savedSettings.toObject(),
+          updateView: false,
+          message
+        });
       });
     });
 });

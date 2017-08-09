@@ -14,7 +14,7 @@ export const selectResetFilter = createSelector(
 
 export const selectPostType = createSelector(
   selectAssetsList(),
-  assetsList => {
+  (assetsList) => {
     const { postTypes } = assetsList.form;
     return postTypes.fieldProps.value.value;
   }
@@ -32,7 +32,7 @@ export const selectLayer = createSelector(
 
 export const selectConfirmLayerName = createSelector(
   selectTable,
-  table => {
+  (table) => {
     if (table.checkBoxes.checkedIndices.length > 0) {
       return `${table.checkBoxes.checkedIndices.length} asset(s)`;
     }

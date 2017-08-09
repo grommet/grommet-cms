@@ -27,11 +27,44 @@ export function userDeleteSuccess() {
   };
 }
 
+export function getUsers() {
+  return (dispatch, getState) => {
+    dispatch(usersRequest());
+
+    const { url } = getState().api;
+    fetch(`${url}/users`, {
+      method: 'GET',
+      credentials: 'include'
+    })
+      .then(response =>
+        response.json().then(json => ({
+          status: response.status,
+          statusText: response.statusText,
+          json
+        })
+        ))
+      .then(
+        ({ status, statusText, json }) => {
+          if (status >= 400) {
+            const text = statusText;
+            dispatch(usersError(text));
+          } else {
+            dispatch(usersSuccess(json));
+          }
+        },
+        () => {
+          // Switch this out for Dashboard error.
+          dispatch(usersError('There was an error processing your request.'));
+        }
+      );
+  };
+}
+
 export function deleteUser(id) {
   return (dispatch, getState) => {
     dispatch(usersRequest());
 
-    let { url } = getState().api;
+    const { url } = getState().api;
     fetch(`${url}/user/${id}/delete`, {
       method: 'POST',
       credentials: 'include',
@@ -50,40 +83,7 @@ export function deleteUser(id) {
             dispatch(userDeleteSuccess());
           }
         },
-        err => {
-          // Switch this out for Dashboard error.
-          dispatch(usersError('There was an error processing your request.'));
-        }
-      );
-  };
-}
-
-export function getUsers() {
-  return (dispatch, getState) => {
-    dispatch(usersRequest());
-
-    let { url } = getState().api;
-    fetch(`${url}/users`, {
-      method: 'GET',
-      credentials: 'include'
-    })
-      .then(response =>
-        response.json().then(json => ({
-          status: response.status,
-          statusText: response.statusText,
-          json
-        })
-      ))
-      .then(
-        ({ status, statusText, json }) => {
-          if (status >= 400) {
-            const text = statusText;
-            dispatch(usersError(text));
-          } else {
-            dispatch(usersSuccess(json));
-          }
-        },
-        err => {
+        () => {
           // Switch this out for Dashboard error.
           dispatch(usersError('There was an error processing your request.'));
         }

@@ -10,22 +10,22 @@ import Spinning from 'grommet/components/icons/Spinning';
 export const SyncLayer = ({ request, success, error, onClose }) => {
   let body = (!error.message && request)
     ? (<Box align="center">
-        <Heading tag="h3">
+      <Heading tag="h3">
             Syncing
-          </Heading>
-        <Spinning size="medium" />
-      </Box>)
+      </Heading>
+      <Spinning size="medium" />
+    </Box>)
     : (<Box align="center">
-        <Heading tag="h3">
+      <Heading tag="h3">
             Syncing Error
-          </Heading>
-        <Paragraph>
-          {error.message}
-        </Paragraph>
-        <Footer>
-          <Button label="close" onClick={onClose} />
-        </Footer>
-      </Box>);
+      </Heading>
+      <Paragraph>
+        {error.message}
+      </Paragraph>
+      <Footer>
+        <Button label="close" onClick={onClose} />
+      </Footer>
+    </Box>);
 
   if (success) {
     body = (
@@ -41,7 +41,7 @@ export const SyncLayer = ({ request, success, error, onClose }) => {
 
   return (
     <Layer>
-      <Box 
+      <Box
         pad="medium"
         align="center"
         justify="center"

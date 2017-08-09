@@ -16,9 +16,9 @@ export class AssetLinkForm extends Component {
     this._onAssetSelect = this._onAssetSelect.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
+      this.setState({ // eslint-disable-line
         asset: `${this.props.url}`
       });
     }
@@ -26,17 +26,16 @@ export class AssetLinkForm extends Component {
 
   _onChange({ target, option }) {
     const key = target.id;
-    let val = option || target.value;
+    const val = option || target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
   }
 
   _validateForm({ asset }) {
-    if (asset.path !== '')
-      return true;
+    if (asset.path !== '') { return true; }
 
     return false;
   }
@@ -48,7 +47,7 @@ export class AssetLinkForm extends Component {
   }
 
   _onAssetSelect(asset) {
-    this.setState({ asset: asset });
+    this.setState({ asset });
   }
 
   render() {
@@ -70,14 +69,14 @@ export class AssetLinkForm extends Component {
       </BlockAssetLinkForm>
     );
   }
-};
+}
 
 AssetLinkForm.propTypes = {
   onSubmit: PropTypes.func,
   url: PropTypes.string
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { url } = state.fileUpload;
   return { url };
 }

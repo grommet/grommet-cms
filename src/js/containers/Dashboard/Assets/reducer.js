@@ -12,7 +12,7 @@ const initialState = {
 };
 
 function assets(state = initialState, action) {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.ASSETS_PAGE_TYPES_SUCCESS:
       return {
         ...state,

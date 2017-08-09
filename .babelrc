@@ -1,12 +1,28 @@
 {
   "presets": [["es2015", { "loose": true }], "react", "stage-0"],
+  "env": {
+    "development": {
+      "presets": [
+        "react-hmre"
+      ]
+    }
+  },
   "plugins": [
     "flow-react-proptypes",
     "add-module-exports",
     "transform-object-rest-spread",
-    "transform-flow-strip-types", ["module-alias", [{
-      "src": "./src/js",
-      "expose": "grommet-cms"
-    }]]
+    "transform-flow-strip-types", 
+    [
+      "module-alias", [
+        {
+          "src": "./src/js",
+          "expose": "grommet-cms"
+        },
+        {
+          "src": "./src",
+          "expose": "root"
+        }
+      ]
+    ]
   ]
 }

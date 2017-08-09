@@ -1,15 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`<PostFeedItem /> should render with default props 1`] = `
 <Anchor
   animateIcon={true}
   className="post-feed-item--anchor"
   method="push"
   path="/post/watch-our-discover-video"
-  tag="a">
+  tag="a"
+>
   <Section
     colorIndex="grey-1-a"
     full={true}
     pad="large"
-    texture="/uploads/media/2017/1/labs-blogfeed-1484268872525.gif">
+    texture="/uploads/media/2017/1/labs-blogfeed-1484268872525.gif"
+  >
     <Box
       align="center"
       announce={false}
@@ -23,19 +27,23 @@ exports[`<PostFeedItem /> should render with default props 1`] = `
         }
       }
       responsive={true}
-      tag="div">
+      tag="div"
+    >
       <Heading
         align="center"
         strong={true}
-        tag="h1">
+        tag="h1"
+      >
         Watch our Discover Video
       </Heading>
       <Label
         className="post-feed-item--subtitle"
-        size="medium" />
+        size="medium"
+      />
       <Heading
         align="center"
-        tag="h5">
+        tag="h5"
+      >
         Posted on January 16, 2017
       </Heading>
     </Box>

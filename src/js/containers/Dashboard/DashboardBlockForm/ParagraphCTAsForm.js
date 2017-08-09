@@ -25,7 +25,7 @@ class ParagraphCTAsForm extends Component {
       />
     );
   }
-};
+}
 
 ParagraphCTAsForm.propTypes = {
   onSubmit: PropTypes.func

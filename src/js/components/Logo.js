@@ -3,10 +3,8 @@
 import React from 'react';
 import BrandHpeElementPathIcon from 'grommet/components/icons/base/BrandHpeElementPath';
 
-const Logo = ({ size = 'large' }) => {
-  return (
-    <BrandHpeElementPathIcon size={size} colorIndex="brand" />
-  );
-};
+const Logo = ({ size = 'large' }) => (
+  <BrandHpeElementPathIcon size={size} colorIndex="brand" />
+);
 
 export default Logo;

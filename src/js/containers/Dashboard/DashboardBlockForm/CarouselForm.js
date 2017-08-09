@@ -24,7 +24,7 @@ class CarouselForm extends Component {
       />
     );
   }
-};
+}
 
 CarouselForm.propTypes = {
   onSubmit: PropTypes.func

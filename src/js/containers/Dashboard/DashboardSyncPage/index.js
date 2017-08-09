@@ -3,11 +3,11 @@ import Box from 'grommet/components/Box';
 import { Sync } from 'grommet-cms/containers';
 import { PageHeader } from 'grommet-cms/components';
 
-export class DashboardSyncPage extends Component {
+export class DashboardSyncPage extends Component { // eslint-disable-line
   render() {
     return (
-      <Box 
-        primary 
+      <Box
+        primary
         direction="column"
         full="horizontal"
       >
@@ -18,6 +18,6 @@ export class DashboardSyncPage extends Component {
       </Box>
     );
   }
-};
+}
 
 export default DashboardSyncPage;

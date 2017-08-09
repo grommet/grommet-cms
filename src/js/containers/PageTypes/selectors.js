@@ -15,7 +15,7 @@ export const selectError = createSelector(
 
 export const selectData = createSelector(
   selectPageTypesState(),
-  pageTypes => {
+  (pageTypes) => {
     if (!pageTypes.data) {
       return null;
     }
@@ -25,7 +25,7 @@ export const selectData = createSelector(
 
 export const selectPageTypesList = createSelector(
   selectData,
-  data => {
+  (data) => {
     if (!data) {
       return [];
     }
@@ -47,7 +47,7 @@ export const selectFormSubmission = createSelector(
   selectPageTypesState(),
   selectParams(),
   (pageTypes, params) => {
-    let formSubmission = {
+    const formSubmission = {
       title: pageTypes.form.title.value,
       description: pageTypes.form.description.value
     };
@@ -60,7 +60,7 @@ export const selectFormSubmission = createSelector(
 
 export const selectItemToDelete = createSelector(
   selectPageTypesState(),
-  pageTypes => {
+  (pageTypes) => {
     const { data } = pageTypes;
     const { itemToDelete } = pageTypes.layer;
     if (itemToDelete === null) {

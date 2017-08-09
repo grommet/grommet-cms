@@ -19,7 +19,7 @@ class PostFeedPage extends React.Component {
   props: PostFeedPageProps;
   constructor() {
     super();
-    (this:any).renderError = this.renderError.bind(this);
+    (this: any).renderError = this.renderError.bind(this);
   }
   componentDidMount() {
     this.props.actions.getPosts();
@@ -39,14 +39,13 @@ class PostFeedPage extends React.Component {
   render() {
     const {
       posts,
-      isLoading,
-      loadingError
+      isLoading
     } = this.props;
     return (
       <WithLoading isLoading={isLoading} fullHeight>
         <Helmet title="Post Feed" />
         <Section full="horizontal" pad="none">
-          {posts && posts.length ? posts.map((item, i) => 
+          {posts && posts.length ? posts.map((item, i) =>
             <PostFeedItem
               key={i}
               colorIndex={['grey-1-a', 'grey-2-a', 'grey-3-a', 'grey-4-a'][i % 4]}
@@ -54,15 +53,15 @@ class PostFeedPage extends React.Component {
               postPath="/post/"
             />
           )
-        :
+            :
           <Box full pad="large">
             <Heading align="center">
               No posts
-            </Heading>
+              </Heading>
           </Box>
-        }
+          }
         </Section>
-        {this.renderError(loadingError)}
+        {this.renderError()}
       </WithLoading>
     );
   }

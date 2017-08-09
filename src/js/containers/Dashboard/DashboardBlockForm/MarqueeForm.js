@@ -24,7 +24,7 @@ class MarqueeForm extends Component {
       />
     );
   }
-};
+}
 
 MarqueeForm.propTypes = {
   onSubmit: PropTypes.func

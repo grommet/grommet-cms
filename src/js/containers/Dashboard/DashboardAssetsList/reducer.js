@@ -29,7 +29,7 @@ const initialState: DashboardAssetsListState = {
         value: '',
         options: [],
         inline: false,
-        onChange: (e) => e,
+        onChange: e => e,
         multiple: false
       }
     }
@@ -40,7 +40,7 @@ export default function assetsList(
   state: DashboardAssetsListState = initialState,
   action: DashboardAssetsListAction
 ): DashboardAssetsListState {
-  switch(action.type) {
+  switch (action.type) {
     case ActionTypes.CLEAR_SELECTED_INDICIES:
       return {
         ...state,
@@ -71,7 +71,8 @@ export default function assetsList(
         table: {
           ...state.table,
           checkBoxes: {
-            checkedIndices: state.table.checkBoxes.checkedIndices.filter((item) => item !== action.index)
+            checkedIndices: state.table.checkBoxes.checkedIndices
+              .filter(item => item !== action.index)
           }
         }
       };

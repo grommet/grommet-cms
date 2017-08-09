@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fileInsert, fileUpload, fileError } from './actions';
 import Button from 'grommet/components/Button';
 import Image from 'grommet/components/icons/base/Image';
 import { FileInsertLayer } from 'grommet-cms/components';
+import { fileInsert, fileUpload, fileError } from './actions';
 
 export class DashboardFileUpload extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export class DashboardFileUpload extends Component {
     this._onSubmit = this._onSubmit.bind(this);
   }
 
-  _onUploadFileClick(event) {
+  _onUploadFileClick() {
     this.props.dispatch(fileInsert(true));
   }
 
@@ -27,13 +27,13 @@ export class DashboardFileUpload extends Component {
     this.props.dispatch(fileInsert(false));
   }
 
-  _onChange(event) {
-    this.setState({file: event.target.files[0]});
+  _onChange() {
+    this.setState({ file: event.target.files[0] });
   }
 
-  _onSubmit(event) {
+  _onSubmit() {
     if (this.state.file !== '') {
-      const formData = {file: this.state.file};
+      const formData = { file: this.state.file };
       this.props.dispatch(fileUpload(formData));
       if (typeof this.props.onImgPost === 'function') {
         this.props.onImgPost();
@@ -44,14 +44,14 @@ export class DashboardFileUpload extends Component {
   }
 
   render() {
-    let layer = (this.props.insertRequest)
+    const layer = (this.props.insertRequest)
       ? <FileInsertLayer
-          onLayerClose={this._onLayerClose}
-          onSubmit={this._onSubmit}
-          error={this.props.error}
-          onChange={this._onChange}
-          request={this.props.uploadRequest}
-        />
+        onLayerClose={this._onLayerClose}
+        onSubmit={this._onSubmit}
+        error={this.props.error}
+        onChange={this._onChange}
+        request={this.props.uploadRequest}
+      />
       : null;
 
     return (
@@ -61,14 +61,14 @@ export class DashboardFileUpload extends Component {
       </div>
     );
   }
-};
+}
 
 DashboardFileUpload.propTypes = {
   dispatch: PropTypes.func.isRequired,
   onImgPost: PropTypes.func
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { insertRequest, uploadRequest, error, url } = state.fileUpload;
 
   return {

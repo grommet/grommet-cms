@@ -11,12 +11,12 @@ export default function PageTypeListItemMenu({ sortOrder, onMenuItemClick, minOr
   return (
     <Box align="end" justify="center">
       <Menu
-        onClick={(e) => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
         closeOnClick
         direction="row"
         responsive
         inline={false}
-        dropAlign={{ right: 'right'}}
+        dropAlign={{ right: 'right' }}
       >
         <Anchor
           label="Edit"

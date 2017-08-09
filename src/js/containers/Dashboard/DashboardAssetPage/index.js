@@ -26,11 +26,16 @@ import {
 
 type Props = {
   error: string,
+  dispatch: Function,
   posts: Asset,
   request: boolean,
   hasHeader?: boolean,
   onCancel?: Function,
-  isLayer?: boolean
+  onSubmit: Function,
+  isLayer?: boolean,
+  params: {
+    id?: string
+  }
 };
 
 export class DashboardAssetPage extends Component {
@@ -42,7 +47,6 @@ export class DashboardAssetPage extends Component {
   };
 
   _onChange: () => void;
-  _onSubmit: () => void;
   _removeAssetClick: () => void;
 
   constructor(props: Props) {
@@ -56,25 +60,25 @@ export class DashboardAssetPage extends Component {
     };
 
     this._onChange = this._onChange.bind(this);
-    this._onSubmit = this._onSubmit.bind(this);
     this._removeAssetClick = this._removeAssetClick.bind(this);
-    (this:any)._onChangeFile = this._onChangeFile.bind(this);
+    (this: any)._onSubmit = this._onSubmit.bind(this);
+    (this: any)._onChangeFile = this._onChangeFile.bind(this);
   }
 
   componentWillMount() {
     const { id } = this.props.params;
-    if (id && id !== 'create')
-      this.props.dispatch(getAsset(id));
+    if (id && id !== 'create') { this.props.dispatch(getAsset(id)); }
   }
 
   componentWillReceiveProps(nextProps: Props) {
     const { title, path, _id } = nextProps.posts;
-    if (_id)
+    if (_id) {
       this.setState({
         title,
         path,
         id: _id
       });
+    }
   }
 
   _onChange(event: Event) {
@@ -83,31 +87,29 @@ export class DashboardAssetPage extends Component {
       const val = (event.target.files)
         ? event.target.files[0]
         : event.target.value;
-      let obj = {};
+      const obj = {};
       obj[key] = val;
       this.setState(obj);
     } else {
-      throw new Error(`Unexpected event target`);
+      throw new Error('Unexpected event target');
     }
   }
 
   _onChangeFile(file: any) {
-    const title = unslugify(file.name || 'unknown file').replace(/(.*)\.(.*?)$/, "$1").toLowerCase();
+    const title = unslugify(file.name || 'unknown file').replace(/(.*)\.(.*?)$/, '$1').toLowerCase();
     this.setState({
       file,
       title
     });
-  } 
+  }
 
   _onSubmit(formData: Object) {
-    if (formData.hasOwnProperty('file') || formData.hasOwnProperty('id') ) {
+    if (formData.hasOwnProperty('file') || formData.hasOwnProperty('id')) {
       const dataToSubmit = Object.assign({}, formData);
       // If the form is embedded we don't want to forward to the AssetsPage after
       // a successful post.
       const { onSubmit } = this.props;
-      const forwardWhenDone = (onSubmit)
-        ? false
-        : true;
+      const forwardWhenDone = !(onSubmit);
 
       this.props.dispatch(submitAsset(dataToSubmit, forwardWhenDone))
         .then(() => {
@@ -128,58 +130,64 @@ export class DashboardAssetPage extends Component {
     const { title, path } = this.state;
     const thumb = (isImage(path))
       ? <Box pad="medium">
-          <Image src={path} size="medium" />
-          <Box pad={{ vertical: 'small' }}>
-            <Anchor label="Remove Image" icon={<TrashIcon />}
-              onClick={this._removeAssetClick} />
-          </Box>
+        <Image src={path} size="medium" />
+        <Box pad={{ vertical: 'small' }}>
+          <Anchor
+            label="Remove Image"
+            icon={<TrashIcon />}
+            onClick={this._removeAssetClick}
+          />
         </Box>
+      </Box>
       : <Box pad="medium">
-          <DocumentIcon size="xlarge" />
-          <Box pad={{ vertical: 'small' }}>
-            <Anchor label="Remove File" icon={<TrashIcon />}
-              onClick={this._removeAssetClick} />
-          </Box>
-        </Box>;
+        <DocumentIcon size="xlarge" />
+        <Box pad={{ vertical: 'small' }}>
+          <Anchor
+            label="Remove File"
+            icon={<TrashIcon />}
+            onClick={this._removeAssetClick}
+          />
+        </Box>
+      </Box>;
 
     const dropzone = (!path)
-      &&  <FormField label="Drop File">
-            <Box align="center" justify="center" pad="medium">
-              <Dropzone
-                multiple={false}
-                fullDropTarget
-                size="medium"
-                pad="medium"
-                colorIndex="light-2"
-                onDOMChange={(files) => this._onChangeFile(files[0])}
-                align="center"
-              />
-            </Box>
-          </FormField>;
+      && <FormField label="Drop File">
+        <Box align="center" justify="center" pad="medium">
+          <Dropzone
+            multiple={false}
+            fullDropTarget
+            size="medium"
+            pad="medium"
+            colorIndex="light-2"
+            onDOMChange={files => this._onChangeFile(files[0])}
+            align="center"
+          />
+        </Box>
+      </FormField>;
 
     const preview = (path)
-      && <FormField label="File" htmlFor={"file"}>
-          {thumb}
-        </FormField>;
+      && <FormField label="File" htmlFor={'file'}>
+        {thumb}
+      </FormField>;
 
     const hasHeader = this.props.hasHeader != null
       ? this.props.hasHeader
       : true;
     const header = hasHeader
       ?
-        (
-          <Header size="small" colorIndex="light-2" style={{ maxHeight: 50 }}>
-            <Box direction="row" pad={{ horizontal: 'medium' }}>
-              <Anchor
-                primary
-                icon={<LinkPreviousIcon />}
-                path="/dashboard/assets"
-              >
+      (
+        <Header size="small" colorIndex="light-2" style={{ maxHeight: 50 }}>
+          <Box direction="row" pad={{ horizontal: 'medium' }}>
+            <Anchor
+              primary
+              icon={<LinkPreviousIcon />}
+              path="/dashboard/assets"
+            >
                 All Assets
-              </Anchor>
-            </Box>
-          </Header>
-        )
+            </Anchor>
+          </Box>
+        </Header>
+      )
       : null;
 
     const isRenderedInLayer = this.props.isLayer != null
@@ -193,9 +201,14 @@ export class DashboardAssetPage extends Component {
           <Form onSubmit={this._onSubmit.bind(this, this.state)}>
             <FormFields>
               <fieldset>
-                <FormField label="Title (alt text for images)" htmlFor={"title"}>
-                  <input id={"title"} name="title" type="text"
-                    onChange={this._onChange} value={title || ''}/>
+                <FormField label="Title (alt text for images)" htmlFor={'title'}>
+                  <input
+                    id={'title'}
+                    name="title"
+                    type="text"
+                    onChange={this._onChange}
+                    value={title || ''}
+                  />
                 </FormField>
                 {dropzone}
                 {preview}
@@ -216,8 +229,8 @@ export class DashboardAssetPage extends Component {
               <Button
                 label="submit"
                 primary
-                onClick={(this.state.title != '' && !this.props.request) 
-                  ? this._onSubmit.bind(this, this.state) 
+                onClick={(this.state.title !== '' && !this.props.request)
+                  ? this._onSubmit.bind(this, this.state)
                   : null
                 }
                 style={{ margin: '0px 8px' }}
@@ -236,9 +249,9 @@ export class DashboardAssetPage extends Component {
       </Box>
     );
   }
-};
+}
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { error, posts, request } = state.assets;
   return {
     error,

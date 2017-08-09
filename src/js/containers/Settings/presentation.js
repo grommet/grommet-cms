@@ -47,7 +47,7 @@ export default function SettingsPresentation({
             <FormField htmlFor="branding-logo" label="Logo">
               <Box direction="row" align="center" justify="between" pad={{ vertical: 'small' }}>
                 <Box pad={{ horizontal: 'medium' }}>
-                  <Assets onAssetSelect={(asset) => onAssetSelect(asset, 'branding')} />
+                  <Assets onAssetSelect={asset => onAssetSelect(asset, 'branding')} />
                 </Box>
                 {form.branding.logo && form.branding.logo.path &&
                   <Box style={{ flexGrow: 1 }} pad={{ horizontal: 'medium' }}>
@@ -83,12 +83,12 @@ export default function SettingsPresentation({
             <Button
               label="submit"
               onClick={onSubmit}
-              type='submit'
+              type="submit"
               primary
             />
           </Box>
         </WithLoading>
-        {error && 
+        {error &&
           <ErrorNotification
             onClose={onClearErrors}
             errors={error ? [error] : null}

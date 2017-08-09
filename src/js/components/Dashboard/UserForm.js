@@ -13,24 +13,38 @@ export default function UserForm(props) {
     <Form compact={false} onSubmit={props.onSubmit}>
       <Box align="center" pad="medium">
         {props.hasLogo ? props.logo : null}
-        <Header pad={{ vertical: "medium" }}>
+        <Header pad={{ vertical: 'medium' }}>
           <Heading align="center">{props.title}</Heading>
         </Header>
       </Box>
       <FormFields className="dashboard__user-form">
         <fieldset>
-          <FormField label="Username" htmlFor={"username"}>
-            <input id={"username"} name="username" type="text"
-              value={props.username} onChange={props.onChange} />
+          <FormField label="Username" htmlFor={'username'}>
+            <input
+              id={'username'}
+              name="username"
+              type="text"
+              value={props.username}
+              onChange={props.onChange}
+            />
           </FormField>
-          <FormField label="Password" htmlFor={"password"}>
-            <input id={"password"} name="password" type="password"
-              value={props.password} onChange={props.onChange} />
+          <FormField label="Password" htmlFor={'password'}>
+            <input
+              id={'password'}
+              name="password"
+              type="password"
+              value={props.password}
+              onChange={props.onChange}
+            />
           </FormField>
         </fieldset>
         <Box align="center">
-          <Button onClick={props.onSubmit} primary={true} type="submit"
-            label={props.submitMessage} />
+          <Button
+            onClick={props.onSubmit}
+            primary
+            type="submit"
+            label={props.submitMessage}
+          />
         </Box>
       </FormFields>
     </Form>

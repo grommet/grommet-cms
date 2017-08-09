@@ -2,7 +2,7 @@
 import React from 'react';
 import Layer from 'grommet/components/Layer';
 import Header from 'grommet/components/Header';
-import Heading from 'grommet/components/Heading'; 
+import Heading from 'grommet/components/Heading';
 import { MarqueeForm } from 'grommet-cms/components';
 
 export default function AddPostForm(props: {
@@ -14,7 +14,7 @@ export default function AddPostForm(props: {
     post?: {
       title?: string,
       subtitle?: string,
-      date?: string,
+      date?: Date,
       image?: string
     },
     url?: string,

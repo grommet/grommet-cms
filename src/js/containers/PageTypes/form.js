@@ -60,11 +60,11 @@ class PageTypeForm extends Component {
       <WithLoading isLoading={isLoading}>
         <Box style={{ paddingBottom: 100 }}>
           <Form>
-          <Box align="center" pad="medium">
-            <Header pad={{ vertical: "medium" }}>
-              <Heading align="center">{action} Page Type</Heading>
-            </Header>
-          </Box>
+            <Box align="center" pad="medium">
+              <Header pad={{ vertical: 'medium' }}>
+                <Heading align="center">{action} Page Type</Heading>
+              </Header>
+            </Box>
             <FormFields>
               <FormField label="Title" htmlFor="title">
                 <TextInput
@@ -111,7 +111,7 @@ class PageTypeForm extends Component {
       </WithLoading>
     );
   }
-};
+}
 
 const mapStateToProps = (state, props) => ({
   form: selectForm(state),

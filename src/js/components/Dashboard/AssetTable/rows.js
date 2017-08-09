@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import AssetTableRow from './row';
 import { highlightContent, uuid } from 'grommet-cms/utils';
+import AssetTableRow from './row';
 
 type Asset = any;
 export type Props = {
@@ -48,8 +48,8 @@ export default function AssetTableRows({
           <AssetTableRow
             checked={checkedIndices.indexOf(index) >= 0}
             key={uuid()}
-            onClickCheckbox={(checked) => onClickCheckbox(index, checked)}
-            onClickMenu={(action) => onClickMenu(action, item)}
+            onClickCheckbox={checked => onClickCheckbox(index, checked)}
+            onClickMenu={action => onClickMenu(action, item)}
             allowMultiSelect={allowMultiSelect}
             {...props}
           />

@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { getUsers, deleteUser } from './actions';
 import { browserHistory } from 'react-router';
 import Anchor from 'grommet/components/Anchor';
 import AddIcon from 'grommet/components/icons/base/Add';
 import Box from 'grommet/components/Box';
 import Article from 'grommet/components/Article';
 import { ConfirmLayer, PageHeader, List as DashboardList } from 'grommet-cms/components';
+import { getUsers, deleteUser } from './actions';
 
 export class DashboardUsersPage extends Component {
   constructor(props) {
@@ -55,11 +55,11 @@ export class DashboardUsersPage extends Component {
   }
 
   render() {
-    let layer = (this.state.layer)
+    const layer = (this.state.layer)
       ? <ConfirmLayer onSubmit={this._onDeleteSubmit} onClose={this._onLayerClose} />
       : null;
 
-    let deleteMethod = (this.props.users.length > 1)
+    const deleteMethod = (this.props.users.length > 1)
       ? this._confirmDelete
       : null;
 
@@ -85,13 +85,13 @@ export class DashboardUsersPage extends Component {
             titleKey="username"
             route="users"
             onDelete={deleteMethod}
-            links={true}
+            links
           />
         </Article>
       </Box>
     );
   }
-};
+}
 
 DashboardUsersPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -99,13 +99,13 @@ DashboardUsersPage.propTypes = {
   users: PropTypes.array
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { request, error, users } = state.users;
   return {
     request,
     error,
     users
   };
-};
+}
 
 export default connect(mapStateToProps)(DashboardUsersPage);

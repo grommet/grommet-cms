@@ -20,9 +20,9 @@ export class VideoForm extends Component {
     this._onAssetSelect = this._onAssetSelect.bind(this);
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.url !== this.props.url && this.props.url !== '') {
-      this.setState({
+      this.setState({ // eslint-disable-line
         image: `${this.props.url}`
       });
     }
@@ -30,21 +30,20 @@ export class VideoForm extends Component {
 
   _onChange({ target }) {
     const key = target.id;
-    let val = target.value;
+    const val = target.value;
 
-    let obj  = {};
+    const obj = {};
     obj[key] = val;
 
     this.setState(obj);
   }
 
-  _onAssetSelect(asset, key='image') {
+  _onAssetSelect(asset, key = 'image') {
     this.setState({ [`${key}`]: asset });
   }
 
   _validateForm({ image }) {
-    if (image !== '')
-      return true;
+    if (image !== '') { return true; }
 
     return false;
   }
@@ -70,24 +69,24 @@ export class VideoForm extends Component {
         <Box direction="row" align="center">
           <Assets
             assetType="video"
-            onAssetSelect={(asset) => this._onAssetSelect(asset, 'video')}
+            onAssetSelect={asset => this._onAssetSelect(asset, 'video')}
           />
           <Assets
             assetType="image"
-            onAssetSelect={(asset) => this._onAssetSelect(asset, 'image')}
+            onAssetSelect={asset => this._onAssetSelect(asset, 'image')}
           />
         </Box>
       </BlockVideoForm>
     );
   }
-};
+}
 
 VideoForm.propTypes = {
   onSubmit: PropTypes.func,
   url: PropTypes.string
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { url } = state.fileUpload;
   return { url };
 }

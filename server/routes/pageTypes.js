@@ -56,7 +56,7 @@ router.post('/pageType/:id', isAdmin, (req, res) => {
         pageType.sortOrder = req.body.sortOrder;
       }
 
-      return pageType.save((err) => {
+      return pageType.save(() => {
         if (err) {
           return res.status(400).send();
         }
@@ -67,17 +67,15 @@ router.post('/pageType/:id', isAdmin, (req, res) => {
 
 // Delete a page type
 router.post('/pageType/:id/delete', isAdmin, (req, res) => {
-  return PageType.findOne({'_id' : req.params.id }).remove().exec((err) => {
+  PageType.findOne({ _id: req.params.id }).remove().exec((err) => {
     if (err) {
       return res.status(400).send({ message: 'Unauthorized' });
     }
 
-    Post.find({
-      'pageType': req.params.id
-    })
+    return Post.find({ pageType: req.params.id })
     .remove()
-    .exec((err) => {
-      if (err) {
+    .exec((postErr) => {
+      if (postErr) {
         return res.status(400).send({ message: 'Unauthorized' });
       }
       return res.status(200).send('success');

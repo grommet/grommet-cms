@@ -16,7 +16,7 @@ type Props = {
   minOrder: Number
 }
 
-export default function PageTypeListItem({ 
+export default function PageTypeListItem({
   title,
   slug,
   sortOrder,
@@ -28,7 +28,7 @@ export default function PageTypeListItem({
     <ListItem separator="horizontal">
       <Box
         full="horizontal"
-        pad={{ horizontal: "medium" }}
+        pad={{ horizontal: 'medium' }}
         direction="row"
         justify="between"
       >

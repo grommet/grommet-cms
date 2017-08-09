@@ -42,7 +42,7 @@ const dashboardPost = (
         ...state,
         sectionLayoutForm: {
           ...state.sectionLayoutForm,
-          showAdvancedLayoutOptions: 
+          showAdvancedLayoutOptions:
             !state.sectionLayoutForm.showAdvancedLayoutOptions
         }
       };
@@ -95,29 +95,28 @@ const dashboardPost = (
             }
           }
         };
-      } else {
-        const field = state.sectionLayoutForm.fields
-          .filter((item) => item.name === action.name)[0];
-        const index = state.sectionLayoutForm.fields.indexOf(field);
-        return {
-          ...state,
-          sectionLayoutForm: {
-            ...state.sectionLayoutForm,
-            fields: [
-              ...state.sectionLayoutForm.fields.slice(0, index),
-              {
-                ...state.sectionLayoutForm.fields[index],
-                value: action.value || ''
-              },
-              ...state.sectionLayoutForm.fields.slice(index + 1)
-            ]
-          }
-        };
       }
+      const field = state.sectionLayoutForm.fields
+        .filter(item => item.name === action.name)[0];
+      const index = state.sectionLayoutForm.fields.indexOf(field);
+      return {
+        ...state,
+        sectionLayoutForm: {
+          ...state.sectionLayoutForm,
+          fields: [
+            ...state.sectionLayoutForm.fields.slice(0, index),
+            {
+              ...state.sectionLayoutForm.fields[index],
+              value: action.value || ''
+            },
+            ...state.sectionLayoutForm.fields.slice(index + 1)
+          ]
+        }
+      };
     }
     case T.POST_BOX_LAYOUT_FORM_INPUT: {
       const field = state.boxLayoutForm.fields
-        .filter((item) => item.name === action.name)[0];
+        .filter(item => item.name === action.name)[0];
       const index = state.boxLayoutForm.fields.indexOf(field);
 
       return {

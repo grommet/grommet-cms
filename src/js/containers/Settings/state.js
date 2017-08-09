@@ -12,7 +12,7 @@ export default {
         options: [
           { value: 'HPE', label: 'Hpe' },
           { value: 'GROMMET', label: 'Grommet' },
-          { value: 'ARUBA', label: 'Aruba' }, 
+          { value: 'ARUBA', label: 'Aruba' },
           { value: 'HPI', label: 'HPInc' }
         ]
       }

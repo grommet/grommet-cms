@@ -9,8 +9,8 @@ const router = express.Router();
 router.get('/search', (req, res) => {
   if (req.query.query) {
     const { query } = req.query;
+    const matchedContentBlocks = new Map();
 
-    let matchedContentBlocks = new Map();
     Post.find()
     .$where(`this._type !== 'home'`)
     .exec((err, posts) => {
@@ -20,12 +20,12 @@ router.get('/search', (req, res) => {
       if (posts && posts.length) {
         const cleanQuery = query.replace(/[^a-zA-Z ]/g, "");
         const re = new RegExp(cleanQuery, 'gi');
-        let filteredPosts = [];
+        const filteredPosts = [];
         posts.forEach((post) => {
           if (re.test(post.title)) {
             filteredPosts.push(post);
           } else {
-            post.sections.forEach((section, i) => {
+            post.sections.forEach((section) => {
               section.contentBlocks.forEach((block) => {
                 if (re.test(block.content)) {
                   if (filteredPosts.indexOf(post) === -1) {
@@ -52,12 +52,12 @@ router.get('/search', (req, res) => {
           }
           return '';
         };
-        const mappedPages = filteredPosts.map((item) => ({
+        const mappedPages = filteredPosts.map(item => ({
           title: item.title,
           content: selectContent(item),
           category: unslugify(item._type)
         }));
-        const getCategory = (item) => item.category;
+        const getCategory = item => item.category;
         const sortedPages = mappedPages.sort((a, b) => {
           if (a.content === '' && b.content !== '') {
             return -1;
@@ -67,7 +67,7 @@ router.get('/search', (req, res) => {
           return 0;
         });
         const groupedPages = groupBy(sortedPages, getCategory);
-        const pageMap = Object.keys(groupedPages).map((item) => 
+        const pageMap = Object.keys(groupedPages).map(item =>
           ({
             title: item,
             results: groupedPages[item]
@@ -85,10 +85,9 @@ router.get('/search', (req, res) => {
           return res.status(200).send({ message });
         }
         return res.status(200).send(searchResults);
-      } else {
-        const message = `No results found for search term ${req.query.query}`;
-        return res.status(200).send({ message });
       }
+      const message = `No results found for search term ${req.query.query}`;
+      return res.status(200).send({ message });
     });
   }
 });

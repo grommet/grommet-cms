@@ -1,8 +1,9 @@
 import express from 'express';
 import { Post } from '../models/Post';
 import PageTypes from '../models/PageType';
-const router = express.Router();
 import groupBy from '../utils/groupBy';
+
+const router = express.Router();
 
 router.get('/pages', (req, res) => {
   Post.find()
@@ -11,7 +12,7 @@ router.get('/pages', (req, res) => {
         return res.status(400).send(err);
       }
       const mappedPages = pages
-        .filter(i => i._type !== 'home').map((item) => 
+        .filter(i => i._type !== 'home').map(item =>
         ({
           id: item._id,
           title: item.title
@@ -22,7 +23,7 @@ router.get('/pages', (req, res) => {
 });
 
 // Get Posts
-router.get('/routes', function(req, res) {
+router.get('/routes', (req, res) => {
   PageTypes.find()
     .sort({
       sortOrder: 1
@@ -61,9 +62,9 @@ router.get('/tiles', (req, res) => {
               message: err
             });
           }
-          const getCategory = (item) => item.category;
+          const getCategory = item => item.category;
           const mappedPosts = posts
-            .filter(i => i.pageType.slug !== 'home').map((item) => 
+            .filter(i => i.pageType.slug !== 'home').map(item =>
             ({
               title: item.title,
               tileSize: item.tileSize,
@@ -80,7 +81,7 @@ router.get('/tiles', (req, res) => {
               const second = pageTypes.filter(i => i.title === b)[0];
               return first.sortOrder - second.sortOrder;
             })
-            .map((item) =>
+            .map(item =>
               ({
                 title: item,
                 subtitle: pageTypes.filter(i => i.title === item)[0].description,
@@ -91,7 +92,7 @@ router.get('/tiles', (req, res) => {
           if (currentTile && currentTile !== '') {
             const decodedTitle = decodeURIComponent(currentTile);
             const tileTitleRE = new RegExp(decodedTitle, 'gi');
-            const allTiles = [].concat.apply([], postTileMap.map(i => i.tiles));
+            const allTiles = [].concat.apply([], postTileMap.map(i => i.tiles)); // eslint-disable-line
             const titleSelector = item => item.title && item.title.includes('-')
               ? item.title.split('-').join(' ')
               : item.title;

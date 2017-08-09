@@ -12,11 +12,11 @@ export function contentBlocks(state = initialState, action) {
   const newBlocks = state.slice(0);
   const blockIndex = (action.id)
     ? newBlocks.findIndex(
-        (block) => block.id === action.id
-      )
+      block => block.id === action.id
+    )
     : undefined;
 
-  switch(action.type) {
+  switch (action.type) {
     case BLOCK_DUPLICATE: {
       const newBlock = state[blockIndex];
       return [
@@ -38,16 +38,13 @@ export function contentBlocks(state = initialState, action) {
         })),
         edit: true
       });
-      break;
 
     case BLOCK_ADD_LIST:
-      const newList = action.list.slice(0);
-      return newList;
+      return action.list.slice(0);
 
     case BLOCK_REMOVE:
       newBlocks.splice(blockIndex, 1);
       return newBlocks;
-      break;
 
     case BLOCK_CANCEL:
       return initialState;
@@ -79,10 +76,8 @@ export function contentBlocks(state = initialState, action) {
         newBlocks.splice(blockIndex, 1);
         newBlocks.splice(blockIndex - 1, 0, blockToMove);
         return newBlocks;
-      } else {
-        return state;
       }
-      break;
+      return state;
 
     case BLOCK_MOVE_DOWN:
       if (blockIndex + 1 <= state.length - 1) {
@@ -90,10 +85,8 @@ export function contentBlocks(state = initialState, action) {
         newBlocks.splice(blockIndex, 1);
         newBlocks.splice(blockIndex + 1, 0, blockToMove);
         return newBlocks;
-      } else {
-        return state;
       }
-      break;
+      return state;
 
     default:
       return state;

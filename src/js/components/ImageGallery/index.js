@@ -22,7 +22,7 @@ export default class ImageGallery extends Component {
   }
   render() {
     const { isAnimating } = this.state;
-    const { 
+    const {
       images,
       currentIndex,
       imageSize
@@ -46,8 +46,11 @@ export default class ImageGallery extends Component {
         </Box>
         <Tiles pad="none" flush={false}>
           {images && images.map((image, i) =>
-            <Tile onClick={() => this.handleClick(i)} key={i}
-              style={{ border: i === currentIndex ? '.2em solid #01a982' : '' }}>
+            <Tile
+              onClick={() => this.handleClick(i)}
+              key={i}
+              style={{ border: i === currentIndex ? '.2em solid #01a982' : '' }}
+            >
               <Image size="thumb" src={image.path} />
             </Tile>
           )}
@@ -64,6 +67,6 @@ ImageGallery.propTypes = {
     }),
   ),
   currentIndex: PropTypes.number.isRequired,
-  imageSize: PropTypes.oneOf(['small' | 'medium' | 'large' | 'xlarge']),
+  imageSize: PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
   onClickItem: PropTypes.func.isRequired
 };

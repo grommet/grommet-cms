@@ -13,7 +13,7 @@ export default function UserEditForm(props) {
   return (
     <Form compact={false} onSubmit={props.onSubmit} autoComplete="false">
       <Box align="center" pad="medium">
-        <Header pad={{ vertical: "medium" }}>
+        <Header pad={{ vertical: 'medium' }}>
           <Heading align="center">{props.title}</Heading>
         </Header>
       </Box>
@@ -29,7 +29,7 @@ export default function UserEditForm(props) {
                   {
                     label: 'Admin',
                     value: 0
-                  },{
+                  }, {
                     label: 'Editor',
                     value: 1
                   }
@@ -60,7 +60,7 @@ export default function UserEditForm(props) {
         <Box align="center">
           <Button
             onClick={props.onSubmit}
-            primary={true}
+            primary
             type="submit"
             label={props.submitMessage}
           />

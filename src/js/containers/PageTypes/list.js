@@ -8,12 +8,12 @@ export default function PageTypeList({ pageTypes, onMenuItemClick }) {
   }
   return (
     <List style={{ maxWidth: '100vw' }}>
-      {pageTypes.map((item, i) => 
+      {pageTypes.map((item, i) =>
         <PageTypeListItem
           key={item.title}
-          maxOrder={Math.max(...pageTypes.map(i => i.sortOrder))}
-          minOrder={Math.min(...pageTypes.map(i => i.sortOrder))}
-          onMenuItemClick={(type) => onMenuItemClick(type, i)}
+          maxOrder={Math.max(...pageTypes.map(j => j.sortOrder))}
+          minOrder={Math.min(...pageTypes.map(k => k.sortOrder))}
+          onMenuItemClick={type => onMenuItemClick(type, i)}
           {...item}
         />
       )}

@@ -31,8 +31,8 @@ export default function ViewMoreViewLess(props: {
       <Button
         plain
         onClick={onShowMore}
-        label="View More" 
-        icon={<DownIcon size="small" />} 
+        label="View More"
+        icon={<DownIcon size="small" />}
       />
     </Box>
   );

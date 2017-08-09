@@ -1,5 +1,5 @@
 export type ContentBlockType = {
-  image: string,
+  image?: string,
   id: string,
   edit: boolean,
   card?: ?{},

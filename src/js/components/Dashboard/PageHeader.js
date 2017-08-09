@@ -3,7 +3,7 @@ import Box from 'grommet/components/Box';
 import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
 
-export default function PageHeader ({ title, controls, fixed }) {
+export default function PageHeader({ title, controls, fixed }) {
   return (
     <Header
       fixed={fixed}
@@ -16,7 +16,7 @@ export default function PageHeader ({ title, controls, fixed }) {
       align="center"
       pad={{ vertical: 'small', horizontal: 'medium' }}
     >
-      <Heading tag="h4" strong={true} margin="none">
+      <Heading tag="h4" strong margin="none">
         {title}
       </Heading>
       <Box direction="row" pad={{ between: 'small' }}>
@@ -24,7 +24,7 @@ export default function PageHeader ({ title, controls, fixed }) {
       </Box>
     </Header>
   );
-};
+}
 
 PageHeader.propTypes = {
   title: PropTypes.string,

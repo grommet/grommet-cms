@@ -30,10 +30,11 @@ export class Dashboard extends Component {
   }
 
   _renderNav() {
-    const { leftNavAnchor, pageMenu, params, user, navLinks, settings, logo, location } = this.props;
+    const { leftNavAnchor, pageMenu, params, user, navLinks,
+      settings, logo, location } = this.props;
     const leftAnchor = leftNavAnchor && leftNavAnchor.title ?
       (
-        <BackAnchor 
+        <BackAnchor
           onClick={leftNavAnchor.onClick}
           title={leftNavAnchor.title}
         />
@@ -64,7 +65,7 @@ export class Dashboard extends Component {
   }
 
   render() {
-    let error = (this.props.error)
+    const error = (this.props.error)
       ? <DashboardError message={this.props.error.message} />
       : null;
 
@@ -72,7 +73,8 @@ export class Dashboard extends Component {
       <GrommetApp className="dashboard" centered={false}>
         <Helmet
           title="Dashboard"
-          titleTemplate="Grommet CMS | %s" />
+          titleTemplate="Grommet CMS | %s"
+        />
         {this._renderNav()}
         {error}
         <Box align="center" justify="center">
@@ -109,7 +111,7 @@ Dashboard.propTypes = {
   logo: PropTypes.node
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   const { loggedIn, user } = state.login;
   const { loading, error, leftNavAnchor, pageMenu, navLinks } = state.dashboard;
   return {
@@ -123,6 +125,6 @@ function mapStateToProps(state, props) {
     leftNavAnchor,
     user
   };
-};
+}
 
 export default connect(mapStateToProps)(Dashboard);

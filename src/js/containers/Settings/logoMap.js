@@ -6,9 +6,9 @@ import BrandGrommetOutlineIcon from 'grommet/components/icons/base/BrandGrommetO
 import Image from 'grommet/components/Image';
 
 export default {
-  'HPE': <BrandHpeElementOutlineIcon size="small" />,
-  'HPI': <PlatformHpiIcon size="small" />,
-  'ARUBA': <PlatformArubaIcon size="small" />,
-  'GROMMET': <BrandGrommetOutlineIcon size="small" />,
-  logo: (logo) => <Image size="large" alt="logo" src={logo.path} />
+  HPE: <BrandHpeElementOutlineIcon size="small" />,
+  HPI: <PlatformHpiIcon size="small" />,
+  ARUBA: <PlatformArubaIcon size="small" />,
+  GROMMET: <BrandGrommetOutlineIcon size="small" />,
+  logo: logo => <Image size="large" alt="logo" src={logo.path} />
 };

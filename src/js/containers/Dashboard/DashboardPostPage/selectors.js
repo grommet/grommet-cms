@@ -6,12 +6,12 @@ export const selectPosts = () => state => state.posts;
 
 export const selectPostSectionFormSubmission = createSelector(
   selectDashboardPost(),
-  dashboardPost => {
+  (dashboardPost) => {
     const { name, fields } = dashboardPost.sectionLayoutForm;
     return {
       name: name.value,
       id: slugify(name.value),
-      layout: fields.map((field, i) =>
+      layout: fields.map(field =>
         ({
           value: field.value,
           name: field.name
@@ -28,9 +28,9 @@ export const selectLayer = createSelector(
 
 export const selectBoxLayoutFormSubmission = createSelector(
   selectDashboardPost(),
-  dashboardPost => {
+  (dashboardPost) => {
     const { fields } = dashboardPost.boxLayoutForm;
-    return fields.map((field, i) =>
+    return fields.map(field =>
       ({
         value: field.value,
         name: field.name

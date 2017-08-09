@@ -3,13 +3,13 @@ import { renderToString } from 'react-dom/server';
 import { RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
-import configureStore from '../src/js/store';
 import createLocation from 'history/lib/createLocation';
 import env from 'node-env-file';
 import path from 'path';
-import { getRoutes } from '../src/js/routes';
 import { match } from 'react-router';
 import 'isomorphic-fetch';
+import { getRoutes } from '../src/js/routes';
+import configureStore from '../src/js/store';
 
 // Load environment variables
 env(path.join(__dirname, '..', '.env'));
@@ -23,7 +23,6 @@ export default function isomorphicRender(req, res) {
       username: req.user.username,
       role: (req.user.role === 0) ? 0 : 1
     } : undefined;
-
   const store = configureStore({
     api: {
       url: process.env.API_URL
@@ -39,7 +38,7 @@ export default function isomorphicRender(req, res) {
   match({
     routes: getRoutes(store),
     location
-  }, function (err, redirectLocation, renderProps) {
+  }, (err, redirectLocation, renderProps) => {
     if (err) {
       console.error(err);
       return res.status(500).end('Internal server error');
@@ -53,7 +52,7 @@ export default function isomorphicRender(req, res) {
       return res.status(404).end('Not found...');
     }
 
-    const promises = renderProps.components.map((component, index) => {
+    const promises = renderProps.components.map((component) => {
       if (!component || !component.fetchData) {
         return false;
       }
@@ -74,15 +73,15 @@ export default function isomorphicRender(req, res) {
       );
 
       const componentHTML = renderToString(InitialComponent);
-      let head = Helmet.rewind();
+      const head = Helmet.rewind();
 
       res.render('index.ejs', {
         title: head.title.toString(),
         content: componentHTML,
         meta: head.meta.toString(),
-        initialState: initialState,
+        initialState,
         assetPrefix: '/dashboard-assets'
       });
     });
   });
-};
+}

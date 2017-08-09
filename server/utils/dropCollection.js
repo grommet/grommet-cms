@@ -6,14 +6,14 @@ export default function dropCollection(modelName) {
   }
 
   try {
-    var model = mongoose.model(modelName);
-    var collection = mongoose.connection.collections[model.collection.collectionName];
+    var model = mongoose.model(modelName); // eslint-disable-line
+    var collection = mongoose.connection.collections[model.collection.collectionName]; // eslint-disable-line
   } catch (err) {
     return Promise.reject(err);
   }
 
-  return new Promise(function (resolve, reject) {
-    collection.drop(function (err) {
+  return new Promise((resolve, reject) => {
+    collection.drop(function (err) { // eslint-disable-line
       if (err) {
         reject(err);
         return;
@@ -23,7 +23,7 @@ export default function dropCollection(modelName) {
       // temp. model and the schema associated with it
       delete mongoose.models[modelName];
       delete mongoose.modelSchemas[modelName];
-			
+
       resolve();
     });
   });

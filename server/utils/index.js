@@ -13,43 +13,44 @@ export const debug = (location = '', error = '') => {
 };
 
 export const apiPrefix = ({ API_PREFIX }) => {
-  if (API_PREFIX) return `/${API_PREFIX}/api`;
-  else return '/api';
+  if (API_PREFIX) {
+    return `/${API_PREFIX}/api`;
+  }
+
+  return '/api';
 };
 
-export const findIdInArray = (id, array) => {
-  return array.find(item => String(item._id) === id);
-};
+export const findIdInArray = (id, array) => array.find(item => String(item._id) === id);
 
 export const getFileTimestamp = () => {
   const today = new Date();
   const yy = today.getFullYear().toString().substr(-2);
   let dd = today.getDate();
-  let mm = today.getMonth()+1;
+  let mm = today.getMonth() + 1;
 
-  if(dd < 10) {
-    dd ='0'+dd;
-  } 
-  if(mm < 10) {
-    mm ='0'+mm;
+  if (dd < 10) {
+    dd = '0' + dd; // eslint-disable-line
+  }
+  if (mm < 10) {
+    mm = '0' + mm; // eslint-disable-line
   }
 
   return `${mm}${dd}${yy}`;
 };
 
 export const updateAssetPaths = ({ sections, assets }) =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     if (sections.length === 0) {
       resolve(sections);
-    };
+    }
 
     const updatedSections = sections.slice();
 
-    sections.map(({contentBlocks}, sectionIndex) => {
+    sections.map(({ contentBlocks }, sectionIndex) => {
       if (contentBlocks && contentBlocks.length > 0) {
         contentBlocks.map((contentBlock, contentBlockIndex) => {
           const { blockType, image, carousel, ctaArray, asset, video } = contentBlock;
-          switch(blockType) {
+          switch (blockType) {
             case "BlockImage":
             case "BlockVideo":
               if (image && image._id) {
@@ -102,14 +103,14 @@ export const updateAssetPaths = ({ sections, assets }) =>
         });
       }
 
-      if (sectionIndex === sections.length -1) {
+      if (sectionIndex === sections.length - 1) {
         resolve(updatedSections);
       }
     });
   });
 
 export const parseAssets = (sections, thumbnail) =>
-  new Promise((resolve, reject) => {
+  new Promise((resolve) => {
     const assetArray = [];
 
     // Add page's thumbnail image to asset list.
@@ -119,11 +120,11 @@ export const parseAssets = (sections, thumbnail) =>
       resolve(assetArray);
     }
 
-    sections.map(({contentBlocks}, index) => {
+    sections.map(({ contentBlocks }, index) => {
       if (contentBlocks && contentBlocks.length > 0) {
         contentBlocks.map((contentBlock) => {
           const { blockType, image, carousel, ctaArray, asset, video } = contentBlock;
-          switch(blockType) {
+          switch (blockType) {
             case "BlockImage":
             case "BlockVideo":
               if (image && image._id) assetArray.push(image._id);
@@ -158,21 +159,21 @@ export const parseAssets = (sections, thumbnail) =>
         });
       }
 
-      if (index === sections.length -1) {
+      if (index === sections.length - 1) {
         resolve(assetArray);
       }
     });
   });
 
 export const createFile = (filePath, content) =>
-  new Promise((resolve, reject) => {
-    fs.writeFile(filePath, content, (err) => {
+  new Promise((resolve) => {
+    fs.writeFile(filePath, content, () => {
       debug('File created', `${filePath}`);
       resolve(filePath);
     });
   });
 
-export const deleteFile = (filePath) =>
+export const deleteFile = filePath =>
   new Promise((resolve, reject) => {
     if (fs.existsSync(filePath)) {
       return fs.unlink(filePath, (err) => {
@@ -180,9 +181,9 @@ export const deleteFile = (filePath) =>
         if (err) return reject(err);
         return resolve(filePath);
       });
-    } else {
-      return resolve(filePath);
     }
+
+    return resolve(filePath);
   });
 
 export const nodeEnv = process.env.NODE_ENV || 'development';

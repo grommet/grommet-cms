@@ -14,33 +14,33 @@ export function dashboardSetLeftNavAnchor({ label, onClick }) {
     label,
     onClick
   };
-};
+}
 
 export function dashboardRequest() {
   return {
     type: ActionTypes.DASHBOARD_REQUEST
   };
-};
+}
 
 export function dashboardLoadNavSuccess(nav) {
   return {
     type: ActionTypes.DASHBOARD_LOAD_NAV_SUCCESS,
     nav
   };
-};
+}
 
 export function loadNavRoutes() {
-  return function(dispatch, getState) {
-    let { url } = getState().api;
+  return function (dispatch, getState) {
+    const { url } = getState().api;
     dispatch(dashboardRequest());
     Requests.get(`${url}/routes`)
-      .then(json => {
+      .then((json) => {
         if (!json.routes) {
           throw new Error('Unexpected data returned from server');
         }
         dispatch(dashboardLoadNavSuccess(json.routes));
       })
-      .catch(err => {
+      .catch((err) => {
         dispatch(dashboardError(err));
       });
   };

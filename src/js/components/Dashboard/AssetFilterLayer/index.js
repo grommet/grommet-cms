@@ -40,7 +40,6 @@ type Props = {
 }
 
 export default class AssetFilterLayer extends React.Component {
-
   constructor() {
     super();
     this._addEnterKeyHandler = this._addEnterKeyHandler.bind(this);
@@ -150,7 +149,7 @@ export default class AssetFilterLayer extends React.Component {
                   label="submit"
                   style={{ marginRight: 5 }}
                   onClick={onSubmit}
-                  primary={true}
+                  primary
                   type="submit"
                 />
                 <Button

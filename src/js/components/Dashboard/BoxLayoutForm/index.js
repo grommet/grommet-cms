@@ -21,8 +21,8 @@ export default function BoxLayoutForm(props: {
   fields: Array<{
     label: string,
     name: string,
-    type: "Select",
-    options: Array<string>,
+    type: "Select" | "CheckBox",
+    options: ?Array<string>,
     value: ?string
   }>
 }) {
@@ -71,13 +71,13 @@ export default function BoxLayoutForm(props: {
             <Button
               label="submit"
               onClick={() => onSubmit(false)}
-              primary={true}
+              primary
               type="submit"
             />
             <Button
               label="submit and close"
               onClick={() => onSubmit(true)}
-              primary={true}
+              primary
               type="submit"
             />
             <Button

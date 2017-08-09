@@ -9,8 +9,8 @@ import { getPosts, deletePost, submitPost, setPost, updatePost } from
   'grommet-cms/containers/Posts/PostPage/actions';
 import { blockAddList } from
   'grommet-cms/containers/Dashboard/DashboardContentBlocks/actions';
-import { toggleAddPostFormVisibility, addPostRedirect, incrementCurrentPage } from './actions';
 import { unslugify } from 'grommet-cms/utils';
+import { toggleAddPostFormVisibility, addPostRedirect, incrementCurrentPage } from './actions';
 
 export class DashboardPostsPage extends Component {
   constructor(props) {
@@ -49,12 +49,13 @@ export class DashboardPostsPage extends Component {
     this._setPageHeaderTitle();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.posts !== prevProps.posts && this.props.request === false)
-      this.setState({orderLayer: false});
+  componentDidUpdate(prevProps) {
+    if (this.props.posts !== prevProps.posts && this.props.request === false) {
+      this.setState({ orderLayer: false }); // eslint-disable-line
+    }
   }
 
-  componentWillReceiveProps({ request, posts, redirect, params, currentPage }) {
+  componentWillReceiveProps({ request, redirect, params, currentPage }) {
     if (!request && request !== this.props.request) {
       if (redirect) {
         this.props.dispatch(addPostRedirect());
@@ -84,7 +85,7 @@ export class DashboardPostsPage extends Component {
 
   _onSubmitPost() {
     const { newPost, params, addPostForm, request } = this.props;
-    if(!request && newPost) {
+    if (!request && newPost) {
       let post = newPost;
       if (addPostForm.selectedPostIndex === null) {
         post = {
@@ -118,7 +119,7 @@ export class DashboardPostsPage extends Component {
   _onPostChange({ target, option }) {
     const { newPost } = this.props;
     const key = target.id;
-    let val = option || target.value;
+    const val = option || target.value;
     let updatedPost;
     if (newPost) {
       updatedPost = {
@@ -166,7 +167,7 @@ export class DashboardPostsPage extends Component {
 
   _onMenuItemClick(type, index) {
     const { _id: id } = this.props.posts[index];
-    switch(type) {
+    switch (type) {
       case 'EDIT_PAGE': {
         this.props.dispatch(toggleAddPostFormVisibility(index));
         break;
@@ -249,8 +250,8 @@ export class DashboardPostsPage extends Component {
   _renderLoader(request) {
     return (request)
       ? <Box full align="center" justify="center">
-          <LoadingIndicator />
-        </Box>
+        <LoadingIndicator />
+      </Box>
       : <NoneFound message="Click 'Add Page' to add one." />;
   }
 
@@ -271,14 +272,14 @@ export class DashboardPostsPage extends Component {
 
     const list = (Array.isArray(posts) && posts.length > 0 && !request)
       ? <PostDashboardList
-          list={this.props.posts}
-          onMenuItemClick={this._onMenuItemClick} 
-        />
+        list={this.props.posts}
+        onMenuItemClick={this._onMenuItemClick}
+      />
       : this._renderLoader(request);
 
     return (
-      <Box 
-        primary 
+      <Box
+        primary
         direction="column"
         full="horizontal"
         style={{ maxHeight: 'calc(100vh - 80px)' }}
@@ -290,7 +291,7 @@ export class DashboardPostsPage extends Component {
           form={{
             onSubmit: this._onSubmitPost,
             post: newPost || selectedPost || {},
-            url: url,
+            url,
             onCancel: this._onCancelPost,
             onChange: this._onPostChange
           }}
@@ -315,7 +316,7 @@ export class DashboardPostsPage extends Component {
       </Box>
     );
   }
-};
+}
 
 DashboardPostsPage.propTypes = {
   dispatch: PropTypes.func.isRequired,
@@ -336,7 +337,7 @@ DashboardPostsPage.contextTypes = {
   router: PropTypes.object.isRequired
 };
 
-function mapStateToProps (state, props) {
+function mapStateToProps(state) {
   const { request, error, posts, post } = state.posts;
   const { addPostForm, redirect, currentPage } = state.dashboardPosts;
   const { url } = state.fileUpload;
@@ -350,6 +351,6 @@ function mapStateToProps (state, props) {
     currentPage,
     addPostForm
   };
-};
+}
 
 export default connect(mapStateToProps)(DashboardPostsPage);

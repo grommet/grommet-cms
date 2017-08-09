@@ -21,12 +21,12 @@ export function loadDataFailure(error) {
 }
 
 export function loadData() {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const { url } = getState().api;
     dispatch(loadDataInitiation());
     return fetch(`${url}/settings`)
-      .then((res) => res.json())
-      .then((data) => dispatch(loadDataSuccess(data)))
-      .catch((err) => dispatch(loadDataFailure(err)));
+      .then(res => res.json())
+      .then(data => dispatch(loadDataSuccess(data)))
+      .catch(err => dispatch(loadDataFailure(err)));
   };
 }

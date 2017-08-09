@@ -21,8 +21,8 @@ export class DashboardHomePage extends Component {
     const { request, posts } = this.props;
     return (
       <WithLoading fullHeight isLoading={request}>
-        <Box 
-          primary 
+        <Box
+          primary
           direction="column"
           full="horizontal"
           style={{ maxHeight: 'calc(100vh - 80px)' }}
@@ -36,14 +36,14 @@ export class DashboardHomePage extends Component {
               onMenuItemClick={this.onSelectItem}
               list={posts}
             />
-          :
+            :
             <NoneFound />
           }
         </Box>
       </WithLoading>
     );
   }
-};
+}
 
 DashboardHomePage.contextTypes = {
   router: PropTypes.object.isRequired
@@ -55,12 +55,12 @@ DashboardHomePage.propTypes = {
   )
 };
 
-function mapStateToProps(state, props) {
+function mapStateToProps(state) {
   return {
     posts: state.dashboardHomepage.data,
     request: state.dashboardHomepage.request
   };
-};
+}
 
 function mapDispatchToProps(dispatch) {
   return {

@@ -1,3 +1,7 @@
+files:
+  include: './src/**/*.s+(a|c)ss'
+  ignore:
+    - 'node_modules/**/*'
 options:
   formatter: stylish
   merge-default-rules: false
@@ -100,7 +104,7 @@ rules:
   space-between-parens:
     - 1
     - include: false
-  trailing-semicolon: 1
+  trailing-semicolon: 2
   url-quotes: 0
   variable-for-property:
     - 0
