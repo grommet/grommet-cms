@@ -107,7 +107,7 @@ export default function Nav({
           dropAlign={{ right: 'right' }}
           icon={
             <Image
-              src={userthumb}
+              src={(typeof window !== 'undefined') ? userthumb : undefined}
               style={{
                 borderRadius: 25,
                 width: '25px',

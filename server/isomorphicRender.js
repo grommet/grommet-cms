@@ -23,7 +23,6 @@ export default function isomorphicRender(req, res) {
       username: req.user.username,
       role: (req.user.role === 0) ? 0 : 1
     } : undefined;
-  console.log(user);
   const store = configureStore({
     api: {
       url: process.env.API_URL

@@ -11,9 +11,18 @@
     "flow-react-proptypes",
     "add-module-exports",
     "transform-object-rest-spread",
-    "transform-flow-strip-types", ["module-alias", [{
-      "src": "./src/js",
-      "expose": "grommet-cms"
-    }]]
+    "transform-flow-strip-types", 
+    [
+      "module-alias", [
+        {
+          "src": "./src/js",
+          "expose": "grommet-cms"
+        },
+        {
+          "src": "./src",
+          "expose": "root"
+        }
+      ]
+    ]
   ]
 }
