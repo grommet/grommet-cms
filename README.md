@@ -1,5 +1,5 @@
 # Grommet CMS
-
+This repo contains the source code for the Grommet CMS.  We are working on open sourcing this right now and would love your help!
 
 ## Getting Started
 
