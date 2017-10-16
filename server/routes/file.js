@@ -72,7 +72,7 @@ router.post('/file/create', isAuthed, upload.single('file'),
     File.create({
       title: req.body.title || '',
       path: filePath,
-      createdBy: req.user.username || 'admin',
+      createdBy: req.user ? req.user.username : 'admin',
       createdAt: Date.now()
     }, (err, post) => {
       if (err) {
