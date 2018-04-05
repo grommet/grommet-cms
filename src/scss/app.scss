@@ -24,6 +24,10 @@ body {
   overflow-y: scroll;
 }
 
+div {
+  box-sizing: border-box;
+}
+
 img {
   // Fixes IE11 image scaling within a flexbox bug.
   min-height: 1px;

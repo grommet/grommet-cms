@@ -16,7 +16,9 @@ import {
   DashboardSettingsPage,
   DashboardPageTypesPage,
   DashboardPageTypeEditPage,
-  DashboardPageTypeCreatePage
+  DashboardPageTypeCreatePage,
+  PostFeedPage,
+  PostPage
 } from 'grommet-cms/containers';
 
 export const getRoutes = (store) => {
@@ -36,7 +38,10 @@ export const getRoutes = (store) => {
 
   return (
     <Router history={browserHistory}>
-      <Redirect from="/" to="/dashboard" />
+      <Route >
+        <Route path="/" component={PostFeedPage} />
+        <Route path="/post/:slug" component={PostPage} />
+      </Route>
       <Route path="/dashboard" component={DashboardContainer}>
         <IndexRoute component={LoginPage} />
         <Route path="assets" component={DashboardAssetsPage} onEnter={authRequired} />

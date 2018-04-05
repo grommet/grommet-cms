@@ -45,7 +45,7 @@ export class PostPage extends Component {
               {subtitle}
             </Label>
           </Box>
-          <Box full>
+          <Box pad="medium" full="horizontal">
             {sections && sections.map((item, i) =>
               <SectionLayoutRenderer
                 key={i}
