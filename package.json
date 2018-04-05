@@ -9,9 +9,6 @@
   "description": "Grommet CMS",
   "homepage": "https://grommet.github.io/grommet-cms/",
   "license": "Apache-2.0",
-  "engines": {
-    "node": "6.9.1"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/grommet/grommet-cms"
