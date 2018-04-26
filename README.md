@@ -48,10 +48,10 @@ To run this application, execute the following commands:
   $ npm run build
   ```
 
-  7. To run the distribution bundle:
+  7. To run the distribution bundle using forever:
 
   ```bash
-  $ npm start
+  $ forever start server ./server/server
   ```
 
 ## Generators
