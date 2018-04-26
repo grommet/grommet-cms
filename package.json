@@ -142,7 +142,7 @@
     "webpack-stream": "^3.2.0"
   },
   "scripts": {
-    "api-dev": "NODE_ENV=test ./node_modules/.bin/nodemon server ./server/server",
+    "api-dev": "cross-env NODE_ENV=test ./node_modules/.bin/nodemon server ./server/server",
     "test": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=test node --harmony node_modules/.bin/jest",
     "test-update": "cross-env BABEL_DISABLE_CACHE=1 NODE_ENV=test node --harmony node_modules/.bin/jest --updateSnapshot",
     "test:update": "npm run test -- -u",
